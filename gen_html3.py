@@ -206,10 +206,10 @@ PH = ""
 only_tab = [
     {"address":"1335 Fortuna Ave, Landers, CA 92285","region":"Landers","price":375000,"beds":2,"baths":1,"sqft":952,"dom":110,"img_src":b64("4"),"fin":compute(375000,4863.63,2337.42,112500,952)},
     {"address":"56367 Scandia Ln, Yucca Valley, CA 92284","region":"Yucca Valley","price":510000,"beds":1,"baths":2,"sqft":994,"dom":763,"img_src":b64("5"),"fin":compute(510000,0,3106.13,153000,994)},
-    {"address":"8500 S Samel Rd, Morongo Valley, CA 92256","region":"Morongo Valley","price":440000,"beds":1,"baths":1,"sqft":936,"img_src":b64("6"),"fin":compute(440000,81500,2707.13,132000,936)},
+    {"address":"8500 S Samel Rd, Morongo Valley, CA 92256","region":"Morongo Valley","price":440000,"beds":1,"baths":1,"sqft":936,"img_src":b64("6"),"airbnb_link":"https://www.airbnb.com/rooms/1096561622451349502","fin":compute(440000,81500,2707.13,132000,936)},
     {"address":"1224 Shangri La Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":325000,"beds":1,"baths":1,"sqft":1937,"img_src":b64("7"),"fin":compute(325000,0,2052.56,97500,1937)},
     {"address":"4650 Sizer Canyon Rd, Johnson Valley, CA 92285","region":"Johnson Valley","price":440000,"beds":2,"baths":1,"sqft":947,"dom":254,"img_src":b64("8"),"fin":compute(440000,36800,2707.13,132000,947)},
-    {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","fin":compute(374900,62600,2336.95,112470,662)},
+    {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","airbnb_link":"https://www.airbnb.com/rooms/971911711973779101","fin":compute(374900,62600,2336.95,112470,662)},
     {"address":"877 E Phillips Rd, Landers, CA 92285","region":"Landers","price":299000,"original_price":369000,"beds":1,"baths":1,"sqft":690,"dom":465,"img_src":b64("10"),"zillow_link":"https://www.zillow.com/homedetails/877-E-Phillips-Rd-Landers-CA-92285/17508176_zpid/","fin":compute(299000,26200,1903.48,89700,690)},
     {"address":"63300 Tilford Way, Joshua Tree, CA 92252","region":"Joshua Tree","price":399000,"beds":1,"baths":1,"sqft":900,"dom":1,"img_src":b64("11"),"zillow_link":"https://www.zillow.com/homedetails/63300-Tilford-Way-Joshua-Tree-CA-92252/17508509_zpid/","fin":compute(399000,90789.37,2474.19,119700,900)},
     {"address":"2351 N Cambria Ave, Landers, CA 92285","region":"Landers","price":499000,"beds":3,"baths":2,"sqft":1467,"dom":6,"img_src":b64("12"),"zillow_link":"https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/","fin":compute(499000,94280.23,3043.90,149700,1467)},
@@ -217,18 +217,18 @@ only_tab = [
 only_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 
 laquinta_tab = [
-    {"address":"50740 Santa Rosa Plz APT 2, La Quinta, CA 92253","region":"La Quinta","price":315000,"beds":1,"baths":1,"sqft":682,"img_src":zillow_img("dbac82a7b26bc71760fc21cac9d4c4e2"),"fin":compute(315000,28400,1994.99,94500,682)},
+    {"address":"50740 Santa Rosa Plz APT 2, La Quinta, CA 92253","region":"La Quinta","price":315000,"beds":1,"baths":1,"sqft":682,"img_src":zillow_img("dbac82a7b26bc71760fc21cac9d4c4e2"),"airbnb_link":"https://www.airbnb.com/rooms/748771224286105523","fin":compute(315000,28400,1994.99,94500,682)},
 ]
 
 duplex_tab = [
     {"address":"4537 Anita Ave, Yucca Valley, CA 92284","region":"Morongo","price":620000,"beds":6,"baths":3,"sqft":2965,"img_src":zillow_img("abbeb38ee830ad6682c5095ca7fdeb68"),"fin":compute(620000,53500,3733.41,186000,2965)},
     {"address":"56367 Scandia Ln, Yucca Valley, CA 92284","region":"Morongo","price":510000,"beds":1,"baths":2,"sqft":994,"dom":763,"img_src":b64("5"),"fin":compute(510000,0,3106.13,153000,994)},
-    {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"fin":compute(599000,103600,3613.61,179700,1303)},
+    {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"airbnb_link":"https://www.airbnb.com/rooms/769512618474065409","fin":compute(599000,103600,3613.61,179700,1303)},
 ]
 
 bigbear_tab = [
     {"address":"376 Riverside Ave, Sugarloaf, CA 92386","region":"Big Bear","price":259900,"beds":1,"baths":1,"sqft":504,"img_src":PH,"fin":compute(259900,19700,1681.38,77970,504)},
-    {"address":"396 Kern Ave, Sugarloaf, CA 92386","region":"Big Bear","price":299999,"beds":2,"baths":1,"sqft":720,"img_src":PH,"zillow_link":"https://www.zillow.com/homedetails/396-Riverside-Ave-Sugarloaf-CA-92386/17622076_zpid/","fin":compute(299999,19000,1909.13,89999,720)},
+    {"address":"396 Kern Ave, Sugarloaf, CA 92386","region":"Big Bear","price":299999,"beds":2,"baths":1,"sqft":720,"img_src":PH,"zillow_link":"https://www.zillow.com/homedetails/396-Riverside-Ave-Sugarloaf-CA-92386/17622076_zpid/","airbnb_link":"https://www.airbnb.com/rooms/769657678133226978","fin":compute(299999,19000,1909.13,89999,720)},
     {"address":"697 Villa Grove Ave, Big Bear City, CA 92314","region":"Big Bear","price":299900,"beds":2,"baths":1,"sqft":750,"dom":53,"img_src":zillow_img("58a1652c34b769e0b9521cd7ab9c77fd"),"zillow_link":"https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/","fin":compute(299900,44500,1908.67,89970,750)},
 ]
 
@@ -238,35 +238,35 @@ sold_tab = [
 
 adu_tab = [
     {"address":"1388 Jemez Trl, Landers, CA 92285","region":"Landers","price":499999,"beds":3,"baths":3,"sqft":3120,"dom":238,"img_src":zillow_img("90fd67edf07a47ca04f3171349739389"),"fin":compute(499999,0,3049.55,149999,3120)},
-    {"address":"57920 Buena Vista Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":475000,"beds":3,"baths":2,"sqft":1600,"img_src":zillow_img("f0422669224f64ea639fda4d2c808777"),"fin":compute(475000,35900,2907.13,142500,1600)},
+    {"address":"57920 Buena Vista Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":475000,"beds":3,"baths":2,"sqft":1600,"img_src":zillow_img("f0422669224f64ea639fda4d2c808777"),"airbnb_link":"https://www.airbnb.com/rooms/930306660730554905","fin":compute(475000,35900,2907.13,142500,1600)},
 ]
 
 competition_tab = [
-    {"address":"2088 Acoma Trl, Landers, CA 92285","region":"Landers","price":316500,"beds":2,"baths":1,"sqft":858,"img_src":zillow_img("0e09564c766053b1b8ddff1d9e18ff4c"),"rev_source":"Airbnb verified","fin":compute(316500,57500,2003.98,94950,858,has_pool=True)},
+    {"address":"2088 Acoma Trl, Landers, CA 92285","region":"Landers","price":316500,"beds":2,"baths":1,"sqft":858,"img_src":zillow_img("0e09564c766053b1b8ddff1d9e18ff4c"),"airbnb_link":"https://www.airbnb.com/rooms/49210867","rev_source":"Airbnb verified","fin":compute(316500,57500,2003.98,94950,858,has_pool=True)},
 ]
 
 money_tab = [
     {"address":"60654 Mitch Ln, Landers, CA 92285","region":"Landers","price":365000,"original_price":385000,"beds":1,"baths":1,"sqft":448,"dom":72,"img_src":zillow_img("085bad920e162f8a6d0146a5585f2efa"),"zillow_link":"https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/","airbnb_link":"https://www.airbnb.com/rooms/647212501055315908","rev_source":"Airbnb verified","fin":compute(365000,71300,2274.74,109500,448,has_pool=True)},
-    {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"fin":compute(599000,80232,3613.61,179700,1303)},
-    {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","fin":compute(374900,52364,2336.95,112470,662)},
-    {"address":"8729 Rockhaven Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":710000,"beds":1,"baths":1,"sqft":968,"img_src":zillow_img("458814cc0ce69e2a1400231a7d78aac1"),"fin":compute(710000,107332,4246.55,213000,968)},
-    {"address":"72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":2,"baths":1,"sqft":1094,"img_src":zillow_img("814e00f87608b29e697cd736fa6f9baa"),"fin":compute(599000,75000,3613.61,179700,1094)},
-    {"address":"55921 Ornelas Ln, Landers, CA 92285","region":"Landers","price":349000,"beds":2,"baths":2,"sqft":976,"dom":126,"img_src":zillow_img("ecc9f6617ce31a3f847e31005f94a436"),"zillow_link":"https://www.zillow.com/homedetails/55921-Ornelas-Ln-Landers-CA-92285/17507410_zpid/","fin":compute(349000,42219,2189.33,104700,976)},
-    {"address":"290 Bluegrass Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":359000,"beds":3,"baths":1,"sqft":1451,"img_src":zillow_img("8d3178634371ed1fcfc9df50fbac384f"),"fin":compute(359000,51387,2245.91,107700,1451)},
-    {"address":"1564 Luna Mesa Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":498000,"beds":2,"baths":2,"sqft":792,"dom":47,"img_src":zillow_img("b80decd558b9a98a713ea98e760ef422"),"zillow_link":"https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/","fin":compute(498000,77000,3038.24,149400,792)},
+    {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"airbnb_link":"https://www.airbnb.com/rooms/769512618474065409","fin":compute(599000,80232,3613.61,179700,1303)},
+    {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","airbnb_link":"https://www.airbnb.com/rooms/971911711973779101","fin":compute(374900,52364,2336.95,112470,662)},
+    {"address":"8729 Rockhaven Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":710000,"beds":1,"baths":1,"sqft":968,"img_src":zillow_img("458814cc0ce69e2a1400231a7d78aac1"),"airbnb_link":"https://www.airbnb.com/rooms/603759782385162711","fin":compute(710000,107332,4246.55,213000,968)},
+    {"address":"72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":2,"baths":1,"sqft":1094,"img_src":zillow_img("814e00f87608b29e697cd736fa6f9baa"),"airbnb_link":"https://www.airbnb.com/rooms/49347365","fin":compute(599000,75000,3613.61,179700,1094)},
+    {"address":"55921 Ornelas Ln, Landers, CA 92285","region":"Landers","price":349000,"beds":2,"baths":2,"sqft":976,"dom":126,"img_src":zillow_img("ecc9f6617ce31a3f847e31005f94a436"),"zillow_link":"https://www.zillow.com/homedetails/55921-Ornelas-Ln-Landers-CA-92285/17507410_zpid/","airbnb_link":"https://www.airbnb.com/rooms/48836260","fin":compute(349000,42219,2189.33,104700,976)},
+    {"address":"290 Bluegrass Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":359000,"beds":3,"baths":1,"sqft":1451,"img_src":zillow_img("8d3178634371ed1fcfc9df50fbac384f"),"airbnb_link":"https://www.airbnb.com/rooms/38159960","fin":compute(359000,51387,2245.91,107700,1451)},
+    {"address":"1564 Luna Mesa Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":498000,"beds":2,"baths":2,"sqft":792,"dom":47,"img_src":zillow_img("b80decd558b9a98a713ea98e760ef422"),"zillow_link":"https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/","airbnb_link":"https://www.airbnb.com/rooms/45222274","fin":compute(498000,77000,3038.24,149400,792)},
     {"address":"2351 N Cambria Ave, Landers, CA 92285","region":"Landers","price":499000,"beds":3,"baths":2,"sqft":1467,"dom":6,"img_src":b64("12"),"zillow_link":"https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/","fin":compute(499000,109600,3043.90,149700,1467)},
 ]
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 
 comp_tracker = [
-    {"address":"3979 Dusty Mile Rd, Landers, CA 92285","listing_name":"Escape and Rejuvenate at K.B.'s Desert Cabin","annual_rev":20500,"adr":149,"occ":0.315,"rating":4.9,"reviews":195,"airbnb_link":"#","notes":""},
-    {"address":"55125 Gleason Rd, Landers, CA 92285","listing_name":"Arcturus Landing - The brightest star in the desert","annual_rev":29700,"adr":152,"occ":0.474,"rating":5.0,"reviews":491,"airbnb_link":"#","notes":""},
-    {"address":"GPS: 34.30113, -116.42657 (unlisted)","listing_name":"Watermelon Sugar, Joshua Tree - Top 5% - pool, spa","annual_rev":51300,"adr":289,"occ":0.43,"rating":5.0,"reviews":290,"airbnb_link":"#","notes":"Pool, Spa"},
-    {"address":"2088 Acoma Trail, Landers, CA 92285","listing_name":"The Yucca Escape","annual_rev":57500,"adr":170,"occ":0.732,"rating":4.9,"reviews":156,"airbnb_link":"#","notes":"Pool, Hot Tub, Record Player, Hammock, Fire Pit"},
-    {"address":"GPS: 34.30735, -116.44860 (unlisted)","listing_name":"Peaceful 2 Bedroom High Desert Getaway on 5 acres!","annual_rev":34200,"adr":216,"occ":0.356,"rating":5.0,"reviews":127,"airbnb_link":"#","notes":""},
-    {"address":"3275 Dusty Mile Rd, Landers, CA 92285","listing_name":"Serene Retreat: Spa, Stars, Fire pit, Pet-friendly","annual_rev":39300,"adr":228,"occ":0.375,"rating":4.9,"reviews":179,"airbnb_link":"#","notes":""},
-    {"address":"55150 Gleason Rd, Landers, CA 92285","listing_name":"Modern Desert Cabin-Hot Tub/Fire Pit/BBQ","annual_rev":37200,"adr":168,"occ":0.493,"rating":5.0,"reviews":221,"airbnb_link":"#","notes":""},
-    {"address":"55960 Einstein Rd, Landers, CA 92285","listing_name":"Star Gazing | Outdoor Shower | Cowboy Pool | Spa","annual_rev":41000,"adr":208,"occ":0.441,"rating":5.0,"reviews":167,"airbnb_link":"#","notes":""},
+    {"address":"3979 Dusty Mile Rd, Landers, CA 92285","listing_name":"Escape and Rejuvenate at K.B.'s Desert Cabin","annual_rev":20500,"adr":149,"occ":0.315,"rating":4.9,"reviews":195,"airbnb_link":"https://www.airbnb.com/rooms/24018672","notes":""},
+    {"address":"55125 Gleason Rd, Landers, CA 92285","listing_name":"Arcturus Landing - The brightest star in the desert","annual_rev":29700,"adr":152,"occ":0.474,"rating":5.0,"reviews":491,"airbnb_link":"https://www.airbnb.com/rooms/43863206","notes":""},
+    {"address":"GPS: 34.30113, -116.42657 (unlisted)","listing_name":"Watermelon Sugar, Joshua Tree - Top 5% - pool, spa","annual_rev":51300,"adr":289,"occ":0.43,"rating":5.0,"reviews":290,"airbnb_link":"https://www.airbnb.com/rooms/594431834252436458","notes":"Pool, Spa"},
+    {"address":"2088 Acoma Trail, Landers, CA 92285","listing_name":"The Yucca Escape","annual_rev":57500,"adr":170,"occ":0.732,"rating":4.9,"reviews":156,"airbnb_link":"https://www.airbnb.com/rooms/49210867","notes":"Pool, Hot Tub, Record Player, Hammock, Fire Pit"},
+    {"address":"GPS: 34.30735, -116.44860 (unlisted)","listing_name":"Peaceful 2 Bedroom High Desert Getaway on 5 acres!","annual_rev":34200,"adr":216,"occ":0.356,"rating":5.0,"reviews":127,"airbnb_link":"https://www.airbnb.com/rooms/558173728228318872","notes":""},
+    {"address":"3275 Dusty Mile Rd, Landers, CA 92285","listing_name":"Serene Retreat: Spa, Stars, Fire pit, Pet-friendly","annual_rev":39300,"adr":228,"occ":0.375,"rating":4.9,"reviews":179,"airbnb_link":"https://www.airbnb.com/rooms/644497332324732000","notes":""},
+    {"address":"55150 Gleason Rd, Landers, CA 92285","listing_name":"Modern Desert Cabin-Hot Tub/Fire Pit/BBQ","annual_rev":37200,"adr":168,"occ":0.493,"rating":5.0,"reviews":221,"airbnb_link":"https://www.airbnb.com/rooms/653756316774444736","notes":""},
+    {"address":"55960 Einstein Rd, Landers, CA 92285","listing_name":"Star Gazing | Outdoor Shower | Cowboy Pool | Spa","annual_rev":41000,"adr":208,"occ":0.441,"rating":5.0,"reviews":167,"airbnb_link":"https://www.airbnb.com/rooms/813255678900589319","notes":""},
 ]
 
 # ===== TOP 5 COMPUTATION =====
