@@ -101,6 +101,11 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .remodel-input { background:#FFFDF7;border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:0.78rem;font-family:ui-monospace,'SF Mono',monospace;padding:3px 7px;width:100px;text-align:right;transition:border-color 0.15s; }
 .remodel-input:focus { outline:none;border-color:var(--accent); }
 .card-links { display:flex;gap:8px;margin-top:auto; }
+.comp-strips { display:flex;flex-direction:column;gap:6px;margin-top:8px; }
+.comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px; }
+.comp-strip { display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 10px;border-radius:7px;background:#F3EEE3;border:1px solid var(--border);color:var(--text);font-size:0.74rem;font-weight:600;text-decoration:none;transition:background 0.15s,transform 0.1s; }
+.comp-strip:hover { background:#EDE6D6;transform:translateY(-1px); }
+.comp-strip .cs-arrow { color:var(--text2);font-weight:400; }
 .listing-btn { flex:1;text-align:center;padding:7px 10px;border-radius:7px;font-size:0.76rem;font-weight:600;text-decoration:none;transition:opacity 0.15s,transform 0.1s; }
 .listing-btn:hover { opacity:0.88;transform:translateY(-1px); }
 .zillow-btn { background:#1a5f8a;color:#fff; }
@@ -148,7 +153,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
     </div>
     <div class="top5-banner">⚡ Best CoC across all tabs — deduplicated, highest-revenue version of each property shown. Adjust revenue or remodel budget on any card to see live CoC updates.</div>
     <div class="cards-grid">
-    <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-annual-rev="90789.37" data-piti="2474.1900" data-pool="250" data-base-startup="152055.0000">
+    <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-annual-rev="90825.0" data-piti="2474.1900" data-pool="250" data-base-startup="152055.0000">
       <div class="card-image">
         <img src="photos/63300-tilford-way.jpg" alt="63300 Tilford Way" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge">$399,000</div>
@@ -160,26 +165,27 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">900 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 1d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$7,566/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,474/mo</span></div>
-          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,740/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,741/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
-          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,101/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,104/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:63.5%;background:#22c55e"></div></div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:63.6%;background:#22c55e"></div></div>
           <div class="coc-value coc-positive">+24.5%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
             <span class="rev-adjust-title">📊 Revenue Assumption</span>
-            <span class="rev-tag">AirROI est.</span>
+            <span class="rev-tag">Avg of 4 comps</span>
           </div>
           <div class="rev-adjust-row">
             <span>Annual Revenue</span>
-            <input type="text" class="rev-input" value="90,789" oninput="recalcCard(this)" onclick="this.select()">
+            <input type="text" class="rev-input" value="90,825" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>70% occ · $308 ADR</span></div>
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -194,6 +200,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$152,055</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/63300-Tilford-Way-Joshua-Tree-CA-92252/17508509_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/1050251825957778903" target="_blank" class="comp-strip" title="Romantic Cabin, Sweeping Views, Spa · Stone Hill"><span>84% occ</span><span>$360 ADR</span><span>$117.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/583294576342371719" target="_blank" class="comp-strip" title="Casa Lenta · Romantic Retreat w/ Pool, Spa, Views"><span>70% occ</span><span>$338 ADR</span><span>$99.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1313828204666358101" target="_blank" class="comp-strip" title="CouplesPool, Spa&Tub | Bikes | Telescope | Theater"><span>69% occ</span><span>$291 ADR</span><span>$84.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/45829660" target="_blank" class="comp-strip" title="DTJT House 2 - SWIM, SOAK & STARGAZE"><span>58% occ</span><span>$245 ADR</span><span>$62.0K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
     <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-annual-rev="109600" data-piti="3043.9000" data-pool="250" data-base-startup="195627.0000">
@@ -228,6 +235,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="109,600" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -242,6 +250,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$195,627</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="60654 Mitch Ln, Landers, CA 92285" data-lat="34.280575" data-lng="-116.338752" data-annual-rev="71300" data-piti="2274.7400" data-pool="0" data-base-startup="133093.0000">
@@ -275,6 +284,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="71,300" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -289,6 +299,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$133,093</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/647212501055315908" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="8500 S Samel Rd, Morongo Valley, CA 92256" data-lat="34.097905" data-lng="-116.511178" data-annual-rev="81500" data-piti="2707.1300" data-pool="0" data-base-startup="166776.0000">
@@ -322,6 +333,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="81,500" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -336,6 +348,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$166,776</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/8500-S-Samel-Rd-Morongo-Valley-CA-92256_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/1096561622451349502" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-annual-rev="103600" data-piti="3613.6100" data-pool="0" data-base-startup="227503.0000">
@@ -369,6 +382,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="103,600" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -383,6 +397,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$227,503</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/69450-Amboy-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769512618474065409" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     </div>
@@ -403,7 +418,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       <span class="prop-count">16 properties</span>
     </div>
     <div class="cards-grid">
-    <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-annual-rev="90789.37" data-piti="2474.1900" data-pool="250" data-base-startup="152055.0000">
+    <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-annual-rev="90825.0" data-piti="2474.1900" data-pool="250" data-base-startup="152055.0000">
       <div class="card-image">
         <img src="photos/63300-tilford-way.jpg" alt="63300 Tilford Way" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge">$399,000</div>
@@ -415,26 +430,27 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">900 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-dom-green" title="Days on Market">📅 1d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$7,566/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,474/mo</span></div>
-          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,740/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,741/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
-          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,101/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,104/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:63.5%;background:#22c55e"></div></div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:63.6%;background:#22c55e"></div></div>
           <div class="coc-value coc-positive">+24.5%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
             <span class="rev-adjust-title">📊 Revenue Assumption</span>
-            <span class="rev-tag">AirROI est.</span>
+            <span class="rev-tag">Avg of 4 comps</span>
           </div>
           <div class="rev-adjust-row">
             <span>Annual Revenue</span>
-            <input type="text" class="rev-input" value="90,789" oninput="recalcCard(this)" onclick="this.select()">
+            <input type="text" class="rev-input" value="90,825" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>70% occ · $308 ADR</span></div>
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -449,6 +465,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$152,055</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/63300-Tilford-Way-Joshua-Tree-CA-92252/17508509_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/1050251825957778903" target="_blank" class="comp-strip" title="Romantic Cabin, Sweeping Views, Spa · Stone Hill"><span>84% occ</span><span>$360 ADR</span><span>$117.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/583294576342371719" target="_blank" class="comp-strip" title="Casa Lenta · Romantic Retreat w/ Pool, Spa, Views"><span>70% occ</span><span>$338 ADR</span><span>$99.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1313828204666358101" target="_blank" class="comp-strip" title="CouplesPool, Spa&Tub | Bikes | Telescope | Theater"><span>69% occ</span><span>$291 ADR</span><span>$84.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/45829660" target="_blank" class="comp-strip" title="DTJT House 2 - SWIM, SOAK & STARGAZE"><span>58% occ</span><span>$245 ADR</span><span>$62.0K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
     <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-annual-rev="109600" data-piti="3043.9000" data-pool="250" data-base-startup="195627.0000">
@@ -483,6 +500,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="109,600" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -497,6 +515,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$195,627</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="60654 Mitch Ln, Landers, CA 92285" data-lat="34.280575" data-lng="-116.338752" data-annual-rev="71300" data-piti="2274.7400" data-pool="0" data-base-startup="133093.0000">
@@ -530,6 +549,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="71,300" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -544,6 +564,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$133,093</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/647212501055315908" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="8500 S Samel Rd, Morongo Valley, CA 92256" data-lat="34.097905" data-lng="-116.511178" data-annual-rev="81500" data-piti="2707.1300" data-pool="0" data-base-startup="166776.0000">
@@ -577,6 +598,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="81,500" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -591,6 +613,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$166,776</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/8500-S-Samel-Rd-Morongo-Valley-CA-92256_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/1096561622451349502" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="1564 Luna Mesa Rd, Yucca Valley, CA 92284" data-lat="34.224156" data-lng="-116.391249" data-annual-rev="77000" data-piti="3038.2400" data-pool="0" data-base-startup="184482.0000">
@@ -624,6 +647,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="77,000" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -638,6 +662,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$184,482</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/45222274" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="8729 Rockhaven Rd, Joshua Tree, CA 92252" data-lat="34.095479" data-lng="-116.268885" data-annual-rev="107332" data-piti="4246.5500" data-pool="0" data-base-startup="260438.0000">
@@ -671,6 +696,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="107,332" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -685,6 +711,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$260,438</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/8729-Rockhaven-Rd-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/603759782385162711" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="7276 Encina Rd, Joshua Tree, CA 92252" data-lat="34.120662" data-lng="-116.324009" data-annual-rev="52364" data-piti="2336.9500" data-pool="0" data-base-startup="139932.5000">
@@ -718,6 +745,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="52,364" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -732,6 +760,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$139,932</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/971911711973779101" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="290 Bluegrass Rd, Twentynine Palms, CA 92277" data-lat="34.248055" data-lng="-116.128342" data-annual-rev="51387" data-piti="2245.9100" data-pool="0" data-base-startup="147071.0000">
@@ -765,6 +794,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="51,387" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -779,6 +809,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$147,071</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/290-Bluegrass-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/38159960" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-annual-rev="80232" data-piti="3613.6100" data-pool="0" data-base-startup="227503.0000">
@@ -812,6 +843,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="80,232" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -826,6 +858,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$227,503</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/69450-Amboy-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769512618474065409" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277" data-lat="34.210884" data-lng="-116.073092" data-annual-rev="75000" data-piti="3613.6100" data-pool="0" data-base-startup="224159.0000">
@@ -859,6 +892,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="75,000" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -873,6 +907,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$224,159</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/72767-Mesquite-Dunes-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/49347365" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="55921 Ornelas Ln, Landers, CA 92285" data-lat="34.292666" data-lng="-116.443584" data-annual-rev="42219" data-piti="2189.3300" data-pool="0" data-base-startup="136021.0000">
@@ -906,6 +941,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="42,219" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -920,6 +956,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$136,021</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/55921-Ornelas-Ln-Landers-CA-92285/17507410_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/48836260" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-red" data-addr="877 E Phillips Rd, Landers, CA 92285" data-lat="34.265415" data-lng="-116.325323" data-annual-rev="26200" data-piti="1903.4800" data-pool="0" data-base-startup="114195.0000">
@@ -953,6 +990,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="26,200" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -967,6 +1005,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$114,195</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/877-E-Phillips-Rd-Landers-CA-92285/17508176_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card card-red" data-addr="4650 Sizer Canyon Rd, Johnson Valley, CA 92285" data-lat="34.334711" data-lng="-116.553058" data-annual-rev="36800" data-piti="2707.1300" data-pool="0" data-base-startup="166952.0000">
@@ -1000,6 +1039,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="36,800" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1014,6 +1054,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$166,952</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/4650-Sizer-Canyon-Rd-Johnson-Valley-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card card-red" data-addr="1335 Fortuna Ave, Landers, CA 92285" data-lat="34.274045" data-lng="-116.426363" data-annual-rev="4863.63" data-piti="2337.4200" data-pool="0" data-base-startup="144607.0000">
@@ -1047,6 +1088,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="4,863" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1061,6 +1103,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$144,607</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/1335-Fortuna-Ave-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="191854.0000">
@@ -1090,6 +1133,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$191,854</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/56367-Scandia-Ln-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card" data-addr="1224 Shangri La Rd, Joshua Tree, CA 92252" data-lat="34.23143" data-lng="-116.323253" data-annual-rev="0" data-piti="2052.5600" data-pool="0" data-base-startup="143117.0000">
@@ -1119,6 +1163,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$143,117</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/1224-Shangri-La-Rd-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     </div>
@@ -1126,7 +1171,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
   <div id="tab-bigbear" class="tab-content" style="display:none">
     <div class="tab-header">
       <h2>🏔️ Big Bear</h2>
-      <span class="prop-count">3 properties</span>
+      <span class="prop-count">4 properties</span>
     </div>
     <div class="cards-grid">
     <div class="property-card card-green" data-addr="346 San Bernardino Ave, Sugarloaf, CA 92386" data-lat="34.246" data-lng="-116.83386" data-annual-rev="44200" data-piti="1824.4400" data-pool="0" data-base-startup="108053.0000">
@@ -1160,6 +1205,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="44,200" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1174,6 +1220,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$108,053</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card card-green" data-addr="697 Villa Grove Ave, Big Bear City, CA 92314" data-lat="34.238971" data-lng="-116.855846" data-annual-rev="44500" data-piti="1908.6700" data-pool="0" data-base-startup="115465.5000">
@@ -1207,6 +1254,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="44,500" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1221,6 +1269,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$115,466</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card card-red" data-addr="376 Riverside Ave, Sugarloaf, CA 92386" data-lat="34.245452" data-lng="-116.834467" data-annual-rev="19700" data-piti="1681.3800" data-pool="0" data-base-startup="97729.5000">
@@ -1254,6 +1303,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="19,700" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1268,6 +1318,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$97,730</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/376-Riverside-Ave-Sugarloaf-CA-92386_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card card-red" data-addr="396 Kern Ave, Sugarloaf, CA 92386" data-lat="34.244957" data-lng="-116.835238" data-annual-rev="19000" data-piti="1909.1300" data-pool="0" data-base-startup="115018.9550">
@@ -1301,6 +1352,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="19,000" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1315,6 +1367,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$115,019</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/396-Kern-Ave-Sugarloaf-CA-92386/17621919_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769657678133226978" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     </div>
@@ -1356,6 +1409,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="103,600" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1370,6 +1424,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$227,503</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/69450-Amboy-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769512618474065409" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card card-red" data-addr="4537 Anita Ave, Yucca Valley, CA 92284" data-lat="34.17058" data-lng="-116.367336" data-annual-rev="53500" data-piti="3733.4100" data-pool="0" data-base-startup="261340.0000">
@@ -1403,6 +1458,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="53,500" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1417,6 +1473,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$261,340</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/4537-Anita-Ave-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card card-red" data-addr="57920 Buena Vista Dr, Yucca Valley, CA 92284" data-lat="34.164106" data-lng="-116.399646" data-annual-rev="35900" data-piti="2907.1300" data-pool="0" data-base-startup="189475.0000">
@@ -1450,6 +1507,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="35,900" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1464,6 +1522,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$189,475</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/57920-Buena-Vista-Dr-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/930306660730554905" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     <div class="property-card" data-addr="1388 Jemez Trl, Landers, CA 92285" data-lat="34.27339" data-lng="-116.454986" data-annual-rev="0" data-piti="3049.5500" data-pool="0" data-base-startup="222418.9550">
@@ -1493,6 +1552,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$222,419</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/1388-Jemez-Trl-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="191854.0000">
@@ -1522,6 +1582,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$191,854</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/56367-Scandia-Ln-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     </div>
@@ -1563,6 +1624,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="28,400" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1577,6 +1639,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$119,587</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/50740-Santa-Rosa-Plz-APT-2-La-Quinta-CA-92253_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/748771224286105523" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
       </div>
     </div>
     </div>
@@ -1618,6 +1681,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="19,700" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -1632,6 +1696,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$115,773</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/446-Riverside-Ave-Sugarloaf-CA-92386_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        
       </div>
     </div>
     </div>

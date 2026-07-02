@@ -145,6 +145,7 @@ def card(p, show_source=None):
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="{int(f['annual_rev']):,}" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          {f'<div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>{p["comp_avg"]["occ"]:.0f}% occ · ${p["comp_avg"]["adr"]:,.0f} ADR</span></div>' if p.get("comp_avg") else ""}
         </div>'''
     else:
         cost_html = '<div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p></div>'
@@ -179,6 +180,14 @@ def card(p, show_source=None):
     if airbnb_link and airbnb_link.startswith("http"):
         links_html += f'<a href="{airbnb_link}" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a>'
 
+    comps_html = ""
+    if p.get("comps"):
+        strips = "".join(
+            f'<a href="{c["url"]}" target="_blank" class="comp-strip" title="{c["name"]}">'
+            f'<span>{c["occ"]:.0f}% occ</span><span>${c["adr"]:,.0f} ADR</span><span>${c["annual_rev"]/1000:.1f}K/yr</span><span class="cs-arrow">↗</span></a>'
+            for c in p["comps"])
+        comps_html = f'<div class="comp-strips"><div class="comp-strips-title">Comps ({len(p["comps"])})</div>{strips}</div>'
+
     _ll = LATLNG.get(p["address"])
     ll_attr = f' data-lat="{_ll[0]}" data-lng="{_ll[1]}"' if _ll else ''
     return f'''<div class="{card_class}" data-addr="{p["address"]}"{ll_attr}{da}>
@@ -197,6 +206,7 @@ def card(p, show_source=None):
         {rev_html}
         {startup_html}
         <div class="card-links">{links_html}</div>
+        {comps_html}
       </div>
     </div>'''
 
@@ -300,6 +310,35 @@ money_tab = [
     {"address":"1564 Luna Mesa Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":498000,"beds":2,"baths":2,"sqft":792,"dom":47,"img_src":zillow_img("b80decd558b9a98a713ea98e760ef422"),"zillow_link":"https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/","airbnb_link":"https://www.airbnb.com/rooms/45222274","fin":compute(498000,77000,3038.24,149400,792)},
     {"address":"2351 N Cambria Ave, Landers, CA 92285","region":"Landers","price":499000,"beds":3,"baths":2,"sqft":1467,"dom":6,"img_src":b64("12"),"zillow_link":"https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/","fin":compute(499000,109600,3043.90,149700,1467,has_pool=True)},
 ]
+
+# ---- Comps: per-property Airbnb comps. Averages drive the property's revenue assumption. ----
+COMPS = {
+    "63300 Tilford Way, Joshua Tree, CA 92252": [
+        {"name":"Romantic Cabin, Sweeping Views, Spa · Stone Hill","url":"https://www.airbnb.com/rooms/1050251825957778903","annual_rev":117900,"adr":360,"occ":83.8},
+        {"name":"Casa Lenta · Romantic Retreat w/ Pool, Spa, Views","url":"https://www.airbnb.com/rooms/583294576342371719","annual_rev":99100,"adr":338,"occ":69.9},
+        {"name":"CouplesPool, Spa&Tub | Bikes | Telescope | Theater","url":"https://www.airbnb.com/rooms/1313828204666358101","annual_rev":84300,"adr":291,"occ":69.0},
+        {"name":"DTJT House 2 - SWIM, SOAK & STARGAZE","url":"https://www.airbnb.com/rooms/45829660","annual_rev":62000,"adr":245,"occ":58.1},
+    ],
+}
+
+def apply_comps(tabs):
+    seen = set()
+    for tab in tabs:
+        for p in tab:
+            comps = COMPS.get(p["address"])
+            if not comps or id(p) in seen:
+                continue
+            seen.add(id(p))
+            n = len(comps)
+            avg_rev = sum(c["annual_rev"] for c in comps) / n
+            p["comps"] = comps
+            p["comp_avg"] = {"adr": sum(c["adr"] for c in comps)/n, "occ": sum(c["occ"] for c in comps)/n}
+            p["rev_source"] = f"Avg of {n} comps"
+            f0 = p["fin"]
+            p["fin"] = compute(p["price"], avg_rev, f0["piti"], f0["down"], p["sqft"], has_pool=f0["pool"] > 0)
+
+apply_comps([only_tab, laquinta_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
+
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 adu_tab.extend(duplex_tab)
 
@@ -436,6 +475,11 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .remodel-input { background:#FFFDF7;border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:0.78rem;font-family:ui-monospace,'SF Mono',monospace;padding:3px 7px;width:100px;text-align:right;transition:border-color 0.15s; }
 .remodel-input:focus { outline:none;border-color:var(--accent); }
 .card-links { display:flex;gap:8px;margin-top:auto; }
+.comp-strips { display:flex;flex-direction:column;gap:6px;margin-top:8px; }
+.comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px; }
+.comp-strip { display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 10px;border-radius:7px;background:#F3EEE3;border:1px solid var(--border);color:var(--text);font-size:0.74rem;font-weight:600;text-decoration:none;transition:background 0.15s,transform 0.1s; }
+.comp-strip:hover { background:#EDE6D6;transform:translateY(-1px); }
+.comp-strip .cs-arrow { color:var(--text2);font-weight:400; }
 .listing-btn { flex:1;text-align:center;padding:7px 10px;border-radius:7px;font-size:0.76rem;font-weight:600;text-decoration:none;transition:opacity 0.15s,transform 0.1s; }
 .listing-btn:hover { opacity:0.88;transform:translateY(-1px); }
 .zillow-btn { background:#1a5f8a;color:#fff; }
