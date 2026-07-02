@@ -1,11 +1,22 @@
 import json, subprocess, datetime
 
-with open('/tmp/str_images.json') as f:
-    b64_imgs = json.load(f)
-
 CDN = "https://photos.zillowstatic.com/fp/"
+PHOTOS_BASE = "Photos/"
 
-def b64(k): return f"data:image/jpeg;base64,{b64_imgs[k]}"
+# Map from old b64 key to local image filename
+B64_FILES = {
+    "4":  "1335_Fortuna_Ave.jpg",
+    "5":  "56367_Scandia_Ln.jpg",
+    "6":  "8500_Samel_Rd.jpg",
+    "7":  "1224_Shangri_La_Rd.jpg",
+    "8":  "4650_Sizer_Canyon_Rd.jpg",
+    "9":  "7276_Encina_Rd.jpg",
+    "10": "877_E_Phillips_Rd.jpg",
+    "11": "63300_Tilford_Way.jpg",
+    "12": "2351_N_Cambria_Ave.jpg",
+}
+
+def b64(k): return f"{PHOTOS_BASE}{B64_FILES[k]}"
 def zillow_img(h): return f"{CDN}{h}-cc_ft_1536.jpg"
 
 def zillow_url(addr):
