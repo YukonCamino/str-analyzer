@@ -101,7 +101,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .remodel-input { background:#FFFDF7;border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:0.78rem;font-family:ui-monospace,'SF Mono',monospace;padding:3px 7px;width:100px;text-align:right;transition:border-color 0.15s; }
 .remodel-input:focus { outline:none;border-color:var(--accent); }
 .card-links { display:flex;gap:8px;margin-top:auto; }
-.be-inline { font-size:0.68rem;color:var(--text2);font-weight:400; }
+.be-inline { display:block;font-size:0.68rem;color:var(--text2);font-weight:400;line-height:1.3; }
 .be-val { font-weight:600;color:var(--text); }
 .comp-strips { display:flex;flex-direction:column;gap:6px;margin-top:8px; }
 .comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px; }
@@ -167,7 +167,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">900 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 1d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,538)</span></span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,538)</span></span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,474/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,741/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
@@ -218,7 +218,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,467 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 6d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$9,133/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$9,133/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,044/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,101/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
@@ -269,7 +269,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">448 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-red" title="Days on Market">📅 72d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,954)</span></span><span class="amount neutral mo-rev-val">+$5,942/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,954)</span></span><span class="amount neutral mo-rev-val">+$5,942/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,275/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,367/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,300/mo</span></div>
@@ -319,7 +319,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Morongo Valley, CA 92256</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">936 sqft</span><span class="chip chip-region">Morongo Valley</span><span class="chip chip-source">🌵 Desert</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$6,792/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$6,792/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,562/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,522/mo</span></div>
@@ -369,7 +369,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,303 sqft</span><span class="chip chip-region">29 Palms</span><span class="chip chip-source">🏠 ADU</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$8,633/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$8,633/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,986/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,034/mo</span></div>
@@ -437,7 +437,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">900 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-dom-green" title="Days on Market">📅 1d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,538)</span></span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,538)</span></span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,474/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,741/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
@@ -488,7 +488,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,467 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-green" title="Days on Market">📅 6d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$9,133/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$9,133/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,044/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,101/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
@@ -539,7 +539,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">448 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 72d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,954)</span></span><span class="amount neutral mo-rev-val">+$5,942/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,954)</span></span><span class="amount neutral mo-rev-val">+$5,942/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,275/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,367/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,300/mo</span></div>
@@ -589,7 +589,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Morongo Valley, CA 92256</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">936 sqft</span><span class="chip chip-region">Morongo Valley</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$6,792/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$6,792/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,562/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,522/mo</span></div>
@@ -639,7 +639,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Yucca Valley, CA 92284</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">792 sqft</span><span class="chip chip-region">Yucca Valley</span><span class="chip chip-dom-yellow" title="Days on Market">📅 47d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,946)</span></span><span class="amount neutral mo-rev-val">+$6,417/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,946)</span></span><span class="amount neutral mo-rev-val">+$6,417/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,038/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,476/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,903/mo</span></div>
@@ -689,7 +689,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">968 sqft</span><span class="chip chip-region">Joshua Tree</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $5,515)</span></span><span class="amount neutral mo-rev-val">+$8,944/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $5,515)</span></span><span class="amount neutral mo-rev-val">+$8,944/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$4,247/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,057/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,641/mo</span></div>
@@ -739,7 +739,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">662 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-dom-red" title="Days on Market">📅 118d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,035)</span></span><span class="amount neutral mo-rev-val">+$4,364/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,035)</span></span><span class="amount neutral mo-rev-val">+$4,364/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,337/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,004/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,023/mo</span></div>
@@ -789,7 +789,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">1,451 sqft</span><span class="chip chip-region">29 Palms</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,917)</span></span><span class="amount neutral mo-rev-val">+$4,282/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,917)</span></span><span class="amount neutral mo-rev-val">+$4,282/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,246/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$985/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,051/mo</span></div>
@@ -839,7 +839,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,303 sqft</span><span class="chip chip-region">29 Palms</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$6,686/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$6,686/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,538/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,535/mo</span></div>
@@ -889,7 +889,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">1,094 sqft</span><span class="chip chip-region">29 Palms</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$6,250/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$6,250/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,438/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,199/mo</span></div>
@@ -939,7 +939,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">976 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 126d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,843)</span></span><span class="amount neutral mo-rev-val">+$3,518/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,843)</span></span><span class="amount neutral mo-rev-val">+$3,518/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,189/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$809/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$520/mo</span></div>
@@ -989,7 +989,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">690 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 465d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,472)</span></span><span class="amount neutral mo-rev-val">+$2,183/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,472)</span></span><span class="amount neutral mo-rev-val">+$2,183/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,903/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$502/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$222/mo</span></div>
@@ -1039,7 +1039,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Johnson Valley, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">947 sqft</span><span class="chip chip-region">Johnson Valley</span><span class="chip chip-dom-red" title="Days on Market">📅 254d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$3,067/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$3,067/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$705/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$346/mo</span></div>
@@ -1089,7 +1089,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">952 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 110d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,036)</span></span><span class="amount neutral mo-rev-val">+$405/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,036)</span></span><span class="amount neutral mo-rev-val">+$405/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,337/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$93/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$2,025/mo</span></div>
@@ -1207,7 +1207,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Sugarloaf, CA 92386</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">608 sqft</span><span class="chip chip-region">Big Bear</span><span class="chip chip-dom-red" title="Days on Market">📅 161d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,369)</span></span><span class="amount neutral mo-rev-val">+$3,683/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,369)</span></span><span class="amount neutral mo-rev-val">+$3,683/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,824/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$847/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,012/mo</span></div>
@@ -1257,7 +1257,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Big Bear City, CA 92314</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">750 sqft</span><span class="chip chip-region">Big Bear</span><span class="chip chip-dom-yellow" title="Days on Market">📅 53d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,479)</span></span><span class="amount neutral mo-rev-val">+$3,708/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,479)</span></span><span class="amount neutral mo-rev-val">+$3,708/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,909/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$853/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$947/mo</span></div>
@@ -1307,7 +1307,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Sugarloaf, CA 92386</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">504 sqft</span><span class="chip chip-region">Big Bear</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,184)</span></span><span class="amount neutral mo-rev-val">+$1,642/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,184)</span></span><span class="amount neutral mo-rev-val">+$1,642/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,681/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$378/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$417/mo</span></div>
@@ -1357,7 +1357,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Sugarloaf, CA 92386</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">720 sqft</span><span class="chip chip-region">Big Bear</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,479)</span></span><span class="amount neutral mo-rev-val">+$1,583/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,479)</span></span><span class="amount neutral mo-rev-val">+$1,583/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,909/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$364/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$690/mo</span></div>
@@ -1415,7 +1415,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,303 sqft</span><span class="chip chip-region">29 Palms</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$8,633/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$8,633/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,986/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,034/mo</span></div>
@@ -1465,7 +1465,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Yucca Valley, CA 92284</div>
         <div class="card-chips"><span class="chip chip-bed">6 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">2,965 sqft</span><span class="chip chip-region">Morongo</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,849)</span></span><span class="amount neutral mo-rev-val">+$4,458/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,849)</span></span><span class="amount neutral mo-rev-val">+$4,458/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,733/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,025/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$300/mo</span></div>
@@ -1515,7 +1515,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Yucca Valley, CA 92284</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,600 sqft</span><span class="chip chip-region">Yucca Valley</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,775)</span></span><span class="amount neutral mo-rev-val">+$2,992/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,775)</span></span><span class="amount neutral mo-rev-val">+$2,992/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,907/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$688/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$604/mo</span></div>
@@ -1633,7 +1633,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">La Quinta, CA 92253</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">682 sqft</span><span class="chip chip-region">La Quinta</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,591)</span></span><span class="amount neutral mo-rev-val">+$2,367/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,591)</span></span><span class="amount neutral mo-rev-val">+$2,367/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,995/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$544/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$173/mo</span></div>
@@ -1691,7 +1691,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Sugarloaf, CA 92386</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">573 sqft</span><span class="chip chip-region">Big Bear</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,547)</span></span><span class="amount neutral mo-rev-val">+$1,642/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,547)</span></span><span class="amount neutral mo-rev-val">+$1,642/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,961/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$378/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$697/mo</span></div>

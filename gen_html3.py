@@ -119,7 +119,7 @@ def card(p, show_source=None):
         cf = f["cf"]
         cf_class = "positive" if cf >= 0 else "negative"
         cash_rows = f'''
-          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven {fmt_plain(be_mo)})</span></span><span class="amount neutral mo-rev-val">+{fmt_plain(mo_rev)}/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven {fmt_plain(be_mo)})</span></span><span class="amount neutral mo-rev-val">+{fmt_plain(mo_rev)}/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-{fmt_plain(f["piti"])}/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-{fmt_plain(f["cleaning"])}/mo</span></div>'''
         if f["pool"]:
@@ -478,7 +478,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .remodel-input { background:#FFFDF7;border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:0.78rem;font-family:ui-monospace,'SF Mono',monospace;padding:3px 7px;width:100px;text-align:right;transition:border-color 0.15s; }
 .remodel-input:focus { outline:none;border-color:var(--accent); }
 .card-links { display:flex;gap:8px;margin-top:auto; }
-.be-inline { font-size:0.68rem;color:var(--text2);font-weight:400; }
+.be-inline { display:block;font-size:0.68rem;color:var(--text2);font-weight:400;line-height:1.3; }
 .be-val { font-weight:600;color:var(--text); }
 .comp-strips { display:flex;flex-direction:column;gap:6px;margin-top:8px; }
 .comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px; }
