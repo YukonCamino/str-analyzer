@@ -113,12 +113,13 @@ def card(p, show_source=None):
     if f:
         da = f' data-annual-rev="{f["annual_rev"]}" data-piti="{f["piti"]:.4f}" data-pool="{f["pool"]}" data-base-startup="{f["startup"]:.4f}"'
 
+    be_mo = ((f["piti"] + f["pool"]) / 0.77) if f else None
     if f and not f.get("no_rev"):
         mo_rev = f["mo_rev"]
         cf = f["cf"]
         cf_class = "positive" if cf >= 0 else "negative"
         cash_rows = f'''
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+{fmt_plain(mo_rev)}/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven {fmt_plain(be_mo)})</span></span><span class="amount neutral mo-rev-val">+{fmt_plain(mo_rev)}/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-{fmt_plain(f["piti"])}/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-{fmt_plain(f["cleaning"])}/mo</span></div>'''
         if f["pool"]:
@@ -145,10 +146,12 @@ def card(p, show_source=None):
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="{int(f['annual_rev']):,}" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">{fmt_plain(be_mo*12)}/yr</span></div>
           {f'<div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>{p["comp_avg"]["occ"]:.0f}% occ · ${p["comp_avg"]["adr"]:,.0f} ADR</span></div>' if p.get("comp_avg") else ""}
         </div>'''
     else:
-        cost_html = '<div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p></div>'
+        _be_note = f'<div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral">{fmt_plain(be_mo)}/mo · {fmt_plain(be_mo*12)}/yr</span></div>' if f else ""
+        cost_html = f'<div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p>{_be_note}</div>'
         coc_html = '<div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>'
         rev_html = ''
 
@@ -475,6 +478,8 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .remodel-input { background:#FFFDF7;border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:0.78rem;font-family:ui-monospace,'SF Mono',monospace;padding:3px 7px;width:100px;text-align:right;transition:border-color 0.15s; }
 .remodel-input:focus { outline:none;border-color:var(--accent); }
 .card-links { display:flex;gap:8px;margin-top:auto; }
+.be-inline { font-size:0.68rem;color:var(--text2);font-weight:400; }
+.be-val { font-weight:600;color:var(--text); }
 .comp-strips { display:flex;flex-direction:column;gap:6px;margin-top:8px; }
 .comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px; }
 .comp-strip { display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 10px;border-radius:7px;background:#F3EEE3;border:1px solid var(--border);color:var(--text);font-size:0.74rem;font-weight:600;text-decoration:none;transition:background 0.15s,transform 0.1s; }

@@ -101,6 +101,8 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .remodel-input { background:#FFFDF7;border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:0.78rem;font-family:ui-monospace,'SF Mono',monospace;padding:3px 7px;width:100px;text-align:right;transition:border-color 0.15s; }
 .remodel-input:focus { outline:none;border-color:var(--accent); }
 .card-links { display:flex;gap:8px;margin-top:auto; }
+.be-inline { font-size:0.68rem;color:var(--text2);font-weight:400; }
+.be-val { font-weight:600;color:var(--text); }
 .comp-strips { display:flex;flex-direction:column;gap:6px;margin-top:8px; }
 .comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px; }
 .comp-strip { display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 10px;border-radius:7px;background:#F3EEE3;border:1px solid var(--border);color:var(--text);font-size:0.74rem;font-weight:600;text-decoration:none;transition:background 0.15s,transform 0.1s; }
@@ -165,7 +167,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">900 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 1d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,538)</span></span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,474/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,741/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
@@ -185,6 +187,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="90,825" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$42,455/yr</span></div>
           <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>70% occ · $308 ADR</span></div>
         </div>
         <div class="startup-section">
@@ -215,7 +218,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,467 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 6d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$9,133/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$9,133/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,044/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,101/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
@@ -235,6 +238,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="109,600" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$51,334/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -265,7 +269,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">448 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-red" title="Days on Market">📅 72d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$5,942/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,954)</span></span><span class="amount neutral mo-rev-val">+$5,942/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,275/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,367/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,300/mo</span></div>
@@ -284,6 +288,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="71,300" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$35,450/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -314,7 +319,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Morongo Valley, CA 92256</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">936 sqft</span><span class="chip chip-region">Morongo Valley</span><span class="chip chip-source">🌵 Desert</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$6,792/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$6,792/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,562/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,522/mo</span></div>
@@ -333,6 +338,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="81,500" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$42,189/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -363,7 +369,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,303 sqft</span><span class="chip chip-region">29 Palms</span><span class="chip chip-source">🏠 ADU</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$8,633/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$8,633/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,986/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,034/mo</span></div>
@@ -382,6 +388,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="103,600" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$56,316/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -430,7 +437,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">900 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-dom-green" title="Days on Market">📅 1d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,538)</span></span><span class="amount neutral mo-rev-val">+$7,569/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,474/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,741/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
@@ -450,6 +457,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="90,825" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$42,455/yr</span></div>
           <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>70% occ · $308 ADR</span></div>
         </div>
         <div class="startup-section">
@@ -480,7 +488,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,467 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-green" title="Days on Market">📅 6d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$9,133/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$9,133/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,044/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,101/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
@@ -500,6 +508,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="109,600" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$51,334/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -530,7 +539,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">448 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 72d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$5,942/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,954)</span></span><span class="amount neutral mo-rev-val">+$5,942/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,275/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,367/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,300/mo</span></div>
@@ -549,6 +558,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="71,300" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$35,450/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -579,7 +589,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Morongo Valley, CA 92256</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">936 sqft</span><span class="chip chip-region">Morongo Valley</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$6,792/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$6,792/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,562/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,522/mo</span></div>
@@ -598,6 +608,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="81,500" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$42,189/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -628,7 +639,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Yucca Valley, CA 92284</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">792 sqft</span><span class="chip chip-region">Yucca Valley</span><span class="chip chip-dom-yellow" title="Days on Market">📅 47d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$6,417/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,946)</span></span><span class="amount neutral mo-rev-val">+$6,417/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,038/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,476/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,903/mo</span></div>
@@ -647,6 +658,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="77,000" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$47,349/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -677,7 +689,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">968 sqft</span><span class="chip chip-region">Joshua Tree</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$8,944/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $5,515)</span></span><span class="amount neutral mo-rev-val">+$8,944/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$4,247/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,057/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,641/mo</span></div>
@@ -696,6 +708,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="107,332" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$66,180/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -726,7 +739,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">662 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-dom-red" title="Days on Market">📅 118d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$4,364/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,035)</span></span><span class="amount neutral mo-rev-val">+$4,364/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,337/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,004/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,023/mo</span></div>
@@ -745,6 +758,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="52,364" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$36,420/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -775,7 +789,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">1,451 sqft</span><span class="chip chip-region">29 Palms</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$4,282/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,917)</span></span><span class="amount neutral mo-rev-val">+$4,282/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,246/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$985/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,051/mo</span></div>
@@ -794,6 +808,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="51,387" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$35,001/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -824,7 +839,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,303 sqft</span><span class="chip chip-region">29 Palms</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$6,686/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$6,686/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,538/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,535/mo</span></div>
@@ -843,6 +858,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="80,232" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$56,316/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -873,7 +889,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">1,094 sqft</span><span class="chip chip-region">29 Palms</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$6,250/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$6,250/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,438/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,199/mo</span></div>
@@ -892,6 +908,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="75,000" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$56,316/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -922,7 +939,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">976 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 126d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$3,518/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,843)</span></span><span class="amount neutral mo-rev-val">+$3,518/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,189/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$809/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$520/mo</span></div>
@@ -941,6 +958,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="42,219" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$34,119/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -971,7 +989,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">690 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 465d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$2,183/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,472)</span></span><span class="amount neutral mo-rev-val">+$2,183/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,903/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$502/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$222/mo</span></div>
@@ -990,6 +1008,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="26,200" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$29,665/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1020,7 +1039,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Johnson Valley, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">947 sqft</span><span class="chip chip-region">Johnson Valley</span><span class="chip chip-dom-red" title="Days on Market">📅 254d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$3,067/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,516)</span></span><span class="amount neutral mo-rev-val">+$3,067/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$705/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$346/mo</span></div>
@@ -1039,6 +1058,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="36,800" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$42,189/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1069,7 +1089,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">952 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 110d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$405/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,036)</span></span><span class="amount neutral mo-rev-val">+$405/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,337/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$93/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$2,025/mo</span></div>
@@ -1088,6 +1108,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="4,863" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$36,427/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1117,7 +1138,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-address">56367 Scandia Ln</div>
         <div class="card-city">Yucca Valley, CA 92284</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">994 sqft</span><span class="chip chip-region">Yucca Valley</span><span class="chip chip-dom-red" title="Days on Market">📅 763d</span></div>
-        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p></div>
+        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p><div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral">$4,034/mo · $48,407/yr</span></div></div>
         <div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>
         
         <div class="startup-section">
@@ -1147,7 +1168,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-address">1224 Shangri La Rd</div>
         <div class="card-city">Joshua Tree, CA 92252</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">1,937 sqft</span><span class="chip chip-region">Joshua Tree</span></div>
-        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p></div>
+        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p><div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral">$2,666/mo · $31,988/yr</span></div></div>
         <div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>
         
         <div class="startup-section">
@@ -1186,7 +1207,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Sugarloaf, CA 92386</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">608 sqft</span><span class="chip chip-region">Big Bear</span><span class="chip chip-dom-red" title="Days on Market">📅 161d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$3,683/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,369)</span></span><span class="amount neutral mo-rev-val">+$3,683/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,824/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$847/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,012/mo</span></div>
@@ -1205,6 +1226,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="44,200" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$28,433/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1235,7 +1257,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Big Bear City, CA 92314</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">750 sqft</span><span class="chip chip-region">Big Bear</span><span class="chip chip-dom-yellow" title="Days on Market">📅 53d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$3,708/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,479)</span></span><span class="amount neutral mo-rev-val">+$3,708/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,909/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$853/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$947/mo</span></div>
@@ -1254,6 +1276,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="44,500" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$29,746/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1284,7 +1307,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Sugarloaf, CA 92386</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">504 sqft</span><span class="chip chip-region">Big Bear</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$1,642/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,184)</span></span><span class="amount neutral mo-rev-val">+$1,642/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,681/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$378/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$417/mo</span></div>
@@ -1303,6 +1326,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="19,700" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$26,203/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1333,7 +1357,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Sugarloaf, CA 92386</div>
         <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">720 sqft</span><span class="chip chip-region">Big Bear</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$1,583/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,479)</span></span><span class="amount neutral mo-rev-val">+$1,583/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,909/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$364/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$690/mo</span></div>
@@ -1352,6 +1376,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="19,000" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$29,753/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1390,7 +1415,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Twentynine Palms, CA 92277</div>
         <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,303 sqft</span><span class="chip chip-region">29 Palms</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$8,633/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,693)</span></span><span class="amount neutral mo-rev-val">+$8,633/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,986/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,034/mo</span></div>
@@ -1409,6 +1434,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="103,600" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$56,316/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1439,7 +1465,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Yucca Valley, CA 92284</div>
         <div class="card-chips"><span class="chip chip-bed">6 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">2,965 sqft</span><span class="chip chip-region">Morongo</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$4,458/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $4,849)</span></span><span class="amount neutral mo-rev-val">+$4,458/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,733/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,025/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$300/mo</span></div>
@@ -1458,6 +1484,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="53,500" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$58,183/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1488,7 +1515,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Yucca Valley, CA 92284</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,600 sqft</span><span class="chip chip-region">Yucca Valley</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$2,992/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $3,775)</span></span><span class="amount neutral mo-rev-val">+$2,992/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$2,907/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$688/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$604/mo</span></div>
@@ -1507,6 +1534,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="35,900" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$45,306/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1536,7 +1564,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-address">1388 Jemez Trl</div>
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">3,120 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-red" title="Days on Market">📅 238d</span></div>
-        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p></div>
+        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p><div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral">$3,960/mo · $47,525/yr</span></div></div>
         <div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>
         
         <div class="startup-section">
@@ -1566,7 +1594,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-address">56367 Scandia Ln</div>
         <div class="card-city">Yucca Valley, CA 92284</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">994 sqft</span><span class="chip chip-region">Morongo</span><span class="chip chip-dom-red" title="Days on Market">📅 763d</span></div>
-        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p></div>
+        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p><div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral">$4,034/mo · $48,407/yr</span></div></div>
         <div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>
         
         <div class="startup-section">
@@ -1605,7 +1633,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">La Quinta, CA 92253</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">682 sqft</span><span class="chip chip-region">La Quinta</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$2,367/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,591)</span></span><span class="amount neutral mo-rev-val">+$2,367/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,995/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$544/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$173/mo</span></div>
@@ -1624,6 +1652,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="28,400" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$31,091/yr</span></div>
           
         </div>
         <div class="startup-section">
@@ -1662,7 +1691,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Sugarloaf, CA 92386</div>
         <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">573 sqft</span><span class="chip chip-region">Big Bear</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue</span><span class="amount neutral mo-rev-val">+$1,642/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue <span class="be-inline">(breakeven $2,547)</span></span><span class="amount neutral mo-rev-val">+$1,642/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$1,961/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$378/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$697/mo</span></div>
@@ -1681,6 +1710,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
             <span>Annual Revenue</span>
             <input type="text" class="rev-input" value="19,700" oninput="recalcCard(this)" onclick="this.select()">
           </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$30,562/yr</span></div>
           
         </div>
         <div class="startup-section">
