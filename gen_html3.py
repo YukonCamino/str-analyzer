@@ -35,6 +35,7 @@ LATLNG = {
     "2351 N Cambria Ave, Landers, CA 92285": (34.291757, -116.430646),
     "50740 Santa Rosa Plz APT 2, La Quinta, CA 92253": (33.679208, -116.302189),
     "1111 E Palm Canyon Dr #104, Palm Springs, CA 92264": (33.801331, -116.535952),
+    "909 E Big Bear Blvd, Big Bear City, CA 92314": (34.26143, -116.8289),
     "4537 Anita Ave, Yucca Valley, CA 92284": (34.170580, -116.367336),
     "69450 Amboy Rd, Twentynine Palms, CA 92277": (34.164160, -116.148522),
     "376 Riverside Ave, Sugarloaf, CA 92386": (34.245452, -116.834467),
@@ -300,6 +301,7 @@ bigbear_tab = [
     {"address":"396 Kern Ave, Sugarloaf, CA 92386","region":"Big Bear","price":299999,"beds":2,"baths":1,"sqft":720,"img_src":"photos/396-kern-ave.jpg","zillow_link":"https://www.zillow.com/homedetails/396-Kern-Ave-Sugarloaf-CA-92386/17621919_zpid/","airbnb_link":"https://www.airbnb.com/rooms/769657678133226978","fin":compute(299999,19000,1909.13,89999,720)},
     {"address":"697 Villa Grove Ave, Big Bear City, CA 92314","region":"Big Bear","price":299900,"beds":2,"baths":1,"sqft":750,"dom":53,"img_src":zillow_img("58a1652c34b769e0b9521cd7ab9c77fd"),"zillow_link":"https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/","fin":compute(299900,44500,1908.67,89970,750)},
     {"address":"346 San Bernardino Ave, Sugarloaf, CA 92386","region":"Big Bear","price":285000,"original_price":295000,"beds":2,"baths":1,"sqft":608,"dom":161,"img_src":zillow_img("06724d0ccfa7d6dce1c83230eb026a58"),"zillow_link":"https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/","fin":compute(285000,44200,1824.44,85500,608)},
+    {"address":"909 E Big Bear Blvd, Big Bear City, CA 92314","region":"Big Bear","price":199888,"beds":2,"baths":1,"sqft":480,"dom":4,"img_src":zillow_img("fb246303bcf643a106c738de416a7791"),"zillow_link":"https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/","fin":compute(199888,0,1339.33,59966.40,480)},
 ]
 
 sold_tab = [
