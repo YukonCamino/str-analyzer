@@ -218,8 +218,8 @@ def card(p, show_source=None):
         {coc_html}
         {rev_html}
         {startup_html}
-        <div class="card-links">{links_html}</div>
         {comps_html}
+        <div class="card-links">{links_html}</div>
       </div>
     </div>'''
 
