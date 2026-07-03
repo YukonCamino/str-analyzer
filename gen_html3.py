@@ -530,7 +530,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .occ-bar { height:100%;border-radius:3px; }
 .comp-notes { font-size:0.7rem;color:var(--text2);background:rgba(0,0,0,0.05);border-radius:5px;padding:5px 7px;margin-bottom:8px;line-height:1.4; }
 .comp-header { margin-bottom:4px; }
-#fav-map { height:400px;border-radius:12px;border:1px solid var(--border);margin-top:20px;z-index:0; }
+.tab-map { height:400px;border-radius:12px;border:1px solid var(--border);margin-top:20px;z-index:0; }
 .top5-banner { background:linear-gradient(135deg,rgba(245,158,11,0.12) 0%,rgba(249,115,22,0.08) 100%);border:1px solid rgba(245,158,11,0.25);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:0.82rem;color:#92400E;line-height:1.5; }
 '''
 
@@ -643,12 +643,14 @@ function equalizeRows(){
 var _eqT;
 function scheduleEqualize(){ clearTimeout(_eqT); _eqT=setTimeout(equalizeRows, 40); }
 window.addEventListener('resize', scheduleEqualize);
+var currentTab='top5';
 function showTab(id) {
+  currentTab=id;
   document.querySelectorAll('.tab-content').forEach(el=>el.style.display='none');
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   var el=document.getElementById('tab-'+id); if(el) el.style.display='block';
   var btn=document.getElementById('btn-'+id); if(btn) btn.classList.add('active');
-  if(id==='only') setTimeout(function(){ if(favMap) favMap.invalidateSize(); updateFavMap(); },60);
+  setTimeout(function(){ if(maps[id]) maps[id].invalidateSize(); updateTabMap(id); },60);
   scheduleEqualize();
 }
 var FAV_KEY='strFavs';
@@ -664,28 +666,31 @@ function toggleFav(btn){
   if(i>=0) favs.splice(i,1); else favs.push(addr);
   saveFavs(); refreshFavs();
 }
-var favMap=null, favMarkers=[];
-function updateFavMap(){
-  var mapEl=document.getElementById('fav-map');
+var maps={}, mapMarkers={};
+function updateTabMap(tid){
+  var mapEl=document.getElementById('map-'+tid);
   if(!mapEl||typeof L==='undefined') return;
-  if(!favMap){
-    favMap=L.map('fav-map',{scrollWheelZoom:false});
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors'}).addTo(favMap);
+  if(!maps[tid]){
+    maps[tid]=L.map('map-'+tid,{scrollWheelZoom:false});
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors'}).addTo(maps[tid]);
+    mapMarkers[tid]=[];
   }
-  favMarkers.forEach(function(m){favMap.removeLayer(m);});
-  favMarkers=[]; var pts=[];
-  var grid=document.querySelector('#tab-only .cards-grid'); if(!grid) return;
+  var map=maps[tid];
+  (mapMarkers[tid]||[]).forEach(function(m){map.removeLayer(m);});
+  mapMarkers[tid]=[]; var pts=[];
+  var grid=document.querySelector('#tab-'+tid+' .cards-grid'); if(!grid) return;
   grid.querySelectorAll('.property-card').forEach(function(c){
     if(c.style.display==='none') return;
     var lat=parseFloat(c.dataset.lat), lng=parseFloat(c.dataset.lng);
     if(isNaN(lat)||isNaN(lng)) return;
     var badge=c.querySelector('.price-badge');
     var html='<b>'+(c.dataset.addr||'').split(',')[0]+'</b>'+(badge?'<br>'+badge.textContent:'');
-    var m=L.marker([lat,lng]).addTo(favMap).bindPopup(html);
-    favMarkers.push(m); pts.push([lat,lng]);
+    var m=L.marker([lat,lng]).addTo(map).bindPopup(html);
+    mapMarkers[tid].push(m); pts.push([lat,lng]);
   });
-  if(pts.length) favMap.fitBounds(pts,{padding:[30,30],maxZoom:13});
+  if(pts.length) map.fitBounds(pts,{padding:[30,30],maxZoom:13});
 }
+function updateFavMap(){ updateTabMap('only'); }
 function refreshFavs(){
   var grid=document.querySelector('#tab-only .cards-grid'); if(!grid) return;
   grid.querySelectorAll('.fav-clone').forEach(function(el){el.remove();});
@@ -716,6 +721,7 @@ function refreshFavs(){
     cnt.textContent=n+' properties';
   });
   updateFavMap();
+  if(currentTab && currentTab!=='only') updateTabMap(currentTab);
   scheduleEqualize();
 }
 loadPriceCuts();
@@ -747,7 +753,7 @@ def render_tab(tid, title, props, is_comp, show_sources):
             cards_html = "\n    ".join(card(p) for p in props)
         grid_class = "cards-grid"
     extra = ''
-    suffix = '\n    <div id="fav-map"></div>' if tid == 'only' else ''
+    suffix = f'\n    <div class="tab-map" id="map-{tid}"></div>' if not is_comp else ''
     if tid == 'top5':
         extra = '<div class="top5-banner">⚡ Best CoC across all tabs — deduplicated, highest-revenue version of each property shown. Adjust revenue or remodel budget on any card to see live CoC updates.</div>\n    '
     return f'''  <div id="tab-{tid}" class="tab-content" style="display:none">
