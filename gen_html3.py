@@ -34,6 +34,7 @@ LATLNG = {
     "63300 Tilford Way, Joshua Tree, CA 92252": (34.213345, -116.281674),
     "2351 N Cambria Ave, Landers, CA 92285": (34.291757, -116.430646),
     "50740 Santa Rosa Plz APT 2, La Quinta, CA 92253": (33.679208, -116.302189),
+    "1111 E Palm Canyon Dr #104, Palm Springs, CA 92264": (33.801331, -116.535952),
     "4537 Anita Ave, Yucca Valley, CA 92284": (34.170580, -116.367336),
     "69450 Amboy Rd, Twentynine Palms, CA 92277": (34.164160, -116.148522),
     "376 Riverside Ave, Sugarloaf, CA 92386": (34.245452, -116.834467),
@@ -64,24 +65,24 @@ def fmt_plain(v):
 
 UTILITIES = 391  # fixed monthly utilities per property
 
-def compute(price, annual_rev, piti_30, down_30, sqft, has_pool=False):
+def compute(price, annual_rev, piti_30, down_30, sqft, has_pool=False, hoa=0, util=None):
     furnishing = sqft * 16
     buyer_agent = price * 0.025
     closing = price * 0.02
     supp_tax = price * 0.0125
     startup = down_30 + furnishing + buyer_agent + closing + supp_tax
-    util = UTILITIES
+    util = UTILITIES if util is None else util
     if not annual_rev or annual_rev <= 0:
-        return {"mo_rev":0,"piti":piti_30,"cleaning":0,"pool":250 if has_pool else 0,"utilities":util,
+        return {"mo_rev":0,"piti":piti_30,"cleaning":0,"pool":250 if has_pool else 0,"utilities":util,"hoa":hoa,
                 "cf":None,"coc":None,"down":down_30,"furnishing":furnishing,
                 "buyer_agent":buyer_agent,"closing":closing,"supp_tax":supp_tax,"startup":startup,
                 "annual_rev":annual_rev or 0,"no_rev":True}
     mo = annual_rev / 12
     cl = mo * 0.23
     po = 250 if has_pool else 0
-    cf = mo - piti_30 - util - cl - po
+    cf = mo - piti_30 - util - hoa - cl - po
     coc = (cf * 12) / startup * 100 if startup > 0 else 0
-    return {"mo_rev":mo,"piti":piti_30,"cleaning":cl,"pool":po,"utilities":util,
+    return {"mo_rev":mo,"piti":piti_30,"cleaning":cl,"pool":po,"utilities":util,"hoa":hoa,
             "cf":cf,"coc":coc,"down":down_30,"furnishing":furnishing,
             "buyer_agent":buyer_agent,"closing":closing,"supp_tax":supp_tax,"startup":startup,
             "annual_rev":annual_rev,"no_rev":False}
@@ -118,17 +119,18 @@ def card(p, show_source=None):
 
     da = ""
     if f:
-        da = f' data-annual-rev="{f["annual_rev"]}" data-piti="{f["piti"]:.4f}" data-pool="{f["pool"]}" data-base-startup="{f["startup"]:.4f}"'
+        da = f' data-annual-rev="{f["annual_rev"]}" data-piti="{f["piti"]:.4f}" data-pool="{f["pool"]}" data-base-startup="{f["startup"]:.4f}" data-util="{f["utilities"]}" data-hoa="{f["hoa"]}"'
 
-    be_mo = ((f["piti"] + f["pool"] + f["utilities"]) / 0.77) if f else None
+    be_mo = ((f["piti"] + f["pool"] + f["utilities"] + f["hoa"]) / 0.77) if f else None
     if f and not f.get("no_rev"):
         mo_rev = f["mo_rev"]
         cf = f["cf"]
         cf_class = "positive" if cf >= 0 else "negative"
+        _util_row = f'\n          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-{fmt_plain(f["utilities"])}/mo</span></div>' if f["utilities"] else ''
+        _hoa_row = f'\n          <div class="cost-row"><span class="label">HOA</span><span class="amount negative">-{fmt_plain(f["hoa"])}/mo</span></div>' if f["hoa"] else ''
         cash_rows = f'''
           <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven {fmt_plain(be_mo)})</span></span><span class="amount neutral mo-rev-val">+{fmt_plain(mo_rev)}/mo</span></div>
-          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-{fmt_plain(f["piti"])}/mo</span></div>
-          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-{fmt_plain(f["utilities"])}/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-{fmt_plain(f["piti"])}/mo</span></div>{_util_row}{_hoa_row}
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-{fmt_plain(f["cleaning"])}/mo</span></div>'''
         _pool_on = f["pool"] > 0
         _pool_chk = "checked" if _pool_on else ""
@@ -284,6 +286,7 @@ only_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None e
 
 laquinta_tab = [
     {"address":"50740 Santa Rosa Plz APT 2, La Quinta, CA 92253","region":"La Quinta","price":315000,"beds":1,"baths":1,"sqft":682,"img_src":zillow_img("dbac82a7b26bc71760fc21cac9d4c4e2"),"airbnb_link":"https://www.airbnb.com/rooms/748771224286105523","fin":compute(315000,28400,1994.99,94500,682)},
+    {"address":"1111 E Palm Canyon Dr #104, Palm Springs, CA 92264","region":"Palm Springs","price":315000,"beds":1,"baths":1,"sqft":525,"img_src":zillow_img("9bbdffe576f0deccf9d13cc5b425c219"),"zillow_link":"https://www.zillow.com/homedetails/1111-E-Palm-Canyon-Dr-104-Palm-Springs-CA-92264/89235759_zpid/","fin":compute(315000,0,1995.42,94500,525,hoa=799,util=0)},
 ]
 
 duplex_tab = [
@@ -338,6 +341,12 @@ COMPS = {
         {"name":"The G.O.A.T. | Pool & Spa | 5-Acres | No Neighbors","url":"https://www.airbnb.com/rooms/1052620076857830533","annual_rev":107000,"adr":363,"occ":67.7},
         {"name":"Newfoundland | Hot Tub | Fire Pit | Desert Views","url":"https://www.airbnb.com/rooms/51925323","annual_rev":142400,"adr":395,"occ":85.5},
     ],
+    "1111 E Palm Canyon Dr #104, Palm Springs, CA 92264": [
+        {"name":"Renovated, luxe mid-century Ocotillo gem w/patio","url":"https://www.airbnb.com/rooms/1272484355610884097","annual_rev":53600,"adr":316,"occ":43.6},
+        {"name":"Modern Bungalow in Historic Ocotillo Lodge!","url":"https://www.airbnb.com/rooms/686840445812510441","annual_rev":48500,"adr":231,"occ":49.9},
+        {"name":"Ocotillo Lodge Mid-Century Modern Condo","url":"https://www.airbnb.com/rooms/29682828","annual_rev":39000,"adr":160,"occ":53.7},
+        {"name":"Mid-Century 1BR Bungalow At Famed Ocotillo Lodge","url":"https://www.airbnb.com/rooms/1075421284820316121","annual_rev":34300,"adr":337,"occ":34.2},
+    ],
     "697 Villa Grove Ave, Big Bear City, CA 92314": [
         {"name":"PANSIZE: Cozy Moonridge Chalet in the Wood","url":"https://www.airbnb.com/rooms/54398781","annual_rev":58700,"adr":230,"occ":55.1},
         {"name":"The Cosmic Cabin: Pet Friendly! Modern Mid-Century!","url":"https://www.airbnb.com/rooms/1016592731524962770","annual_rev":38800,"adr":206,"occ":41.4},
@@ -361,7 +370,7 @@ def apply_comps(tabs):
             p["comp_avg"] = {"adr": sum(c["adr"] for c in comps)/n, "occ": sum(c["occ"] for c in comps)/n}
             p["rev_source"] = f"Avg of {n} comps"
             f0 = p["fin"]
-            p["fin"] = compute(p["price"], avg_rev, f0["piti"], f0["down"], p["sqft"], has_pool=f0["pool"] > 0)
+            p["fin"] = compute(p["price"], avg_rev, f0["piti"], f0["down"], p["sqft"], has_pool=f0["pool"] > 0, hoa=f0.get("hoa",0), util=f0.get("utilities"))
 
 apply_comps([only_tab, laquinta_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
 
@@ -402,7 +411,7 @@ def collect(props, source_label):
         if not existing or existing["fin"]["coc"] < coc:
             top5_pool[key] = dict(p, _source=source_label)
 
-collect(laquinta_tab, "🌴 La Quinta")
+collect(laquinta_tab, "🌴 Low Desert")
 collect(bigbear_tab, "🏔️ Big Bear")
 collect(adu_tab, "🏠 ADU")
 collect(money_tab, "🌵 Desert")
@@ -548,7 +557,8 @@ function recalcCardEl(card) {
   var baseStartup0 = parseFloat(card.dataset.baseStartup) || 0;
   var poolCheck = card.querySelector('.pool-check');
   var pool = poolCheck ? (poolCheck.checked ? 250 : 0) : (parseFloat(card.dataset.pool) || 0);
-  var util = 391;
+  var util = parseFloat(card.dataset.util); if (isNaN(util)) util = 391;
+  var hoa = parseFloat(card.dataset.hoa) || 0;
   // price drives PITI (marginal rate), down payment, agent, closing, supplemental tax
   var piti = piti0 + 0.0056996 * (curPrice - p0);
   var baseStartup = baseStartup0 + 0.3575 * (curPrice - p0);
@@ -562,7 +572,7 @@ function recalcCardEl(card) {
   var closeEl = card.querySelector('.closing-val'); if (closeEl) closeEl.textContent = fmtUSD(curPrice*0.02);
   var suppEl = card.querySelector('.supp-val'); if (suppEl) suppEl.textContent = fmtUSD(curPrice*0.0125);
   var stEl = card.querySelector('.startup-total-val'); if (stEl) stEl.textContent = fmtUSD(startup);
-  var beMo = (piti + pool + util) / 0.77;
+  var beMo = (piti + pool + util + hoa) / 0.77;
   var beInline = card.querySelector('.be-inline'); if (beInline) beInline.textContent = '(breakeven ' + fmtUSD(beMo) + ')';
   var beVal = card.querySelector('.be-val'); if (beVal) beVal.textContent = fmtUSD(beMo*12) + '/yr';
   var beNote = card.querySelector('.be-note'); if (beNote) beNote.textContent = fmtUSD(beMo) + '/mo · ' + fmtUSD(beMo*12) + '/yr';
@@ -572,7 +582,7 @@ function recalcCardEl(card) {
     var adjRev = parseFloat((revEl.value||String(annualRev)).replace(/[^0-9.]/g,'')) || annualRev;
     var mo = adjRev / 12;
     var cleaning = mo * 0.23;
-    var cf = mo - piti - util - cleaning - pool;
+    var cf = mo - piti - util - hoa - cleaning - pool;
     var coc = startup > 0 ? (cf * 12 / startup * 100) : 0;
     var moRevEl = card.querySelector('.mo-rev-val'); if (moRevEl) moRevEl.textContent = '+' + fmtUSD(mo) + '/mo';
     var cleanEl = card.querySelector('.cleaning-val'); if (cleanEl) cleanEl.textContent = '-' + fmtUSD(cleaning) + '/mo';
@@ -737,7 +747,7 @@ tabs_def = [
     ("money",   "🌵 Desert",      money_tab,      False, False),
     ("bigbear", "🏔️ Big Bear",   bigbear_tab,    False, False),
     ("adu",     "🏠 ADU",         adu_tab,        False, False),
-    ("laquinta","🌴 La Quinta",   laquinta_tab,   False, False),
+    ("laquinta","🌴 Low Desert",   laquinta_tab,   False, False),
     ("sold",    "🔴 Sold",        sold_tab,       False, False),
     ("comps",   "📍 Mesquite Competition",comp_tracker,   True,  False),
 ]
