@@ -36,6 +36,7 @@ LATLNG = {
     "50740 Santa Rosa Plz APT 2, La Quinta, CA 92253": (33.679208, -116.302189),
     "1111 E Palm Canyon Dr #104, Palm Springs, CA 92264": (33.801331, -116.535952),
     "909 E Big Bear Blvd, Big Bear City, CA 92314": (34.26143, -116.8289),
+    "7025 Park Blvd, Joshua Tree, CA 92252": (34.12542, -116.314835),
     "4537 Anita Ave, Yucca Valley, CA 92284": (34.170580, -116.367336),
     "69450 Amboy Rd, Twentynine Palms, CA 92277": (34.164160, -116.148522),
     "376 Riverside Ave, Sugarloaf, CA 92386": (34.245452, -116.834467),
@@ -319,6 +320,7 @@ competition_tab = [
 ]
 
 money_tab = [
+    {"address":"7025 Park Blvd, Joshua Tree, CA 92252","region":"Joshua Tree","price":340000,"beds":2,"baths":1,"sqft":1000,"dom":1,"img_src":zillow_img("2dda97dcce92f488967e9207f892b2f0"),"zillow_link":"https://www.zillow.com/homedetails/7025-Park-Blvd-Joshua-Tree-CA-92252/17500223_zpid/","fin":compute(340000,0,2137.91,102000,1000)},
     {"address":"60654 Mitch Ln, Landers, CA 92285","region":"Landers","price":365000,"original_price":385000,"beds":1,"baths":1,"sqft":448,"dom":72,"img_src":zillow_img("085bad920e162f8a6d0146a5585f2efa"),"zillow_link":"https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/","airbnb_link":"https://www.airbnb.com/rooms/647212501055315908","rev_source":"Airbnb verified","fin":compute(365000,71300,2274.74,109500,448)},
     {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"airbnb_link":"https://www.airbnb.com/rooms/769512618474065409","fin":compute(599000,80232,3613.61,179700,1303)},
     {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","airbnb_link":"https://www.airbnb.com/rooms/971911711973779101","fin":compute(374900,52364,2336.95,112470,662)},
@@ -348,6 +350,12 @@ COMPS = {
         {"name":"Modern Bungalow in Historic Ocotillo Lodge!","url":"https://www.airbnb.com/rooms/686840445812510441","annual_rev":48500,"adr":231,"occ":49.9},
         {"name":"Ocotillo Lodge Mid-Century Modern Condo","url":"https://www.airbnb.com/rooms/29682828","annual_rev":39000,"adr":160,"occ":53.7},
         {"name":"Mid-Century 1BR Bungalow At Famed Ocotillo Lodge","url":"https://www.airbnb.com/rooms/1075421284820316121","annual_rev":34300,"adr":337,"occ":34.2},
+    ],
+    "7025 Park Blvd, Joshua Tree, CA 92252": [
+        {"name":"Modern Desert Casita w/ Hot Tub Near Natl Park","url":"https://www.airbnb.com/rooms/52013739","annual_rev":34800,"adr":195,"occ":41.4},
+        {"name":"Opal House: Designer's home in central Joshua Tree","url":"https://www.airbnb.com/rooms/2853261","annual_rev":24800,"adr":220,"occ":26.6},
+        {"name":"Stargazing Fenced Home | Minutes to JTNP+Downtown","url":"https://www.airbnb.com/rooms/1295781788676514285","annual_rev":38400,"adr":173,"occ":59.2},
+        {"name":"Stay at the Sunburst","url":"https://www.airbnb.com/rooms/1533613876844212624","annual_rev":26300,"adr":231,"occ":28.2},
     ],
     "909 E Big Bear Blvd, Big Bear City, CA 92314": [
         {"name":"Mid-Century A-Frame in the Pines","url":"https://www.airbnb.com/rooms/21503287","annual_rev":28900,"adr":314,"occ":20.0},
