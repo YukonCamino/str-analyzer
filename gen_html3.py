@@ -91,10 +91,13 @@ def card(p, show_source=None):
     airbnb_link = p.get("airbnb_link", "")
     img_src = p.get("img_src", "")
     img_tag = f'<img src="{img_src}" alt="{street}" onerror="this.style.display=\'none\';this.parentNode.classList.add(\'img-fallback\')">' if img_src else ''
-    if p.get("original_price") and p.get("price") and p["original_price"] > p["price"]:
-        price_fmt = f'<del>${p["original_price"]:,}</del> ${p["price"]:,}'
+    price_val = p.get("price")
+    orig_ref = p["original_price"] if (p.get("original_price") and price_val and p["original_price"] > price_val) else price_val
+    if orig_ref and price_val and orig_ref > price_val:
+        price_fmt = f'<del>${orig_ref:,}</del> <span class="price-cur">${price_val:,}</span>'
     else:
-        price_fmt = f"${p['price']:,}" if p.get('price') else ""
+        price_fmt = f'<span class="price-cur">${price_val:,}</span>' if price_val else ""
+    price_da = f' data-price="{price_val}" data-orig-price="{orig_ref}"' if price_val else ''
 
     chips_html = ""
     if p.get("beds"): chips_html += f'<span class="chip chip-bed">{p["beds"]} bd</span>'
@@ -120,7 +123,7 @@ def card(p, show_source=None):
         cf_class = "positive" if cf >= 0 else "negative"
         cash_rows = f'''
           <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven {fmt_plain(be_mo)})</span></span><span class="amount neutral mo-rev-val">+{fmt_plain(mo_rev)}/mo</span></div>
-          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-{fmt_plain(f["piti"])}/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-{fmt_plain(f["piti"])}/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-{fmt_plain(f["cleaning"])}/mo</span></div>'''
         if f["pool"]:
             cash_rows += '\n          <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>'
@@ -150,7 +153,7 @@ def card(p, show_source=None):
           {f'<div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>{p["comp_avg"]["occ"]:.0f}% occ · ${p["comp_avg"]["adr"]:,.0f} ADR</span></div>' if p.get("comp_avg") else ""}
         </div>'''
     else:
-        _be_note = f'<div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral">{fmt_plain(be_mo)}/mo · {fmt_plain(be_mo*12)}/yr</span></div>' if f else ""
+        _be_note = f'<div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral be-note">{fmt_plain(be_mo)}/mo · {fmt_plain(be_mo*12)}/yr</span></div>' if f else ""
         cost_html = f'<div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p>{_be_note}</div>'
         coc_html = '<div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>'
         rev_html = ''
@@ -158,10 +161,10 @@ def card(p, show_source=None):
     if f:
         startup_html = f'''<div class="startup-section">
           <div class="startup-title">Startup Costs</div>
-          <div class="startup-row"><span>Down Payment (30%)</span><span>{fmt_plain(f["down"])}</span></div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">{fmt_plain(f["down"])}</span></div>
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>{fmt_plain(f["furnishing"])}</span></div>
-          <div class="startup-row"><span>Buyer\'s Agent (2.5%)</span><span>{fmt_plain(f["buyer_agent"])}</span></div>
-          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span>{fmt_plain(f["closing"])}</span></div>
+          <div class="startup-row"><span>Buyer\'s Agent (2.5%)</span><span class="agent-val">{fmt_plain(f["buyer_agent"])}</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">{fmt_plain(f["closing"])}</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
@@ -193,10 +196,10 @@ def card(p, show_source=None):
 
     _ll = LATLNG.get(p["address"])
     ll_attr = f' data-lat="{_ll[0]}" data-lng="{_ll[1]}"' if _ll else ''
-    return f'''<div class="{card_class}" data-addr="{p["address"]}"{ll_attr}{da}>
+    return f'''<div class="{card_class}" data-addr="{p["address"]}"{ll_attr}{price_da}{da}>
       <div class="card-image{'' if img_src else ' img-fallback'}">
         {img_tag}
-        <div class="price-badge">{price_fmt}</div>
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut">{price_fmt}</div>
         <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
         {sold_html}
       </div>
@@ -430,7 +433,8 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .card-image img { width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s; }
 .property-card:hover .card-image img { transform:scale(1.03); }
 .card-image.img-fallback { display:flex;align-items:center;justify-content:center;font-size:2.5rem; }
-.price-badge { position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.75);color:#fff;padding:4px 11px;border-radius:6px;font-size:0.88rem;font-weight:700;backdrop-filter:blur(6px);letter-spacing:-0.3px; }
+.price-badge { position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.75);color:#fff;padding:4px 11px;border-radius:6px;font-size:0.88rem;font-weight:700;backdrop-filter:blur(6px);letter-spacing:-0.3px;cursor:pointer; }
+.price-badge:hover { outline:1.5px solid rgba(255,255,255,0.55);outline-offset:-1px; }
 .card-body { padding:13px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1; }
 .card-address { font-size:0.88rem;font-weight:600;line-height:1.3; }
 .card-city { font-size:0.75rem;color:var(--text2);margin-top:-6px; }
@@ -515,37 +519,86 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 '''
 
 js = '''
+function fmtUSD(v){ return '$' + Math.round(Math.abs(v)).toLocaleString(); }
 function recalcCard(el) {
   var card = el.closest('.property-card');
+  if (card) recalcCardEl(card);
+}
+function recalcCardEl(card) {
   if (!card) return;
-  var annualRev = parseFloat(card.dataset.annualRev) || 0;
-  var piti = parseFloat(card.dataset.piti) || 0;
+  var p0 = parseFloat(card.dataset.price) || 0;
+  var curPrice = parseFloat(card.dataset.curPrice); if (isNaN(curPrice)) curPrice = p0;
+  var piti0 = parseFloat(card.dataset.piti) || 0;
+  var baseStartup0 = parseFloat(card.dataset.baseStartup) || 0;
   var pool = parseFloat(card.dataset.pool) || 0;
-  var baseStartup = parseFloat(card.dataset.baseStartup) || 0;
+  // price drives PITI (marginal rate), down payment, agent, closing
+  var piti = piti0 + 0.0056996 * (curPrice - p0);
+  var baseStartup = baseStartup0 + 0.345 * (curPrice - p0);
   var remodelEl = card.querySelector('.remodel-input');
   var remodel = remodelEl ? (parseFloat((remodelEl.value||'0').replace(/[^0-9.]/g,''))||0) : 0;
-  var revEl = card.querySelector('.rev-input');
-  var adjRev = revEl ? (parseFloat((revEl.value||String(annualRev)).replace(/[^0-9.]/g,''))||annualRev) : annualRev;
   var startup = baseStartup + remodel;
-  var mo = adjRev / 12;
-  var cleaning = mo * 0.23;
-  var cf = mo - piti - cleaning - pool;
-  var coc = startup > 0 ? (cf * 12 / startup * 100) : 0;
-  var moRevEl = card.querySelector('.mo-rev-val');
-  if (moRevEl) moRevEl.textContent = '+$' + Math.round(mo).toLocaleString() + '/mo';
-  var cleanEl = card.querySelector('.cleaning-val');
-  if (cleanEl) cleanEl.textContent = '-$' + Math.round(cleaning).toLocaleString() + '/mo';
-  var cfEl = card.querySelector('.net-cf-val');
-  if (cfEl) { cfEl.textContent=(cf>=0?'+':'-')+'$'+Math.round(Math.abs(cf)).toLocaleString()+'/mo'; cfEl.className='amount net-cf-val '+(cf>=0?'positive':'negative'); }
-  var stEl = card.querySelector('.startup-total-val');
-  if (stEl) stEl.textContent = '$' + Math.round(startup).toLocaleString();
-  var cocValEl = card.querySelector('.coc-value');
-  if (cocValEl) { cocValEl.textContent=(coc>=0?'+':'')+coc.toFixed(1)+'%'; cocValEl.className='coc-value '+(coc>=0?'coc-positive':'coc-negative'); }
-  var cocBar = card.querySelector('.coc-bar');
-  if (cocBar) { var c=Math.min(Math.max(coc,-20),50); var w=Math.max(0,Math.min(100,(c+20)/70*100)); cocBar.style.width=w.toFixed(1)+'%'; cocBar.style.background=coc>=0?'#22c55e':'#ef4444'; }
-  card.classList.remove('card-green','card-red');
-  if (coc>0) card.classList.add('card-green'); else if (coc<0) card.classList.add('card-red');
+  var pitiEl = card.querySelector('.piti-val'); if (pitiEl) pitiEl.textContent = '-' + fmtUSD(piti) + '/mo';
+  var downEl = card.querySelector('.down-val'); if (downEl) downEl.textContent = fmtUSD(curPrice*0.30);
+  var agentEl = card.querySelector('.agent-val'); if (agentEl) agentEl.textContent = fmtUSD(curPrice*0.025);
+  var closeEl = card.querySelector('.closing-val'); if (closeEl) closeEl.textContent = fmtUSD(curPrice*0.02);
+  var stEl = card.querySelector('.startup-total-val'); if (stEl) stEl.textContent = fmtUSD(startup);
+  var beMo = (piti + pool) / 0.77;
+  var beInline = card.querySelector('.be-inline'); if (beInline) beInline.textContent = '(breakeven ' + fmtUSD(beMo) + ')';
+  var beVal = card.querySelector('.be-val'); if (beVal) beVal.textContent = fmtUSD(beMo*12) + '/yr';
+  var beNote = card.querySelector('.be-note'); if (beNote) beNote.textContent = fmtUSD(beMo) + '/mo · ' + fmtUSD(beMo*12) + '/yr';
+  var revEl = card.querySelector('.rev-input');
+  if (revEl) {
+    var annualRev = parseFloat(card.dataset.annualRev) || 0;
+    var adjRev = parseFloat((revEl.value||String(annualRev)).replace(/[^0-9.]/g,'')) || annualRev;
+    var mo = adjRev / 12;
+    var cleaning = mo * 0.23;
+    var cf = mo - piti - cleaning - pool;
+    var coc = startup > 0 ? (cf * 12 / startup * 100) : 0;
+    var moRevEl = card.querySelector('.mo-rev-val'); if (moRevEl) moRevEl.textContent = '+' + fmtUSD(mo) + '/mo';
+    var cleanEl = card.querySelector('.cleaning-val'); if (cleanEl) cleanEl.textContent = '-' + fmtUSD(cleaning) + '/mo';
+    var cfEl = card.querySelector('.net-cf-val'); if (cfEl) { cfEl.textContent=(cf>=0?'+':'-')+fmtUSD(cf)+'/mo'; cfEl.className='amount net-cf-val '+(cf>=0?'positive':'negative'); }
+    var cocValEl = card.querySelector('.coc-value'); if (cocValEl) { cocValEl.textContent=(coc>=0?'+':'')+coc.toFixed(1)+'%'; cocValEl.className='coc-value '+(coc>=0?'coc-positive':'coc-negative'); }
+    var cocBar = card.querySelector('.coc-bar'); if (cocBar) { var c=Math.min(Math.max(coc,-20),50); var w=Math.max(0,Math.min(100,(c+20)/70*100)); cocBar.style.width=w.toFixed(1)+'%'; cocBar.style.background=coc>=0?'#22c55e':'#ef4444'; }
+    card.classList.remove('card-green','card-red');
+    if (coc>0) card.classList.add('card-green'); else if (coc<0) card.classList.add('card-red');
+  }
 }
+var CUT_KEY='strPriceCuts';
+var priceCuts;
+try { priceCuts=JSON.parse(localStorage.getItem(CUT_KEY)); } catch(e) { priceCuts=null; }
+if (!priceCuts || typeof priceCuts!=='object') priceCuts={};
+function savePriceCuts(){ try{ localStorage.setItem(CUT_KEY, JSON.stringify(priceCuts)); }catch(e){} }
+function renderBadge(card){
+  var badge=card.querySelector('.price-badge'); if(!badge) return;
+  var p0=parseFloat(card.dataset.price)||0;
+  var origRef=parseFloat(card.dataset.origPrice)||p0;
+  var refHigh=Math.max(origRef,p0);
+  var cur=parseFloat(card.dataset.curPrice); if(isNaN(cur)) cur=p0;
+  if(cur<refHigh) badge.innerHTML='<del>$'+refHigh.toLocaleString()+'</del> <span class="price-cur">$'+cur.toLocaleString()+'</span>';
+  else badge.innerHTML='<span class="price-cur">$'+cur.toLocaleString()+'</span>';
+}
+function applyCut(addr, newPrice){
+  document.querySelectorAll('.property-card').forEach(function(card){
+    if(card.dataset.addr!==addr) return;
+    if(newPrice==null) delete card.dataset.curPrice; else card.dataset.curPrice=String(newPrice);
+    renderBadge(card); recalcCardEl(card);
+  });
+}
+function editPrice(el){
+  var card=el.closest('.property-card'); if(!card) return;
+  var addr=card.dataset.addr;
+  var p0=parseFloat(card.dataset.price)||0;
+  var origRef=parseFloat(card.dataset.origPrice)||p0;
+  var refHigh=Math.max(origRef,p0);
+  var cur=parseFloat(card.dataset.curPrice); if(isNaN(cur)) cur=p0;
+  var resp=prompt('Price for '+addr.split(',')[0]+'\\nOriginal listed: $'+refHigh.toLocaleString()+'\\n\\nEnter the new (cut) price. Leave blank + OK to reset to original.', cur.toLocaleString());
+  if(resp===null) return;
+  var clean=resp.replace(/[^0-9.]/g,'');
+  if(clean===''){ delete priceCuts[addr]; savePriceCuts(); applyCut(addr,null); return; }
+  var np=Math.round(parseFloat(clean)); if(!np||np<=0) return;
+  priceCuts[addr]=np; savePriceCuts(); applyCut(addr,np);
+}
+function loadPriceCuts(){ Object.keys(priceCuts).forEach(function(a){ applyCut(a, priceCuts[a]); }); }
 function showTab(id) {
   document.querySelectorAll('.tab-content').forEach(el=>el.style.display='none');
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
@@ -619,6 +672,7 @@ function refreshFavs(){
   });
   updateFavMap();
 }
+loadPriceCuts();
 refreshFavs();
 showTab('top5');
 '''
