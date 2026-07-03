@@ -620,7 +620,7 @@ function editPrice(el){
 }
 function loadPriceCuts(){ Object.keys(priceCuts).forEach(function(a){ applyCut(a, priceCuts[a]); }); }
 // Align matching sections (cost breakdown, revenue box, startup box) across each row of cards
-var EQ_SELS=['.cost-breakdown','.rev-adjust','.startup-section'];
+var EQ_SELS=['.card-chips','.cost-breakdown','.rev-adjust','.startup-section'];
 function equalizeRows(){
   document.querySelectorAll('.tab-content').forEach(function(tab){
     if(tab.style.display==='none') return;
