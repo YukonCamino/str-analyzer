@@ -326,6 +326,7 @@ COMPS = {
         {"name":"Casa Verde · Poolside Stargazing Paradise","url":"https://www.airbnb.com/rooms/1421212089738528659","annual_rev":88300,"adr":322,"occ":72.1},
         {"name":"Escondite By Homestead Modern","url":"https://www.airbnb.com/rooms/1010358724851399161","annual_rev":103000,"adr":417,"occ":58.1},
         {"name":"The G.O.A.T. | Pool & Spa | 5-Acres | No Neighbors","url":"https://www.airbnb.com/rooms/1052620076857830533","annual_rev":107000,"adr":363,"occ":67.7},
+        {"name":"Newfoundland | Hot Tub | Fire Pit | Desert Views","url":"https://www.airbnb.com/rooms/51925323","annual_rev":142400,"adr":395,"occ":85.5},
     ],
 }
 
