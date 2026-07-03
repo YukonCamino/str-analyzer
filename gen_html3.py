@@ -341,6 +341,7 @@ def apply_comps(tabs):
             if not comps or id(p) in seen:
                 continue
             seen.add(id(p))
+            comps = sorted(comps, key=lambda c: c["annual_rev"], reverse=True)
             n = len(comps)
             avg_rev = sum(c["annual_rev"] for c in comps) / n
             p["comps"] = comps
