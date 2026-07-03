@@ -306,6 +306,57 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         
       </div>
     </div>
+    <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-annual-rev="95650.0" data-piti="3043.9000" data-pool="250" data-base-startup="195627.0000">
+      <div class="card-image">
+        <img src="photos/2351-n-cambria-ave.jpg" alt="2351 N Cambria Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge">$499,000</div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
+        
+      </div>
+      <div class="card-body">
+        <div class="card-address">2351 N Cambria Ave</div>
+        <div class="card-city">Landers, CA 92285</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,467 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 6d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$7,971/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,044/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,833/mo</span></div>
+          <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,844/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:53.5%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+17.4%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Avg of 2 comps</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="95,650" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$51,334/yr</span></div>
+          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>65% occ · $370 ADR</span></div>
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span>$149,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$23,472</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span>$12,475</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span>$9,980</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$195,627</span></div>
+        </div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+        <div class="comp-strips"><div class="comp-strips-title">Comps (2)</div><a href="https://www.airbnb.com/rooms/1421212089738528659" target="_blank" class="comp-strip" title="Casa Verde · Poolside Stargazing Paradise"><span>72% occ</span><span>$322 ADR</span><span>$88.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1010358724851399161" target="_blank" class="comp-strip" title="Escondite By Homestead Modern"><span>58% occ</span><span>$417 ADR</span><span>$103.0K/yr</span><span class="cs-arrow">↗</span></a></div>
+      </div>
+    </div>
     <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-annual-rev="103600" data-piti="3613.6100" data-pool="0" data-base-startup="227503.0000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/61b95dfdcdc15b9a01b143800fa70b97-cc_ft_1536.jpg" alt="69450 Amboy Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
@@ -354,57 +405,6 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/69450-Amboy-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769512618474065409" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
-      </div>
-    </div>
-    <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-annual-rev="88300.0" data-piti="3043.9000" data-pool="250" data-base-startup="195627.0000">
-      <div class="card-image">
-        <img src="photos/2351-n-cambria-ave.jpg" alt="2351 N Cambria Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
-        <div class="price-badge">$499,000</div>
-        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
-        
-      </div>
-      <div class="card-body">
-        <div class="card-address">2351 N Cambria Ave</div>
-        <div class="card-city">Landers, CA 92285</div>
-        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,467 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 6d</span></div>
-        <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$7,358/mo</span></div>
-          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,044/mo</span></div>
-          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,692/mo</span></div>
-          <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
-          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,372/mo</span></div>
-        </div>
-        <div class="coc-section">
-          <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:49.4%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+14.6%</div>
-        </div>
-        <div class="rev-adjust">
-          <div class="rev-adjust-header">
-            <span class="rev-adjust-title">📊 Revenue Assumption</span>
-            <span class="rev-tag">Avg of 1 comps</span>
-          </div>
-          <div class="rev-adjust-row">
-            <span>Annual Revenue</span>
-            <input type="text" class="rev-input" value="88,300" oninput="recalcCard(this)" onclick="this.select()">
-          </div>
-          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$51,334/yr</span></div>
-          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>72% occ · $322 ADR</span></div>
-        </div>
-        <div class="startup-section">
-          <div class="startup-title">Startup Costs</div>
-          <div class="startup-row"><span>Down Payment (30%)</span><span>$149,700</span></div>
-          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$23,472</span></div>
-          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span>$12,475</span></div>
-          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span>$9,980</span></div>
-          <div class="startup-row remodel-row">
-            <span>Remodel Budget</span>
-            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
-          </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$195,627</span></div>
-        </div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
-        <div class="comp-strips"><div class="comp-strips-title">Comps (1)</div><a href="https://www.airbnb.com/rooms/1421212089738528659" target="_blank" class="comp-strip" title="Casa Verde · Poolside Stargazing Paradise"><span>72% occ</span><span>$322 ADR</span><span>$88.3K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
     </div>
@@ -576,7 +576,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-annual-rev="88300.0" data-piti="3043.9000" data-pool="250" data-base-startup="195627.0000">
+    <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-annual-rev="95650.0" data-piti="3043.9000" data-pool="250" data-base-startup="195627.0000">
       <div class="card-image">
         <img src="photos/2351-n-cambria-ave.jpg" alt="2351 N Cambria Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge">$499,000</div>
@@ -588,28 +588,28 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-city">Landers, CA 92285</div>
         <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,467 sqft</span><span class="chip chip-region">Landers</span><span class="chip chip-dom-green" title="Days on Market">📅 6d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$7,358/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,278)</span></span><span class="amount neutral mo-rev-val">+$7,971/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$3,044/mo</span></div>
-          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,692/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,833/mo</span></div>
           <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
-          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,372/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,844/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:49.4%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+14.6%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:53.5%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+17.4%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
             <span class="rev-adjust-title">📊 Revenue Assumption</span>
-            <span class="rev-tag">Avg of 1 comps</span>
+            <span class="rev-tag">Avg of 2 comps</span>
           </div>
           <div class="rev-adjust-row">
             <span>Annual Revenue</span>
-            <input type="text" class="rev-input" value="88,300" oninput="recalcCard(this)" onclick="this.select()">
+            <input type="text" class="rev-input" value="95,650" oninput="recalcCard(this)" onclick="this.select()">
           </div>
           <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$51,334/yr</span></div>
-          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>72% occ · $322 ADR</span></div>
+          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>65% occ · $370 ADR</span></div>
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -624,7 +624,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$195,627</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
-        <div class="comp-strips"><div class="comp-strips-title">Comps (1)</div><a href="https://www.airbnb.com/rooms/1421212089738528659" target="_blank" class="comp-strip" title="Casa Verde · Poolside Stargazing Paradise"><span>72% occ</span><span>$322 ADR</span><span>$88.3K/yr</span><span class="cs-arrow">↗</span></a></div>
+        <div class="comp-strips"><div class="comp-strips-title">Comps (2)</div><a href="https://www.airbnb.com/rooms/1421212089738528659" target="_blank" class="comp-strip" title="Casa Verde · Poolside Stargazing Paradise"><span>72% occ</span><span>$322 ADR</span><span>$88.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1010358724851399161" target="_blank" class="comp-strip" title="Escondite By Homestead Modern"><span>58% occ</span><span>$417 ADR</span><span>$103.0K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
     <div class="property-card card-green" data-addr="1564 Luna Mesa Rd, Yucca Valley, CA 92284" data-lat="34.224156" data-lng="-116.391249" data-annual-rev="77000" data-piti="3038.2400" data-pool="0" data-base-startup="184482.0000">
