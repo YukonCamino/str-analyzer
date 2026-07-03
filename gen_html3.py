@@ -62,22 +62,25 @@ def fmt_plain(v):
     if v is None: return "N/A"
     return f"${abs(v):,.0f}"
 
+UTILITIES = 391  # fixed monthly utilities per property
+
 def compute(price, annual_rev, piti_30, down_30, sqft, has_pool=False):
     furnishing = sqft * 16
     buyer_agent = price * 0.025
     closing = price * 0.02
     startup = down_30 + furnishing + buyer_agent + closing
+    util = UTILITIES
     if not annual_rev or annual_rev <= 0:
-        return {"mo_rev":0,"piti":piti_30,"cleaning":0,"pool":250 if has_pool else 0,
+        return {"mo_rev":0,"piti":piti_30,"cleaning":0,"pool":250 if has_pool else 0,"utilities":util,
                 "cf":None,"coc":None,"down":down_30,"furnishing":furnishing,
                 "buyer_agent":buyer_agent,"closing":closing,"startup":startup,
                 "annual_rev":annual_rev or 0,"no_rev":True}
     mo = annual_rev / 12
     cl = mo * 0.23
     po = 250 if has_pool else 0
-    cf = mo - piti_30 - cl - po
+    cf = mo - piti_30 - util - cl - po
     coc = (cf * 12) / startup * 100 if startup > 0 else 0
-    return {"mo_rev":mo,"piti":piti_30,"cleaning":cl,"pool":po,
+    return {"mo_rev":mo,"piti":piti_30,"cleaning":cl,"pool":po,"utilities":util,
             "cf":cf,"coc":coc,"down":down_30,"furnishing":furnishing,
             "buyer_agent":buyer_agent,"closing":closing,"startup":startup,
             "annual_rev":annual_rev,"no_rev":False}
@@ -116,7 +119,7 @@ def card(p, show_source=None):
     if f:
         da = f' data-annual-rev="{f["annual_rev"]}" data-piti="{f["piti"]:.4f}" data-pool="{f["pool"]}" data-base-startup="{f["startup"]:.4f}"'
 
-    be_mo = ((f["piti"] + f["pool"]) / 0.77) if f else None
+    be_mo = ((f["piti"] + f["pool"] + f["utilities"]) / 0.77) if f else None
     if f and not f.get("no_rev"):
         mo_rev = f["mo_rev"]
         cf = f["cf"]
@@ -124,6 +127,7 @@ def card(p, show_source=None):
         cash_rows = f'''
           <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven {fmt_plain(be_mo)})</span></span><span class="amount neutral mo-rev-val">+{fmt_plain(mo_rev)}/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-{fmt_plain(f["piti"])}/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-{fmt_plain(f["utilities"])}/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-{fmt_plain(f["cleaning"])}/mo</span></div>'''
         if f["pool"]:
             cash_rows += '\n          <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>'
@@ -538,6 +542,7 @@ function recalcCardEl(card) {
   var piti0 = parseFloat(card.dataset.piti) || 0;
   var baseStartup0 = parseFloat(card.dataset.baseStartup) || 0;
   var pool = parseFloat(card.dataset.pool) || 0;
+  var util = 391;
   // price drives PITI (marginal rate), down payment, agent, closing
   var piti = piti0 + 0.0056996 * (curPrice - p0);
   var baseStartup = baseStartup0 + 0.345 * (curPrice - p0);
@@ -549,7 +554,7 @@ function recalcCardEl(card) {
   var agentEl = card.querySelector('.agent-val'); if (agentEl) agentEl.textContent = fmtUSD(curPrice*0.025);
   var closeEl = card.querySelector('.closing-val'); if (closeEl) closeEl.textContent = fmtUSD(curPrice*0.02);
   var stEl = card.querySelector('.startup-total-val'); if (stEl) stEl.textContent = fmtUSD(startup);
-  var beMo = (piti + pool) / 0.77;
+  var beMo = (piti + pool + util) / 0.77;
   var beInline = card.querySelector('.be-inline'); if (beInline) beInline.textContent = '(breakeven ' + fmtUSD(beMo) + ')';
   var beVal = card.querySelector('.be-val'); if (beVal) beVal.textContent = fmtUSD(beMo*12) + '/yr';
   var beNote = card.querySelector('.be-note'); if (beNote) beNote.textContent = fmtUSD(beMo) + '/mo · ' + fmtUSD(beMo*12) + '/yr';
@@ -559,7 +564,7 @@ function recalcCardEl(card) {
     var adjRev = parseFloat((revEl.value||String(annualRev)).replace(/[^0-9.]/g,'')) || annualRev;
     var mo = adjRev / 12;
     var cleaning = mo * 0.23;
-    var cf = mo - piti - cleaning - pool;
+    var cf = mo - piti - util - cleaning - pool;
     var coc = startup > 0 ? (cf * 12 / startup * 100) : 0;
     var moRevEl = card.querySelector('.mo-rev-val'); if (moRevEl) moRevEl.textContent = '+' + fmtUSD(mo) + '/mo';
     var cleanEl = card.querySelector('.cleaning-val'); if (cleanEl) cleanEl.textContent = '-' + fmtUSD(cleaning) + '/mo';
