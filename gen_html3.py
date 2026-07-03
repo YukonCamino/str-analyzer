@@ -322,6 +322,9 @@ COMPS = {
         {"name":"CouplesPool, Spa&Tub | Bikes | Telescope | Theater","url":"https://www.airbnb.com/rooms/1313828204666358101","annual_rev":84300,"adr":291,"occ":69.0},
         {"name":"DTJT House 2 - SWIM, SOAK & STARGAZE","url":"https://www.airbnb.com/rooms/45829660","annual_rev":62000,"adr":245,"occ":58.1},
     ],
+    "2351 N Cambria Ave, Landers, CA 92285": [
+        {"name":"Casa Verde · Poolside Stargazing Paradise","url":"https://www.airbnb.com/rooms/1421212089738528659","annual_rev":88300,"adr":322,"occ":72.1},
+    ],
 }
 
 def apply_comps(tabs):
