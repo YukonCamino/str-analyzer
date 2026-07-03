@@ -422,7 +422,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
   <div id="tab-money" class="tab-content" style="display:none">
     <div class="tab-header">
       <h2>🌵 Desert</h2>
-      <span class="prop-count">16 properties</span>
+      <span class="prop-count">15 properties</span>
     </div>
     <div class="cards-grid">
     <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-annual-rev="90825.0" data-piti="2474.1900" data-pool="250" data-base-startup="152055.0000">
@@ -674,56 +674,6 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$184,482</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/45222274" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
-        
-      </div>
-    </div>
-    <div class="property-card card-green" data-addr="8729 Rockhaven Rd, Joshua Tree, CA 92252" data-lat="34.095479" data-lng="-116.268885" data-annual-rev="107332" data-piti="4246.5500" data-pool="0" data-base-startup="260438.0000">
-      <div class="card-image">
-        <img src="https://photos.zillowstatic.com/fp/458814cc0ce69e2a1400231a7d78aac1-cc_ft_1536.jpg" alt="8729 Rockhaven Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
-        <div class="price-badge">$710,000</div>
-        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
-        
-      </div>
-      <div class="card-body">
-        <div class="card-address">8729 Rockhaven Rd</div>
-        <div class="card-city">Joshua Tree, CA 92252</div>
-        <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">968 sqft</span><span class="chip chip-region">Joshua Tree</span></div>
-        <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $5,515)</span></span><span class="amount neutral mo-rev-val">+$8,944/mo</span></div>
-          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$4,247/mo</span></div>
-          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,057/mo</span></div>
-          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,641/mo</span></div>
-        </div>
-        <div class="coc-section">
-          <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:46.0%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+12.2%</div>
-        </div>
-        <div class="rev-adjust">
-          <div class="rev-adjust-header">
-            <span class="rev-adjust-title">📊 Revenue Assumption</span>
-            <span class="rev-tag">AirROI est.</span>
-          </div>
-          <div class="rev-adjust-row">
-            <span>Annual Revenue</span>
-            <input type="text" class="rev-input" value="107,332" oninput="recalcCard(this)" onclick="this.select()">
-          </div>
-          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$66,180/yr</span></div>
-          
-        </div>
-        <div class="startup-section">
-          <div class="startup-title">Startup Costs</div>
-          <div class="startup-row"><span>Down Payment (30%)</span><span>$213,000</span></div>
-          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,488</span></div>
-          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span>$17,750</span></div>
-          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span>$14,200</span></div>
-          <div class="startup-row remodel-row">
-            <span>Remodel Budget</span>
-            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
-          </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$260,438</span></div>
-        </div>
-        <div class="card-links"><a href="https://www.zillow.com/homes/8729-Rockhaven-Rd-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/603759782385162711" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
@@ -1676,9 +1626,59 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
   <div id="tab-sold" class="tab-content" style="display:none">
     <div class="tab-header">
       <h2>🔴 Sold</h2>
-      <span class="prop-count">1 properties</span>
+      <span class="prop-count">2 properties</span>
     </div>
     <div class="cards-grid">
+    <div class="property-card card-sold" data-addr="8729 Rockhaven Rd, Joshua Tree, CA 92252" data-lat="34.095479" data-lng="-116.268885" data-annual-rev="107332" data-piti="4246.5500" data-pool="0" data-base-startup="260438.0000">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/458814cc0ce69e2a1400231a7d78aac1-cc_ft_1536.jpg" alt="8729 Rockhaven Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge">$710,000</div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
+        <div class="sold-overlay">SOLD</div>
+      </div>
+      <div class="card-body">
+        <div class="card-address">8729 Rockhaven Rd</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">968 sqft</span><span class="chip chip-region">Joshua Tree</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $5,515)</span></span><span class="amount neutral mo-rev-val">+$8,944/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative">-$4,247/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,057/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,641/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:46.0%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+12.2%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">AirROI est.</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="107,332" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$66,180/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span>$213,000</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,488</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span>$17,750</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span>$14,200</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$260,438</span></div>
+        </div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/8729-Rockhaven-Rd-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/603759782385162711" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+        
+      </div>
+    </div>
     <div class="property-card card-sold" data-addr="446 Riverside Ave, Sugarloaf, CA 92386" data-lat="34.244053" data-lng="-116.834633" data-annual-rev="19700" data-piti="1961.0500" data-pool="0" data-base-startup="115773.0000">
       <div class="card-image img-fallback">
         

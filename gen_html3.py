@@ -291,6 +291,7 @@ bigbear_tab = [
 
 sold_tab = [
     {"address":"446 Riverside Ave, Sugarloaf, CA 92386","region":"Big Bear","price":309000,"beds":1,"baths":1,"sqft":573,"sold":True,"img_src":PH,"fin":compute(309000,19700,1961.05,92700,573)},
+    {"address":"8729 Rockhaven Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":710000,"beds":1,"baths":1,"sqft":968,"sold":True,"img_src":zillow_img("458814cc0ce69e2a1400231a7d78aac1"),"airbnb_link":"https://www.airbnb.com/rooms/603759782385162711","fin":compute(710000,107332,4246.55,213000,968)},
 ]
 
 adu_tab = [
@@ -306,7 +307,6 @@ money_tab = [
     {"address":"60654 Mitch Ln, Landers, CA 92285","region":"Landers","price":365000,"original_price":385000,"beds":1,"baths":1,"sqft":448,"dom":72,"img_src":zillow_img("085bad920e162f8a6d0146a5585f2efa"),"zillow_link":"https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/","airbnb_link":"https://www.airbnb.com/rooms/647212501055315908","rev_source":"Airbnb verified","fin":compute(365000,71300,2274.74,109500,448)},
     {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"airbnb_link":"https://www.airbnb.com/rooms/769512618474065409","fin":compute(599000,80232,3613.61,179700,1303)},
     {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","airbnb_link":"https://www.airbnb.com/rooms/971911711973779101","fin":compute(374900,52364,2336.95,112470,662)},
-    {"address":"8729 Rockhaven Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":710000,"beds":1,"baths":1,"sqft":968,"img_src":zillow_img("458814cc0ce69e2a1400231a7d78aac1"),"airbnb_link":"https://www.airbnb.com/rooms/603759782385162711","fin":compute(710000,107332,4246.55,213000,968)},
     {"address":"72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":2,"baths":1,"sqft":1094,"img_src":zillow_img("814e00f87608b29e697cd736fa6f9baa"),"airbnb_link":"https://www.airbnb.com/rooms/49347365","fin":compute(599000,75000,3613.61,179700,1094)},
     {"address":"55921 Ornelas Ln, Landers, CA 92285","region":"Landers","price":349000,"beds":2,"baths":2,"sqft":976,"dom":126,"img_src":zillow_img("ecc9f6617ce31a3f847e31005f94a436"),"zillow_link":"https://www.zillow.com/homedetails/55921-Ornelas-Ln-Landers-CA-92285/17507410_zpid/","airbnb_link":"https://www.airbnb.com/rooms/48836260","fin":compute(349000,42219,2189.33,104700,976)},
     {"address":"290 Bluegrass Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":359000,"beds":3,"baths":1,"sqft":1451,"img_src":zillow_img("8d3178634371ed1fcfc9df50fbac384f"),"airbnb_link":"https://www.airbnb.com/rooms/38159960","fin":compute(359000,51387,2245.91,107700,1451)},
