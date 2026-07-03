@@ -1308,6 +1308,59 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-links"><a href="https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
       </div>
     </div>
+    <div class="property-card card-red" data-addr="909 E Big Bear Blvd, Big Bear City, CA 92314" data-lat="34.26143" data-lng="-116.8289" data-price="199888" data-orig-price="199888" data-annual-rev="21800.0" data-piti="1339.3300" data-pool="0" data-base-startup="79139.9600" data-util="391" data-hoa="0">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/fb246303bcf643a106c738de416a7791-cc_ft_1536.jpg" alt="909 E Big Bear Blvd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$199,888</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
+        
+      </div>
+      <div class="card-body">
+        <div class="card-address">909 E Big Bear Blvd</div>
+        <div class="card-city">Big Bear City, CA 92314</div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">480 sqft</span><span class="chip chip-region">Big Bear</span><span class="chip chip-dom-green" title="Days on Market">📅 4d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,247)</span></span><span class="amount neutral mo-rev-val">+$1,817/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,339/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$418/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$331/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:21.4%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-5.0%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Avg of 4 comps</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="21,800" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$26,966/yr</span></div>
+          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>22% occ · $215 ADR</span></div>
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$59,966</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$7,680</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$4,997</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$3,998</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$2,499</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$79,140</span></div>
+        </div>
+        <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/21503287" target="_blank" class="comp-strip" title="Mid-Century A-Frame in the Pines"><span>20% occ</span><span>$314 ADR</span><span>$28.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1369554510720905694" target="_blank" class="comp-strip" title="2BR Beartime Story Cabin, BBQ & Fireplace"><span>30% occ</span><span>$179 ADR</span><span>$24.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/894949705871445120" target="_blank" class="comp-strip" title="Moto Cabin: PetsStayFree, FencedYard, Fireplace"><span>19% occ</span><span>$209 ADR</span><span>$18.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/502441421412592496" target="_blank" class="comp-strip" title="Cozy Cabin, Perfect for Families, Dog friendly"><span>20% occ</span><span>$159 ADR</span><span>$15.9K/yr</span><span class="cs-arrow">↗</span></a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+      </div>
+    </div>
     <div class="property-card card-red" data-addr="376 Riverside Ave, Sugarloaf, CA 92386" data-lat="34.245452" data-lng="-116.834467" data-price="259900" data-orig-price="259900" data-annual-rev="19700" data-piti="1681.3800" data-pool="0" data-base-startup="100978.2500" data-util="391" data-hoa="0">
       <div class="card-image">
         <img src="photos/376-riverside-ave.png" alt="376 Riverside Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
@@ -1412,37 +1465,6 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         </div>
         
         <div class="card-links"><a href="https://www.zillow.com/homedetails/396-Kern-Ave-Sugarloaf-CA-92386/17621919_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769657678133226978" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
-      </div>
-    </div>
-    <div class="property-card" data-addr="909 E Big Bear Blvd, Big Bear City, CA 92314" data-lat="34.26143" data-lng="-116.8289" data-price="199888" data-orig-price="199888" data-annual-rev="0" data-piti="1339.3300" data-pool="0" data-base-startup="79139.9600" data-util="391" data-hoa="0">
-      <div class="card-image">
-        <img src="https://photos.zillowstatic.com/fp/fb246303bcf643a106c738de416a7791-cc_ft_1536.jpg" alt="909 E Big Bear Blvd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
-        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$199,888</span></div>
-        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
-        
-      </div>
-      <div class="card-body">
-        <div class="card-address">909 E Big Bear Blvd</div>
-        <div class="card-city">Big Bear City, CA 92314</div>
-        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">480 sqft</span><span class="chip chip-region">Big Bear</span><span class="chip chip-dom-green" title="Days on Market">📅 4d</span></div>
-        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p><div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral be-note">$2,247/mo · $26,966/yr</span></div></div>
-        <div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>
-        
-        <div class="startup-section">
-          <div class="startup-title">Startup Costs</div>
-          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$59,966</span></div>
-          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$7,680</span></div>
-          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$4,997</span></div>
-          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$3,998</span></div>
-          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$2,499</span></div>
-          <div class="startup-row remodel-row">
-            <span>Remodel Budget</span>
-            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
-          </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$79,140</span></div>
-        </div>
-        
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
       </div>
     </div>
     </div>

@@ -349,6 +349,12 @@ COMPS = {
         {"name":"Ocotillo Lodge Mid-Century Modern Condo","url":"https://www.airbnb.com/rooms/29682828","annual_rev":39000,"adr":160,"occ":53.7},
         {"name":"Mid-Century 1BR Bungalow At Famed Ocotillo Lodge","url":"https://www.airbnb.com/rooms/1075421284820316121","annual_rev":34300,"adr":337,"occ":34.2},
     ],
+    "909 E Big Bear Blvd, Big Bear City, CA 92314": [
+        {"name":"Mid-Century A-Frame in the Pines","url":"https://www.airbnb.com/rooms/21503287","annual_rev":28900,"adr":314,"occ":20.0},
+        {"name":"Moto Cabin: PetsStayFree, FencedYard, Fireplace","url":"https://www.airbnb.com/rooms/894949705871445120","annual_rev":18000,"adr":209,"occ":18.6},
+        {"name":"2BR Beartime Story Cabin, BBQ & Fireplace","url":"https://www.airbnb.com/rooms/1369554510720905694","annual_rev":24400,"adr":179,"occ":29.6},
+        {"name":"Cozy Cabin, Perfect for Families, Dog friendly","url":"https://www.airbnb.com/rooms/502441421412592496","annual_rev":15900,"adr":159,"occ":20.5},
+    ],
     "697 Villa Grove Ave, Big Bear City, CA 92314": [
         {"name":"PANSIZE: Cozy Moonridge Chalet in the Wood","url":"https://www.airbnb.com/rooms/54398781","annual_rev":58700,"adr":230,"occ":55.1},
         {"name":"The Cosmic Cabin: Pet Friendly! Modern Mid-Century!","url":"https://www.airbnb.com/rooms/1016592731524962770","annual_rev":38800,"adr":206,"occ":41.4},
