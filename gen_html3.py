@@ -393,9 +393,9 @@ css = '''
 :root { --bg:#E8E4DB;--surface:#F7F4EC;--surface2:#DDD7C9;--border:#D3CCBC;--text:#26261F;--text2:#6E6A5E;--accent:#f97316;--green:#15803d;--red:#dc2626; }
 body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh; }
 .app-header { background:var(--bg);padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;text-align:center;gap:14px; }
-.app-header .title-row { display:flex;align-items:center;justify-content:center;gap:12px; }
-.app-header .title-row img { align-self:stretch;height:auto;width:auto;aspect-ratio:1/1;object-fit:contain;flex:none; }
-.app-header h1 { font-family:'Anton',sans-serif;font-size:3.4rem;line-height:1;font-weight:400;text-transform:uppercase;letter-spacing:0.5px; }
+.app-header .title-row { display:flex;align-items:center;justify-content:center;gap:0.28em;font-size:clamp(1.9rem,8.2vw,3.4rem); }
+.app-header .title-row img { height:1em;width:1em;object-fit:contain;flex:none; }
+.app-header h1 { font-family:'Anton',sans-serif;font-size:1em;line-height:1;font-weight:400;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap; }
 .app-header .sub { font-size:0.8rem;color:var(--text2);margin-top:2px; }
 .tabs-bar { background:var(--surface);border-bottom:1px solid var(--border);padding:0 12px;display:flex;justify-content:safe center;overflow-x:auto;gap:0; }
 .tabs-bar::-webkit-scrollbar { height:3px; }
