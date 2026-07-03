@@ -49,6 +49,8 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .card-image.img-fallback { display:flex;align-items:center;justify-content:center;font-size:2.5rem; }
 .price-badge { position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.75);color:#fff;padding:4px 11px;border-radius:6px;font-size:0.88rem;font-weight:700;backdrop-filter:blur(6px);letter-spacing:-0.3px;cursor:pointer; }
 .price-badge:hover { outline:1.5px solid rgba(255,255,255,0.55);outline-offset:-1px; }
+.pool-label { display:inline-flex;align-items:center;gap:5px;cursor:pointer; }
+.pool-check { cursor:pointer;margin:0;accent-color:var(--accent,#b45309); }
 .card-body { padding:13px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1; }
 .card-address { font-size:0.88rem;font-weight:600;line-height:1.3; }
 .card-city { font-size:0.75rem;color:var(--text2);margin-top:-6px; }
@@ -156,7 +158,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
     </div>
     <div class="top5-banner">⚡ Best CoC across all tabs — deduplicated, highest-revenue version of each property shown. Adjust revenue or remodel budget on any card to see live CoC updates.</div>
     <div class="cards-grid">
-    <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-price="399000" data-orig-price="399000" data-annual-rev="90825.0" data-piti="2474.1900" data-pool="250" data-base-startup="152055.0000">
+    <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-price="399000" data-orig-price="399000" data-annual-rev="90825.0" data-piti="2474.1900" data-pool="250" data-base-startup="157042.5000">
       <div class="card-image">
         <img src="photos/63300-tilford-way.jpg" alt="63300 Tilford Way" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$399,000</span></div>
@@ -172,13 +174,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,474/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,741/mo</span></div>
-          <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" checked>Pool service</label><span class="amount negative pool-val">-$250/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,713/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:59.2%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+21.4%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:58.2%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+20.7%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -198,17 +200,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$14,400</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$9,975</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,988</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$152,055</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$157,042</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/63300-Tilford-Way-Joshua-Tree-CA-92252/17508509_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/1050251825957778903" target="_blank" class="comp-strip" title="Romantic Cabin, Sweeping Views, Spa · Stone Hill"><span>84% occ</span><span>$360 ADR</span><span>$117.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/583294576342371719" target="_blank" class="comp-strip" title="Casa Lenta · Romantic Retreat w/ Pool, Spa, Views"><span>70% occ</span><span>$338 ADR</span><span>$99.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1313828204666358101" target="_blank" class="comp-strip" title="CouplesPool, Spa&Tub | Bikes | Telescope | Theater"><span>69% occ</span><span>$291 ADR</span><span>$84.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/45829660" target="_blank" class="comp-strip" title="DTJT House 2 - SWIM, SOAK & STARGAZE"><span>58% occ</span><span>$245 ADR</span><span>$62.0K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
-    <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-price="499000" data-orig-price="499000" data-annual-rev="110175.0" data-piti="3043.9000" data-pool="250" data-base-startup="195627.0000">
+    <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-price="499000" data-orig-price="499000" data-annual-rev="110175.0" data-piti="3043.9000" data-pool="250" data-base-startup="201864.5000">
       <div class="card-image">
         <img src="photos/2351-n-cambria-ave.jpg" alt="2351 N Cambria Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$499,000</span></div>
@@ -224,13 +227,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,044/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,112/mo</span></div>
-          <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" checked>Pool service</label><span class="amount negative pool-val">-$250/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,385/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:58.2%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+20.8%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:57.3%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+20.1%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -250,17 +253,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$23,472</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$12,475</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$9,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$6,238</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$195,627</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$201,864</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/51925323" target="_blank" class="comp-strip" title="Newfoundland | Hot Tub | Fire Pit | Desert Views"><span>86% occ</span><span>$395 ADR</span><span>$142.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1052620076857830533" target="_blank" class="comp-strip" title="The G.O.A.T. | Pool & Spa | 5-Acres | No Neighbors"><span>68% occ</span><span>$363 ADR</span><span>$107.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1010358724851399161" target="_blank" class="comp-strip" title="Escondite By Homestead Modern"><span>58% occ</span><span>$417 ADR</span><span>$103.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1421212089738528659" target="_blank" class="comp-strip" title="Casa Verde · Poolside Stargazing Paradise"><span>72% occ</span><span>$322 ADR</span><span>$88.3K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
-    <div class="property-card card-green" data-addr="60654 Mitch Ln, Landers, CA 92285" data-lat="34.280575" data-lng="-116.338752" data-price="365000" data-orig-price="385000" data-annual-rev="71300" data-piti="2274.7400" data-pool="0" data-base-startup="133093.0000">
+    <div class="property-card card-green" data-addr="60654 Mitch Ln, Landers, CA 92285" data-lat="34.280575" data-lng="-116.338752" data-price="365000" data-orig-price="385000" data-annual-rev="71300" data-piti="2274.7400" data-pool="0" data-base-startup="137655.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/085bad920e162f8a6d0146a5585f2efa-cc_ft_1536.jpg" alt="60654 Mitch Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><del>$385,000</del> <span class="price-cur">$365,000</span></div>
@@ -276,12 +280,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,275/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,367/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,909/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:53.2%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+17.2%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:52.3%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+16.6%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -301,17 +306,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$7,168</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$9,125</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,300</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,562</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$133,093</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$137,656</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/647212501055315908" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="8500 S Samel Rd, Morongo Valley, CA 92256" data-lat="34.097905" data-lng="-116.511178" data-price="440000" data-orig-price="440000" data-annual-rev="81500" data-piti="2707.1300" data-pool="0" data-base-startup="166776.0000">
+    <div class="property-card card-green" data-addr="8500 S Samel Rd, Morongo Valley, CA 92256" data-lat="34.097905" data-lng="-116.511178" data-price="440000" data-orig-price="440000" data-annual-rev="81500" data-piti="2707.1300" data-pool="0" data-base-startup="172276.0000">
       <div class="card-image">
         <img src="photos/8500-samel-rd.jpg" alt="8500 S Samel Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$440,000</span></div>
@@ -327,12 +333,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,562/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,131/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:50.5%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+15.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:49.8%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+14.8%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -352,17 +359,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$14,976</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$11,000</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$8,800</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$5,500</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$166,776</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$172,276</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/8500-S-Samel-Rd-Morongo-Valley-CA-92256_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/1096561622451349502" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-price="599000" data-orig-price="599000" data-annual-rev="103600" data-piti="3613.6100" data-pool="0" data-base-startup="227503.0000">
+    <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-price="599000" data-orig-price="599000" data-annual-rev="103600" data-piti="3613.6100" data-pool="0" data-base-startup="234990.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/61b95dfdcdc15b9a01b143800fa70b97-cc_ft_1536.jpg" alt="69450 Amboy Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$599,000</span></div>
@@ -378,12 +386,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,986/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,643/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:48.5%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+13.9%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:47.9%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+13.5%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -403,11 +412,12 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$20,848</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$14,975</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$11,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$7,488</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$227,503</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$234,990</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/69450-Amboy-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769512618474065409" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
@@ -431,7 +441,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       <span class="prop-count">15 properties</span>
     </div>
     <div class="cards-grid">
-    <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-price="399000" data-orig-price="399000" data-annual-rev="90825.0" data-piti="2474.1900" data-pool="250" data-base-startup="152055.0000">
+    <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-price="399000" data-orig-price="399000" data-annual-rev="90825.0" data-piti="2474.1900" data-pool="250" data-base-startup="157042.5000">
       <div class="card-image">
         <img src="photos/63300-tilford-way.jpg" alt="63300 Tilford Way" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$399,000</span></div>
@@ -447,13 +457,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,474/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,741/mo</span></div>
-          <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" checked>Pool service</label><span class="amount negative pool-val">-$250/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,713/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:59.2%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+21.4%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:58.2%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+20.7%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -473,17 +483,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$14,400</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$9,975</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,988</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$152,055</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$157,042</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/63300-Tilford-Way-Joshua-Tree-CA-92252/17508509_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/1050251825957778903" target="_blank" class="comp-strip" title="Romantic Cabin, Sweeping Views, Spa · Stone Hill"><span>84% occ</span><span>$360 ADR</span><span>$117.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/583294576342371719" target="_blank" class="comp-strip" title="Casa Lenta · Romantic Retreat w/ Pool, Spa, Views"><span>70% occ</span><span>$338 ADR</span><span>$99.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1313828204666358101" target="_blank" class="comp-strip" title="CouplesPool, Spa&Tub | Bikes | Telescope | Theater"><span>69% occ</span><span>$291 ADR</span><span>$84.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/45829660" target="_blank" class="comp-strip" title="DTJT House 2 - SWIM, SOAK & STARGAZE"><span>58% occ</span><span>$245 ADR</span><span>$62.0K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
-    <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-price="499000" data-orig-price="499000" data-annual-rev="110175.0" data-piti="3043.9000" data-pool="250" data-base-startup="195627.0000">
+    <div class="property-card card-green" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-price="499000" data-orig-price="499000" data-annual-rev="110175.0" data-piti="3043.9000" data-pool="250" data-base-startup="201864.5000">
       <div class="card-image">
         <img src="photos/2351-n-cambria-ave.jpg" alt="2351 N Cambria Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$499,000</span></div>
@@ -499,13 +510,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,044/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,112/mo</span></div>
-          <div class="cost-row"><span class="label">Pool service</span><span class="amount negative">-$250/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" checked>Pool service</label><span class="amount negative pool-val">-$250/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,385/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:58.2%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+20.8%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:57.3%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+20.1%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -525,17 +536,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$23,472</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$12,475</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$9,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$6,238</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$195,627</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$201,864</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/51925323" target="_blank" class="comp-strip" title="Newfoundland | Hot Tub | Fire Pit | Desert Views"><span>86% occ</span><span>$395 ADR</span><span>$142.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1052620076857830533" target="_blank" class="comp-strip" title="The G.O.A.T. | Pool & Spa | 5-Acres | No Neighbors"><span>68% occ</span><span>$363 ADR</span><span>$107.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1010358724851399161" target="_blank" class="comp-strip" title="Escondite By Homestead Modern"><span>58% occ</span><span>$417 ADR</span><span>$103.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1421212089738528659" target="_blank" class="comp-strip" title="Casa Verde · Poolside Stargazing Paradise"><span>72% occ</span><span>$322 ADR</span><span>$88.3K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
-    <div class="property-card card-green" data-addr="60654 Mitch Ln, Landers, CA 92285" data-lat="34.280575" data-lng="-116.338752" data-price="365000" data-orig-price="385000" data-annual-rev="71300" data-piti="2274.7400" data-pool="0" data-base-startup="133093.0000">
+    <div class="property-card card-green" data-addr="60654 Mitch Ln, Landers, CA 92285" data-lat="34.280575" data-lng="-116.338752" data-price="365000" data-orig-price="385000" data-annual-rev="71300" data-piti="2274.7400" data-pool="0" data-base-startup="137655.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/085bad920e162f8a6d0146a5585f2efa-cc_ft_1536.jpg" alt="60654 Mitch Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><del>$385,000</del> <span class="price-cur">$365,000</span></div>
@@ -551,12 +563,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,275/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,367/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,909/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:53.2%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+17.2%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:52.3%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+16.6%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -576,17 +589,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$7,168</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$9,125</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,300</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,562</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$133,093</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$137,656</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/647212501055315908" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="8500 S Samel Rd, Morongo Valley, CA 92256" data-lat="34.097905" data-lng="-116.511178" data-price="440000" data-orig-price="440000" data-annual-rev="81500" data-piti="2707.1300" data-pool="0" data-base-startup="166776.0000">
+    <div class="property-card card-green" data-addr="8500 S Samel Rd, Morongo Valley, CA 92256" data-lat="34.097905" data-lng="-116.511178" data-price="440000" data-orig-price="440000" data-annual-rev="81500" data-piti="2707.1300" data-pool="0" data-base-startup="172276.0000">
       <div class="card-image">
         <img src="photos/8500-samel-rd.jpg" alt="8500 S Samel Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$440,000</span></div>
@@ -602,12 +616,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,562/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,131/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:50.5%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+15.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:49.8%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+14.8%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -627,17 +642,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$14,976</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$11,000</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$8,800</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$5,500</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$166,776</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$172,276</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/8500-S-Samel-Rd-Morongo-Valley-CA-92256_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/1096561622451349502" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="1564 Luna Mesa Rd, Yucca Valley, CA 92284" data-lat="34.224156" data-lng="-116.391249" data-price="498000" data-orig-price="498000" data-annual-rev="77000" data-piti="3038.2400" data-pool="0" data-base-startup="184482.0000">
+    <div class="property-card card-green" data-addr="1564 Luna Mesa Rd, Yucca Valley, CA 92284" data-lat="34.224156" data-lng="-116.391249" data-price="498000" data-orig-price="498000" data-annual-rev="77000" data-piti="3038.2400" data-pool="0" data-base-startup="190707.0000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/b80decd558b9a98a713ea98e760ef422-cc_ft_1536.jpg" alt="1564 Luna Mesa Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$498,000</span></div>
@@ -653,12 +669,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,038/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,476/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,512/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:42.6%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+9.8%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:42.2%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+9.5%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -678,17 +695,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$12,672</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$12,450</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$9,960</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$6,225</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$184,482</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$190,707</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/45222274" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-price="599000" data-orig-price="599000" data-annual-rev="80232" data-piti="3613.6100" data-pool="0" data-base-startup="227503.0000">
+    <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-price="599000" data-orig-price="599000" data-annual-rev="80232" data-piti="3613.6100" data-pool="0" data-base-startup="234990.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/61b95dfdcdc15b9a01b143800fa70b97-cc_ft_1536.jpg" alt="69450 Amboy Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$599,000</span></div>
@@ -704,12 +722,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,538/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,144/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:37.2%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+6.0%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:36.9%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+5.8%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -729,17 +748,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$20,848</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$14,975</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$11,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$7,488</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$227,503</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$234,990</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/69450-Amboy-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769512618474065409" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="7276 Encina Rd, Joshua Tree, CA 92252" data-lat="34.120662" data-lng="-116.324009" data-price="374900" data-orig-price="399000" data-annual-rev="52364" data-piti="2336.9500" data-pool="0" data-base-startup="139932.5000">
+    <div class="property-card card-green" data-addr="7276 Encina Rd, Joshua Tree, CA 92252" data-lat="34.120662" data-lng="-116.324009" data-price="374900" data-orig-price="399000" data-annual-rev="52364" data-piti="2336.9500" data-pool="0" data-base-startup="144618.7500">
       <div class="card-image">
         <img src="photos/7276-encina-rd.jpg" alt="7276 Encina Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><del>$399,000</del> <span class="price-cur">$374,900</span></div>
@@ -755,12 +775,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,337/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,004/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$632/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:36.3%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+5.4%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:36.1%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+5.2%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -780,17 +801,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$10,592</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$9,372</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,498</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,686</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$139,932</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$144,619</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/971911711973779101" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="290 Bluegrass Rd, Twentynine Palms, CA 92277" data-lat="34.248055" data-lng="-116.128342" data-price="359000" data-orig-price="359000" data-annual-rev="51387" data-piti="2245.9100" data-pool="0" data-base-startup="147071.0000">
+    <div class="property-card card-green" data-addr="290 Bluegrass Rd, Twentynine Palms, CA 92277" data-lat="34.248055" data-lng="-116.128342" data-price="359000" data-orig-price="359000" data-annual-rev="51387" data-piti="2245.9100" data-pool="0" data-base-startup="151558.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/8d3178634371ed1fcfc9df50fbac384f-cc_ft_1536.jpg" alt="290 Bluegrass Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$359,000</span></div>
@@ -806,12 +828,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,246/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$985/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$660/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:36.3%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+5.4%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:36.0%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+5.2%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -831,17 +854,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$23,216</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$8,975</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,180</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,488</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$147,071</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$151,558</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/290-Bluegrass-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/38159960" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277" data-lat="34.210884" data-lng="-116.073092" data-price="599000" data-orig-price="599000" data-annual-rev="75000" data-piti="3613.6100" data-pool="0" data-base-startup="224159.0000">
+    <div class="property-card card-green" data-addr="72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277" data-lat="34.210884" data-lng="-116.073092" data-price="599000" data-orig-price="599000" data-annual-rev="75000" data-piti="3613.6100" data-pool="0" data-base-startup="231646.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/814e00f87608b29e697cd736fa6f9baa-cc_ft_1536.jpg" alt="72767 Mesquite Dunes Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$599,000</span></div>
@@ -857,12 +881,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,438/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$808/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:34.7%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+4.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:34.6%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+4.2%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -882,17 +907,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$17,504</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$14,975</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$11,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$7,488</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$224,159</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$231,646</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/72767-Mesquite-Dunes-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/49347365" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-green" data-addr="55921 Ornelas Ln, Landers, CA 92285" data-lat="34.292666" data-lng="-116.443584" data-price="349000" data-orig-price="349000" data-annual-rev="42219" data-piti="2189.3300" data-pool="0" data-base-startup="136021.0000">
+    <div class="property-card card-green" data-addr="55921 Ornelas Ln, Landers, CA 92285" data-lat="34.292666" data-lng="-116.443584" data-price="349000" data-orig-price="349000" data-annual-rev="42219" data-piti="2189.3300" data-pool="0" data-base-startup="140383.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/ecc9f6617ce31a3f847e31005f94a436-cc_ft_1536.jpg" alt="55921 Ornelas Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$349,000</span></div>
@@ -908,11 +934,12 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,189/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$809/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$129/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:30.2%;background:#22c55e"></div></div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:30.1%;background:#22c55e"></div></div>
           <div class="coc-value coc-positive">+1.1%</div>
         </div>
         <div class="rev-adjust">
@@ -933,17 +960,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,616</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$8,725</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$6,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,362</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$136,021</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$140,384</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/55921-Ornelas-Ln-Landers-CA-92285/17507410_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/48836260" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-red" data-addr="4650 Sizer Canyon Rd, Johnson Valley, CA 92285" data-lat="34.334711" data-lng="-116.553058" data-price="440000" data-orig-price="440000" data-annual-rev="36800" data-piti="2707.1300" data-pool="0" data-base-startup="166952.0000">
+    <div class="property-card card-red" data-addr="4650 Sizer Canyon Rd, Johnson Valley, CA 92285" data-lat="34.334711" data-lng="-116.553058" data-price="440000" data-orig-price="440000" data-annual-rev="36800" data-piti="2707.1300" data-pool="0" data-base-startup="172452.0000">
       <div class="card-image">
         <img src="photos/4650-sizer-canyon-rd.jpg" alt="4650 Sizer Canyon Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$440,000</span></div>
@@ -959,12 +987,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,707/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$705/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$737/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:21.0%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-5.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:21.2%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-5.1%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -984,17 +1013,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,152</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$11,000</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$8,800</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$5,500</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$166,952</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$172,452</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/4650-Sizer-Canyon-Rd-Johnson-Valley-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
       </div>
     </div>
-    <div class="property-card card-red" data-addr="877 E Phillips Rd, Landers, CA 92285" data-lat="34.265415" data-lng="-116.325323" data-price="299000" data-orig-price="369000" data-annual-rev="26200" data-piti="1903.4800" data-pool="0" data-base-startup="114195.0000">
+    <div class="property-card card-red" data-addr="877 E Phillips Rd, Landers, CA 92285" data-lat="34.265415" data-lng="-116.325323" data-price="299000" data-orig-price="369000" data-annual-rev="26200" data-piti="1903.4800" data-pool="0" data-base-startup="117932.5000">
       <div class="card-image">
         <img src="photos/877-e-phillips-rd.jpg" alt="877 E Phillips Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><del>$369,000</del> <span class="price-cur">$299,000</span></div>
@@ -1010,12 +1040,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,903/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$502/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$613/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:19.4%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-6.4%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:19.7%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-6.2%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1035,17 +1066,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$11,040</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$7,475</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$5,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$3,738</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$114,195</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$117,932</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/877-E-Phillips-Rd-Landers-CA-92285/17508176_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
       </div>
     </div>
-    <div class="property-card card-red" data-addr="1335 Fortuna Ave, Landers, CA 92285" data-lat="34.274045" data-lng="-116.426363" data-price="375000" data-orig-price="375000" data-annual-rev="4863.63" data-piti="2337.4200" data-pool="0" data-base-startup="144607.0000">
+    <div class="property-card card-red" data-addr="1335 Fortuna Ave, Landers, CA 92285" data-lat="34.274045" data-lng="-116.426363" data-price="375000" data-orig-price="375000" data-annual-rev="4863.63" data-piti="2337.4200" data-pool="0" data-base-startup="149294.5000">
       <div class="card-image">
         <img src="photos/1335-fortuna-ave.jpg" alt="1335 Fortuna Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$375,000</span></div>
@@ -1061,12 +1093,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,337/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$93/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$2,416/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:0.0%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-20.1%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:0.8%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-19.4%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1086,17 +1119,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,232</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$9,375</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,500</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,688</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$144,607</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$149,294</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/1335-Fortuna-Ave-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
       </div>
     </div>
-    <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-price="510000" data-orig-price="510000" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="191854.0000">
+    <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-price="510000" data-orig-price="510000" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="198229.0000">
       <div class="card-image">
         <img src="photos/56367-scandia-ln.jpg" alt="56367 Scandia Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$510,000</span></div>
@@ -1116,17 +1150,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,904</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$12,750</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$10,200</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$6,375</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$191,854</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$198,229</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/56367-Scandia-Ln-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
       </div>
     </div>
-    <div class="property-card" data-addr="1224 Shangri La Rd, Joshua Tree, CA 92252" data-lat="34.23143" data-lng="-116.323253" data-price="325000" data-orig-price="325000" data-annual-rev="0" data-piti="2052.5600" data-pool="0" data-base-startup="143117.0000">
+    <div class="property-card" data-addr="1224 Shangri La Rd, Joshua Tree, CA 92252" data-lat="34.23143" data-lng="-116.323253" data-price="325000" data-orig-price="325000" data-annual-rev="0" data-piti="2052.5600" data-pool="0" data-base-startup="147179.5000">
       <div class="card-image">
         <img src="photos/1224-shangri-la-rd.jpg" alt="1224 Shangri La Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$325,000</span></div>
@@ -1146,11 +1181,12 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$30,992</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$8,125</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$6,500</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,062</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$143,117</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$147,180</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/1224-Shangri-La-Rd-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
@@ -1164,7 +1200,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       <span class="prop-count">4 properties</span>
     </div>
     <div class="cards-grid">
-    <div class="property-card card-green" data-addr="346 San Bernardino Ave, Sugarloaf, CA 92386" data-lat="34.246" data-lng="-116.83386" data-price="285000" data-orig-price="295000" data-annual-rev="44200" data-piti="1824.4400" data-pool="0" data-base-startup="108053.0000">
+    <div class="property-card card-green" data-addr="346 San Bernardino Ave, Sugarloaf, CA 92386" data-lat="34.246" data-lng="-116.83386" data-price="285000" data-orig-price="295000" data-annual-rev="44200" data-piti="1824.4400" data-pool="0" data-base-startup="111615.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/06724d0ccfa7d6dce1c83230eb026a58-cc_ft_1536.jpg" alt="346 San Bernardino Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><del>$295,000</del> <span class="price-cur">$285,000</span></div>
@@ -1180,12 +1216,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,824/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$847/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$621/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:38.4%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+6.9%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:38.1%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+6.7%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1205,17 +1242,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$9,728</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$7,125</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$5,700</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$3,562</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$108,053</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$111,616</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
       </div>
     </div>
-    <div class="property-card card-red" data-addr="697 Villa Grove Ave, Big Bear City, CA 92314" data-lat="34.238971" data-lng="-116.855846" data-price="299900" data-orig-price="299900" data-annual-rev="30900.0" data-piti="1908.6700" data-pool="0" data-base-startup="115465.5000">
+    <div class="property-card card-red" data-addr="697 Villa Grove Ave, Big Bear City, CA 92314" data-lat="34.238971" data-lng="-116.855846" data-price="299900" data-orig-price="299900" data-annual-rev="30900.0" data-piti="1908.6700" data-pool="0" data-base-startup="119214.2500">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/58a1652c34b769e0b9521cd7ab9c77fd-cc_ft_1536.jpg" alt="697 Villa Grove Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$299,900</span></div>
@@ -1231,12 +1269,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,909/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$592/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$317/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:23.9%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-3.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:24.0%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-3.2%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1256,17 +1295,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$12,000</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$7,498</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$5,998</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$3,749</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$115,466</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$119,214</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/54398781" target="_blank" class="comp-strip" title="PANSIZE: Cozy Moonridge Chalet in the Wood"><span>55% occ</span><span>$230 ADR</span><span>$58.7K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1016592731524962770" target="_blank" class="comp-strip" title="The Cosmic Cabin: Pet Friendly! Modern Mid-Century!"><span>41% occ</span><span>$206 ADR</span><span>$38.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/27990510" target="_blank" class="comp-strip" title="Angel's Nest: Cozy Private Moonridge Cabin! WiFi"><span>14% occ</span><span>$236 ADR</span><span>$14.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/11649204" target="_blank" class="comp-strip" title="Moonridge Cabin w/ HOT TUB blks to ski/golf/zoo"><span>9% occ</span><span>$278 ADR</span><span>$11.3K/yr</span><span class="cs-arrow">↗</span></a></div>
       </div>
     </div>
-    <div class="property-card card-red" data-addr="376 Riverside Ave, Sugarloaf, CA 92386" data-lat="34.245452" data-lng="-116.834467" data-price="259900" data-orig-price="259900" data-annual-rev="19700" data-piti="1681.3800" data-pool="0" data-base-startup="97729.5000">
+    <div class="property-card card-red" data-addr="376 Riverside Ave, Sugarloaf, CA 92386" data-lat="34.245452" data-lng="-116.834467" data-price="259900" data-orig-price="259900" data-annual-rev="19700" data-piti="1681.3800" data-pool="0" data-base-startup="100978.2500">
       <div class="card-image">
         <img src="photos/376-riverside-ave.png" alt="376 Riverside Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$259,900</span></div>
@@ -1282,12 +1322,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,681/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$378/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$808/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:14.4%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-9.9%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:14.8%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-9.6%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1307,17 +1348,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$8,064</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$6,498</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$5,198</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$3,249</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$97,730</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$100,978</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/376-Riverside-Ave-Sugarloaf-CA-92386_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
       </div>
     </div>
-    <div class="property-card card-red" data-addr="396 Kern Ave, Sugarloaf, CA 92386" data-lat="34.244957" data-lng="-116.835238" data-price="299999" data-orig-price="299999" data-annual-rev="19000" data-piti="1909.1300" data-pool="0" data-base-startup="115018.9550">
+    <div class="property-card card-red" data-addr="396 Kern Ave, Sugarloaf, CA 92386" data-lat="34.244957" data-lng="-116.835238" data-price="299999" data-orig-price="299999" data-annual-rev="19000" data-piti="1909.1300" data-pool="0" data-base-startup="118768.9425">
       <div class="card-image">
         <img src="photos/396-kern-ave.jpg" alt="396 Kern Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$299,999</span></div>
@@ -1333,12 +1375,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,909/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$364/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$1,081/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:12.5%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-11.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:13.0%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-10.9%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1358,11 +1401,12 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$11,520</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$7,500</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$6,000</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$3,750</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$115,019</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$118,769</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/396-Kern-Ave-Sugarloaf-CA-92386/17621919_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769657678133226978" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
@@ -1376,7 +1420,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       <span class="prop-count">5 properties</span>
     </div>
     <div class="cards-grid">
-    <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-price="599000" data-orig-price="599000" data-annual-rev="103600" data-piti="3613.6100" data-pool="0" data-base-startup="227503.0000">
+    <div class="property-card card-green" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-price="599000" data-orig-price="599000" data-annual-rev="103600" data-piti="3613.6100" data-pool="0" data-base-startup="234990.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/61b95dfdcdc15b9a01b143800fa70b97-cc_ft_1536.jpg" alt="69450 Amboy Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$599,000</span></div>
@@ -1392,12 +1436,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,614/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,986/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,643/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:48.5%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+13.9%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:47.9%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+13.5%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1417,17 +1462,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$20,848</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$14,975</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$11,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$7,488</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$227,503</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$234,990</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/69450-Amboy-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769512618474065409" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-red" data-addr="4537 Anita Ave, Yucca Valley, CA 92284" data-lat="34.17058" data-lng="-116.367336" data-price="620000" data-orig-price="620000" data-annual-rev="53500" data-piti="3733.4100" data-pool="0" data-base-startup="261340.0000">
+    <div class="property-card card-red" data-addr="4537 Anita Ave, Yucca Valley, CA 92284" data-lat="34.17058" data-lng="-116.367336" data-price="620000" data-orig-price="620000" data-annual-rev="53500" data-piti="3733.4100" data-pool="0" data-base-startup="269090.0000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/abbeb38ee830ad6682c5095ca7fdeb68-cc_ft_1536.jpg" alt="4537 Anita Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$620,000</span></div>
@@ -1443,12 +1489,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,733/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,025/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$691/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:24.0%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-3.2%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:24.2%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-3.1%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1468,17 +1515,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$47,440</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$15,500</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$12,400</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$7,750</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$261,340</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$269,090</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/4537-Anita-Ave-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
       </div>
     </div>
-    <div class="property-card card-red" data-addr="57920 Buena Vista Dr, Yucca Valley, CA 92284" data-lat="34.164106" data-lng="-116.399646" data-price="475000" data-orig-price="475000" data-annual-rev="35900" data-piti="2907.1300" data-pool="0" data-base-startup="189475.0000">
+    <div class="property-card card-red" data-addr="57920 Buena Vista Dr, Yucca Valley, CA 92284" data-lat="34.164106" data-lng="-116.399646" data-price="475000" data-orig-price="475000" data-annual-rev="35900" data-piti="2907.1300" data-pool="0" data-base-startup="195412.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/f0422669224f64ea639fda4d2c808777-cc_ft_1536.jpg" alt="57920 Buena Vista Dr" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$475,000</span></div>
@@ -1494,12 +1542,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,907/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$688/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$995/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:19.6%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-6.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:19.8%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-6.1%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1519,17 +1568,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$25,600</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$11,875</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$9,500</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$5,938</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$189,475</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$195,412</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/57920-Buena-Vista-Dr-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/930306660730554905" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card" data-addr="1388 Jemez Trl, Landers, CA 92285" data-lat="34.27339" data-lng="-116.454986" data-price="499999" data-orig-price="499999" data-annual-rev="0" data-piti="3049.5500" data-pool="0" data-base-startup="222418.9550">
+    <div class="property-card" data-addr="1388 Jemez Trl, Landers, CA 92285" data-lat="34.27339" data-lng="-116.454986" data-price="499999" data-orig-price="499999" data-annual-rev="0" data-piti="3049.5500" data-pool="0" data-base-startup="228668.9425">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/90fd67edf07a47ca04f3171349739389-cc_ft_1536.jpg" alt="1388 Jemez Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$499,999</span></div>
@@ -1549,17 +1599,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$49,920</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$12,500</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$10,000</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$6,250</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$222,419</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$228,669</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/1388-Jemez-Trl-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
       </div>
     </div>
-    <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-price="510000" data-orig-price="510000" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="191854.0000">
+    <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-price="510000" data-orig-price="510000" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="198229.0000">
       <div class="card-image">
         <img src="photos/56367-scandia-ln.jpg" alt="56367 Scandia Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$510,000</span></div>
@@ -1579,11 +1630,12 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,904</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$12,750</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$10,200</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$6,375</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$191,854</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$198,229</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/56367-Scandia-Ln-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
@@ -1597,7 +1649,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       <span class="prop-count">1 properties</span>
     </div>
     <div class="cards-grid">
-    <div class="property-card card-red" data-addr="50740 Santa Rosa Plz APT 2, La Quinta, CA 92253" data-lat="33.679208" data-lng="-116.302189" data-price="315000" data-orig-price="315000" data-annual-rev="28400" data-piti="1994.9900" data-pool="0" data-base-startup="119587.0000">
+    <div class="property-card card-red" data-addr="50740 Santa Rosa Plz APT 2, La Quinta, CA 92253" data-lat="33.679208" data-lng="-116.302189" data-price="315000" data-orig-price="315000" data-annual-rev="28400" data-piti="1994.9900" data-pool="0" data-base-startup="123524.5000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/dbac82a7b26bc71760fc21cac9d4c4e2-cc_ft_1536.jpg" alt="50740 Santa Rosa Plz APT 2" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$315,000</span></div>
@@ -1613,12 +1665,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,995/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$544/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$564/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:20.5%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-5.7%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:20.7%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-5.5%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1638,11 +1691,12 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$10,912</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$7,875</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$6,300</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$3,938</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$119,587</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$123,524</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/50740-Santa-Rosa-Plz-APT-2-La-Quinta-CA-92253_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/748771224286105523" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
@@ -1656,7 +1710,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       <span class="prop-count">2 properties</span>
     </div>
     <div class="cards-grid">
-    <div class="property-card card-sold" data-addr="8729 Rockhaven Rd, Joshua Tree, CA 92252" data-lat="34.095479" data-lng="-116.268885" data-price="710000" data-orig-price="710000" data-annual-rev="107332" data-piti="4246.5500" data-pool="0" data-base-startup="260438.0000">
+    <div class="property-card card-sold" data-addr="8729 Rockhaven Rd, Joshua Tree, CA 92252" data-lat="34.095479" data-lng="-116.268885" data-price="710000" data-orig-price="710000" data-annual-rev="107332" data-piti="4246.5500" data-pool="0" data-base-startup="269313.0000">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/458814cc0ce69e2a1400231a7d78aac1-cc_ft_1536.jpg" alt="8729 Rockhaven Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$710,000</span></div>
@@ -1672,12 +1726,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$4,247/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,057/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,250/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:43.4%;background:#22c55e"></div></div>
-          <div class="coc-value coc-positive">+10.4%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:42.9%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+10.0%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1697,17 +1752,18 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,488</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$17,750</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$14,200</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$8,875</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$260,438</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$269,313</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/8729-Rockhaven-Rd-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/603759782385162711" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
         
       </div>
     </div>
-    <div class="property-card card-sold" data-addr="446 Riverside Ave, Sugarloaf, CA 92386" data-lat="34.244053" data-lng="-116.834633" data-price="309000" data-orig-price="309000" data-annual-rev="19700" data-piti="1961.0500" data-pool="0" data-base-startup="115773.0000">
+    <div class="property-card card-sold" data-addr="446 Riverside Ave, Sugarloaf, CA 92386" data-lat="34.244053" data-lng="-116.834633" data-price="309000" data-orig-price="309000" data-annual-rev="19700" data-piti="1961.0500" data-pool="0" data-base-startup="119635.5000">
       <div class="card-image img-fallback">
         
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$309,000</span></div>
@@ -1723,12 +1779,13 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,961/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
           <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$378/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
           <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$1,088/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:12.5%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-11.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:13.0%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-10.9%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
@@ -1748,11 +1805,12 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$9,168</span></div>
           <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$7,725</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$6,180</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$3,862</span></div>
           <div class="startup-row remodel-row">
             <span>Remodel Budget</span>
             <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
           </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$115,773</span></div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$119,636</span></div>
         </div>
         <div class="card-links"><a href="https://www.zillow.com/homes/446-Riverside-Ave-Sugarloaf-CA-92386_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
         
@@ -1924,18 +1982,21 @@ function recalcCardEl(card) {
   var curPrice = parseFloat(card.dataset.curPrice); if (isNaN(curPrice)) curPrice = p0;
   var piti0 = parseFloat(card.dataset.piti) || 0;
   var baseStartup0 = parseFloat(card.dataset.baseStartup) || 0;
-  var pool = parseFloat(card.dataset.pool) || 0;
+  var poolCheck = card.querySelector('.pool-check');
+  var pool = poolCheck ? (poolCheck.checked ? 250 : 0) : (parseFloat(card.dataset.pool) || 0);
   var util = 391;
-  // price drives PITI (marginal rate), down payment, agent, closing
+  // price drives PITI (marginal rate), down payment, agent, closing, supplemental tax
   var piti = piti0 + 0.0056996 * (curPrice - p0);
-  var baseStartup = baseStartup0 + 0.345 * (curPrice - p0);
+  var baseStartup = baseStartup0 + 0.3575 * (curPrice - p0);
   var remodelEl = card.querySelector('.remodel-input');
   var remodel = remodelEl ? (parseFloat((remodelEl.value||'0').replace(/[^0-9.]/g,''))||0) : 0;
   var startup = baseStartup + remodel;
   var pitiEl = card.querySelector('.piti-val'); if (pitiEl) pitiEl.textContent = '-' + fmtUSD(piti) + '/mo';
+  var poolValEl = card.querySelector('.pool-val'); if (poolValEl) { poolValEl.textContent = (pool?'-$250':'$0') + '/mo'; poolValEl.className = 'amount ' + (pool?'negative':'neutral') + ' pool-val'; }
   var downEl = card.querySelector('.down-val'); if (downEl) downEl.textContent = fmtUSD(curPrice*0.30);
   var agentEl = card.querySelector('.agent-val'); if (agentEl) agentEl.textContent = fmtUSD(curPrice*0.025);
   var closeEl = card.querySelector('.closing-val'); if (closeEl) closeEl.textContent = fmtUSD(curPrice*0.02);
+  var suppEl = card.querySelector('.supp-val'); if (suppEl) suppEl.textContent = fmtUSD(curPrice*0.0125);
   var stEl = card.querySelector('.startup-total-val'); if (stEl) stEl.textContent = fmtUSD(startup);
   var beMo = (piti + pool + util) / 0.77;
   var beInline = card.querySelector('.be-inline'); if (beInline) beInline.textContent = '(breakeven ' + fmtUSD(beMo) + ')';
@@ -1994,12 +2055,37 @@ function editPrice(el){
   priceCuts[addr]=np; savePriceCuts(); applyCut(addr,np);
 }
 function loadPriceCuts(){ Object.keys(priceCuts).forEach(function(a){ applyCut(a, priceCuts[a]); }); }
+// Align matching sections (cost breakdown, revenue box, startup box) across each row of cards
+var EQ_SELS=['.cost-breakdown','.rev-adjust','.startup-section'];
+function equalizeRows(){
+  document.querySelectorAll('.tab-content').forEach(function(tab){
+    if(tab.style.display==='none') return;
+    var grid=tab.querySelector('.cards-grid'); if(!grid) return;
+    var cards=[];
+    grid.querySelectorAll('.property-card').forEach(function(c){ if(c.style.display!=='none') cards.push(c); });
+    cards.forEach(function(c){ EQ_SELS.forEach(function(s){ var el=c.querySelector(s); if(el) el.style.minHeight=''; }); });
+    var rows={};
+    cards.forEach(function(c){ var k=Math.round(c.offsetTop); (rows[k]=rows[k]||[]).push(c); });
+    Object.keys(rows).forEach(function(k){
+      var group=rows[k];
+      EQ_SELS.forEach(function(s){
+        var max=0;
+        group.forEach(function(c){ var el=c.querySelector(s); if(el){ var h=el.getBoundingClientRect().height; if(h>max) max=h; } });
+        if(max>0) group.forEach(function(c){ var el=c.querySelector(s); if(el) el.style.minHeight=max+'px'; });
+      });
+    });
+  });
+}
+var _eqT;
+function scheduleEqualize(){ clearTimeout(_eqT); _eqT=setTimeout(equalizeRows, 40); }
+window.addEventListener('resize', scheduleEqualize);
 function showTab(id) {
   document.querySelectorAll('.tab-content').forEach(el=>el.style.display='none');
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   var el=document.getElementById('tab-'+id); if(el) el.style.display='block';
   var btn=document.getElementById('btn-'+id); if(btn) btn.classList.add('active');
   if(id==='only') setTimeout(function(){ if(favMap) favMap.invalidateSize(); updateFavMap(); },60);
+  scheduleEqualize();
 }
 var FAV_KEY='strFavs';
 var favDefaults=["63300 Tilford Way, Joshua Tree, CA 92252", "8500 S Samel Rd, Morongo Valley, CA 92256", "2351 N Cambria Ave, Landers, CA 92285", "7276 Encina Rd, Joshua Tree, CA 92252", "4650 Sizer Canyon Rd, Johnson Valley, CA 92285", "877 E Phillips Rd, Landers, CA 92285", "1335 Fortuna Ave, Landers, CA 92285", "56367 Scandia Ln, Yucca Valley, CA 92284", "1224 Shangri La Rd, Joshua Tree, CA 92252"];
@@ -2066,10 +2152,13 @@ function refreshFavs(){
     cnt.textContent=n+' properties';
   });
   updateFavMap();
+  scheduleEqualize();
 }
 loadPriceCuts();
 refreshFavs();
 showTab('top5');
+window.addEventListener('load', equalizeRows);
+setTimeout(equalizeRows, 400);
 </script>
 </body>
 </html>
