@@ -331,6 +331,12 @@ COMPS = {
         {"name":"The G.O.A.T. | Pool & Spa | 5-Acres | No Neighbors","url":"https://www.airbnb.com/rooms/1052620076857830533","annual_rev":107000,"adr":363,"occ":67.7},
         {"name":"Newfoundland | Hot Tub | Fire Pit | Desert Views","url":"https://www.airbnb.com/rooms/51925323","annual_rev":142400,"adr":395,"occ":85.5},
     ],
+    "697 Villa Grove Ave, Big Bear City, CA 92314": [
+        {"name":"PANSIZE: Cozy Moonridge Chalet in the Wood","url":"https://www.airbnb.com/rooms/54398781","annual_rev":58700,"adr":230,"occ":55.1},
+        {"name":"The Cosmic Cabin: Pet Friendly! Modern Mid-Century!","url":"https://www.airbnb.com/rooms/1016592731524962770","annual_rev":38800,"adr":206,"occ":41.4},
+        {"name":"Angel's Nest: Cozy Private Moonridge Cabin! WiFi","url":"https://www.airbnb.com/rooms/27990510","annual_rev":14800,"adr":236,"occ":14.2},
+        {"name":"Moonridge Cabin w/ HOT TUB blks to ski/golf/zoo","url":"https://www.airbnb.com/rooms/11649204","annual_rev":11300,"adr":278,"occ":9.0},
+    ],
 }
 
 def apply_comps(tabs):
