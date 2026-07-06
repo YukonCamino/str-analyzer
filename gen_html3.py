@@ -37,6 +37,7 @@ LATLNG = {
     "1111 E Palm Canyon Dr #104, Palm Springs, CA 92264": (33.801331, -116.535952),
     "909 E Big Bear Blvd, Big Bear City, CA 92314": (34.26143, -116.8289),
     "7025 Park Blvd, Joshua Tree, CA 92252": (34.12542, -116.314835),
+    "845 Moreno Ln, Sugarloaf, CA 92386": (34.2405, -116.8290),
     "4537 Anita Ave, Yucca Valley, CA 92284": (34.170580, -116.367336),
     "69450 Amboy Rd, Twentynine Palms, CA 92277": (34.164160, -116.148522),
     "376 Riverside Ave, Sugarloaf, CA 92386": (34.245452, -116.834467),
@@ -199,10 +200,12 @@ def card(p, show_source=None):
 
     comps_html = ""
     if p.get("comps"):
-        strips = "".join(
-            f'<a href="{c["url"]}" target="_blank" class="comp-strip" title="{c["name"]}">'
-            f'<span>{c["occ"]:.0f}% occ</span><span>${c["adr"]:,.0f} ADR</span><span>${c["annual_rev"]/1000:.1f}K/yr</span><span class="cs-arrow">↗</span></a>'
-            for c in p["comps"])
+        def _strip(c):
+            stats = f'<span>{c["occ"]:.0f}% occ</span><span>${c["adr"]:,.0f} ADR</span><span>${c["annual_rev"]/1000:.1f}K/yr</span>'
+            if c.get("url"):
+                return f'<a href="{c["url"]}" target="_blank" class="comp-strip" title="{c["name"]}">{stats}<span class="cs-arrow">↗</span></a>'
+            return f'<div class="comp-strip comp-strip-nolink" title="{c["name"]}">{stats}</div>'
+        strips = "".join(_strip(c) for c in p["comps"])
         comps_html = f'<div class="comp-strips"><div class="comp-strips-title">Comps ({len(p["comps"])})</div>{strips}</div>'
 
     _ll = LATLNG.get(p["address"])
@@ -303,6 +306,7 @@ bigbear_tab = [
     {"address":"697 Villa Grove Ave, Big Bear City, CA 92314","region":"Big Bear","price":299900,"beds":2,"baths":1,"sqft":750,"dom":53,"img_src":zillow_img("58a1652c34b769e0b9521cd7ab9c77fd"),"zillow_link":"https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/","fin":compute(299900,44500,1908.67,89970,750)},
     {"address":"346 San Bernardino Ave, Sugarloaf, CA 92386","region":"Big Bear","price":285000,"original_price":295000,"beds":2,"baths":1,"sqft":608,"dom":161,"img_src":zillow_img("06724d0ccfa7d6dce1c83230eb026a58"),"zillow_link":"https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/","fin":compute(285000,44200,1824.44,85500,608)},
     {"address":"909 E Big Bear Blvd, Big Bear City, CA 92314","region":"Big Bear","price":199888,"beds":2,"baths":1,"sqft":480,"dom":4,"img_src":zillow_img("fb246303bcf643a106c738de416a7791"),"zillow_link":"https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/","fin":compute(199888,0,1339.33,59966.40,480)},
+    {"address":"845 Moreno Ln, Sugarloaf, CA 92386","region":"Big Bear","price":299000,"original_price":320000,"beds":2,"baths":1,"sqft":1248,"dom":44,"img_src":"","zillow_link":"https://www.zillow.com/homes/845-Moreno-Ln-Sugarloaf-CA-92386_rb/","fin":compute(299000,0,1904.23,89700,1248)},
 ]
 
 sold_tab = [
@@ -350,6 +354,13 @@ COMPS = {
         {"name":"Modern Bungalow in Historic Ocotillo Lodge!","url":"https://www.airbnb.com/rooms/686840445812510441","annual_rev":48500,"adr":231,"occ":49.9},
         {"name":"Ocotillo Lodge Mid-Century Modern Condo","url":"https://www.airbnb.com/rooms/29682828","annual_rev":39000,"adr":160,"occ":53.7},
         {"name":"Mid-Century 1BR Bungalow At Famed Ocotillo Lodge","url":"https://www.airbnb.com/rooms/1075421284820316121","annual_rev":34300,"adr":337,"occ":34.2},
+    ],
+    "845 Moreno Ln, Sugarloaf, CA 92386": [
+        {"name":"Chic, Cozy, & Modern Cabin Retreat in Big Bear","annual_rev":52300,"adr":219,"occ":50.1},
+        {"name":"Stairway to Heaven Cabin W/ Spa","annual_rev":33400,"adr":266,"occ":32.9},
+        {"name":"Couples Retreat: Starlit Hot Tub Near Big Bear","annual_rev":32500,"adr":261,"occ":24.7},
+        {"name":"Modern Cabin - Wifi - Large Deck - Near Skiing","annual_rev":26400,"adr":182,"occ":37.3},
+        {"name":"Guest Favorite - Hot Tub - Fenced Yard - Sleeps 6","annual_rev":23600,"adr":212,"occ":24.1},
     ],
     "7025 Park Blvd, Joshua Tree, CA 92252": [
         {"name":"Modern Desert Casita w/ Hot Tub Near Natl Park","url":"https://www.airbnb.com/rooms/52013739","annual_rev":34800,"adr":195,"occ":41.4},
@@ -535,6 +546,8 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px; }
 .comp-strip { display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 10px;border-radius:7px;background:#F3EEE3;border:1px solid var(--border);color:var(--text);font-size:0.74rem;font-weight:600;text-decoration:none;transition:background 0.15s,transform 0.1s; }
 .comp-strip:hover { background:#EDE6D6;transform:translateY(-1px); }
+.comp-strip-nolink { cursor:default; }
+.comp-strip-nolink:hover { background:#F3EEE3;transform:none; }
 .comp-strip .cs-arrow { color:var(--text2);font-weight:400; }
 .listing-btn { flex:1;text-align:center;padding:7px 10px;border-radius:7px;font-size:0.76rem;font-weight:600;text-decoration:none;transition:opacity 0.15s,transform 0.1s; }
 .listing-btn:hover { opacity:0.88;transform:translateY(-1px); }
