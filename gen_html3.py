@@ -313,10 +313,10 @@ bigbear_tab = [
 sold_tab = [
     {"address":"446 Riverside Ave, Sugarloaf, CA 92386","region":"Big Bear","price":309000,"beds":1,"baths":1,"sqft":573,"sold":True,"img_src":PH,"fin":compute(309000,19700,1961.05,92700,573)},
     {"address":"8729 Rockhaven Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":710000,"beds":1,"baths":1,"sqft":968,"sold":True,"img_src":zillow_img("458814cc0ce69e2a1400231a7d78aac1"),"airbnb_link":"https://www.airbnb.com/rooms/603759782385162711","fin":compute(710000,107332,4246.55,213000,968)},
+    {"address":"1388 Jemez Trl, Landers, CA 92285","region":"Landers","price":499999,"beds":3,"baths":3,"sqft":3120,"dom":238,"sold":True,"img_src":zillow_img("90fd67edf07a47ca04f3171349739389"),"fin":compute(499999,0,3049.55,149999,3120)},
 ]
 
 adu_tab = [
-    {"address":"1388 Jemez Trl, Landers, CA 92285","region":"Landers","price":499999,"beds":3,"baths":3,"sqft":3120,"dom":238,"img_src":zillow_img("90fd67edf07a47ca04f3171349739389"),"fin":compute(499999,0,3049.55,149999,3120)},
     {"address":"57920 Buena Vista Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":475000,"beds":3,"baths":2,"sqft":1600,"img_src":zillow_img("f0422669224f64ea639fda4d2c808777"),"airbnb_link":"https://www.airbnb.com/rooms/930306660730554905","fin":compute(475000,35900,2907.13,142500,1600)},
     {"address":"6888 Sunnyhill Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":569000,"beds":4,"baths":3,"sqft":2795,"dom":52,"img_src":zillow_img("05c913cf734a51803acd71c5045e1b12"),"zillow_link":"https://www.zillow.com/homedetails/6888-Sunnyhill-Rd-Joshua-Tree-CA-92252/17499703_zpid/","airbnb_link":"https://www.airbnb.com/rooms/53215914","rev_source":"Airbnb verified","fin":compute(569000,61500,3443.12,170700,2795,has_pool=True,furnished=True)},
 ]
