@@ -69,8 +69,8 @@ def fmt_plain(v):
 
 UTILITIES = 391  # fixed monthly utilities per property
 
-def compute(price, annual_rev, piti_30, down_30, sqft, has_pool=False, hoa=0, util=None):
-    furnishing = sqft * 16
+def compute(price, annual_rev, piti_30, down_30, sqft, has_pool=False, hoa=0, util=None, furnished=False):
+    furnishing = 0 if furnished else sqft * 16
     buyer_agent = price * 0.025
     closing = price * 0.02
     supp_tax = price * 0.0125
@@ -174,7 +174,7 @@ def card(p, show_source=None):
         startup_html = f'''<div class="startup-section">
           <div class="startup-title">Startup Costs</div>
           <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">{fmt_plain(f["down"])}</span></div>
-          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>{fmt_plain(f["furnishing"])}</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>{'Included (fully furnished)' if f["furnishing"] == 0 else fmt_plain(f["furnishing"])}</span></div>
           <div class="startup-row"><span>Buyer\'s Agent (2.5%)</span><span class="agent-val">{fmt_plain(f["buyer_agent"])}</span></div>
           <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">{fmt_plain(f["closing"])}</span></div>
           <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">{fmt_plain(f["supp_tax"])}</span></div>
@@ -318,6 +318,7 @@ sold_tab = [
 adu_tab = [
     {"address":"1388 Jemez Trl, Landers, CA 92285","region":"Landers","price":499999,"beds":3,"baths":3,"sqft":3120,"dom":238,"img_src":zillow_img("90fd67edf07a47ca04f3171349739389"),"fin":compute(499999,0,3049.55,149999,3120)},
     {"address":"57920 Buena Vista Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":475000,"beds":3,"baths":2,"sqft":1600,"img_src":zillow_img("f0422669224f64ea639fda4d2c808777"),"airbnb_link":"https://www.airbnb.com/rooms/930306660730554905","fin":compute(475000,35900,2907.13,142500,1600)},
+    {"address":"6888 Sunnyhill Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":569000,"beds":4,"baths":3,"sqft":2795,"dom":52,"img_src":zillow_img("05c913cf734a51803acd71c5045e1b12"),"zillow_link":"https://www.zillow.com/homedetails/6888-Sunnyhill-Rd-Joshua-Tree-CA-92252/17499703_zpid/","airbnb_link":"https://www.airbnb.com/rooms/53215914","rev_source":"Airbnb verified","fin":compute(569000,61500,3443.12,170700,2795,has_pool=True,furnished=True)},
 ]
 
 competition_tab = [
@@ -334,7 +335,6 @@ money_tab = [
     {"address":"290 Bluegrass Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":359000,"beds":3,"baths":1,"sqft":1451,"img_src":zillow_img("8d3178634371ed1fcfc9df50fbac384f"),"airbnb_link":"https://www.airbnb.com/rooms/38159960","fin":compute(359000,51387,2245.91,107700,1451)},
     {"address":"1564 Luna Mesa Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":498000,"beds":2,"baths":2,"sqft":792,"dom":47,"img_src":zillow_img("b80decd558b9a98a713ea98e760ef422"),"zillow_link":"https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/","airbnb_link":"https://www.airbnb.com/rooms/45222274","fin":compute(498000,77000,3038.24,149400,792)},
     {"address":"2351 N Cambria Ave, Landers, CA 92285","region":"Landers","price":499000,"beds":3,"baths":2,"sqft":1467,"dom":6,"img_src":b64("12"),"zillow_link":"https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/","fin":compute(499000,109600,3043.90,149700,1467,has_pool=True)},
-    {"address":"6888 Sunnyhill Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":569000,"beds":4,"baths":3,"sqft":2795,"dom":52,"img_src":zillow_img("05c913cf734a51803acd71c5045e1b12"),"zillow_link":"https://www.zillow.com/homedetails/6888-Sunnyhill-Rd-Joshua-Tree-CA-92252/17499703_zpid/","airbnb_link":"https://www.airbnb.com/rooms/53215914","rev_source":"Airbnb verified","fin":compute(569000,61500,3443.12,170700,2795,has_pool=True)},
 ]
 
 # ---- Comps: per-property Airbnb comps. Averages drive the property's revenue assumption. ----
