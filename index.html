@@ -441,7 +441,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
   <div id="tab-money" class="tab-content" style="display:none">
     <div class="tab-header">
       <h2>🌵 Desert</h2>
-      <span class="prop-count">16 properties</span>
+      <span class="prop-count">17 properties</span>
     </div>
     <div class="cards-grid">
     <div class="property-card card-green" data-addr="63300 Tilford Way, Joshua Tree, CA 92252" data-lat="34.213345" data-lng="-116.281674" data-price="399000" data-orig-price="399000" data-annual-rev="90825.0" data-piti="2474.1900" data-pool="250" data-base-startup="157042.5000" data-util="391" data-hoa="0">
@@ -972,6 +972,59 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         </div>
         
         <div class="card-links"><a href="https://www.zillow.com/homedetails/55921-Ornelas-Ln-Landers-CA-92285/17507410_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/48836260" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+      </div>
+    </div>
+    <div class="property-card card-red" data-addr="6888 Sunnyhill Rd, Joshua Tree, CA 92252" data-lat="34.127972" data-lng="-116.328287" data-price="569000" data-orig-price="569000" data-annual-rev="61500" data-piti="3443.1200" data-pool="250" data-base-startup="248137.5000" data-util="391" data-hoa="0">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/05c913cf734a51803acd71c5045e1b12-cc_ft_1536.jpg" alt="6888 Sunnyhill Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$569,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
+        
+      </div>
+      <div class="card-body">
+        <div class="card-address">6888 Sunnyhill Rd</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">2,795 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-dom-yellow" title="Days on Market">📅 52d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $5,304)</span></span><span class="amount neutral mo-rev-val">+$5,125/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,443/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,179/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" checked>Pool service</label><span class="amount negative pool-val">-$250/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$138/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:27.6%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-0.7%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="61,500" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$63,649/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$170,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$44,720</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$14,225</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$11,380</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$7,112</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$248,138</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/6888-Sunnyhill-Rd-Joshua-Tree-CA-92252/17499703_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/53215914" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
       </div>
     </div>
     <div class="property-card card-red" data-addr="7025 Park Blvd, Joshua Tree, CA 92252" data-lat="34.12542" data-lng="-116.314835" data-price="340000" data-orig-price="340000" data-annual-rev="31075.0" data-piti="2137.9100" data-pool="0" data-base-startup="137550.0000" data-util="391" data-hoa="0">

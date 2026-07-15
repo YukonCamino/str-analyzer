@@ -54,6 +54,7 @@ LATLNG = {
     "55921 Ornelas Ln, Landers, CA 92285": (34.292666, -116.443584),
     "290 Bluegrass Rd, Twentynine Palms, CA 92277": (34.248055, -116.128342),
     "1564 Luna Mesa Rd, Yucca Valley, CA 92284": (34.224156, -116.391249),
+    "6888 Sunnyhill Rd, Joshua Tree, CA 92252": (34.127972, -116.328287),
 }
 
 def fmt_money(v):
@@ -333,6 +334,7 @@ money_tab = [
     {"address":"290 Bluegrass Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":359000,"beds":3,"baths":1,"sqft":1451,"img_src":zillow_img("8d3178634371ed1fcfc9df50fbac384f"),"airbnb_link":"https://www.airbnb.com/rooms/38159960","fin":compute(359000,51387,2245.91,107700,1451)},
     {"address":"1564 Luna Mesa Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":498000,"beds":2,"baths":2,"sqft":792,"dom":47,"img_src":zillow_img("b80decd558b9a98a713ea98e760ef422"),"zillow_link":"https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/","airbnb_link":"https://www.airbnb.com/rooms/45222274","fin":compute(498000,77000,3038.24,149400,792)},
     {"address":"2351 N Cambria Ave, Landers, CA 92285","region":"Landers","price":499000,"beds":3,"baths":2,"sqft":1467,"dom":6,"img_src":b64("12"),"zillow_link":"https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/","fin":compute(499000,109600,3043.90,149700,1467,has_pool=True)},
+    {"address":"6888 Sunnyhill Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":569000,"beds":4,"baths":3,"sqft":2795,"dom":52,"img_src":zillow_img("05c913cf734a51803acd71c5045e1b12"),"zillow_link":"https://www.zillow.com/homedetails/6888-Sunnyhill-Rd-Joshua-Tree-CA-92252/17499703_zpid/","airbnb_link":"https://www.airbnb.com/rooms/53215914","rev_source":"Airbnb verified","fin":compute(569000,61500,3443.12,170700,2795,has_pool=True)},
 ]
 
 # ---- Comps: per-property Airbnb comps. Averages drive the property's revenue assumption. ----
