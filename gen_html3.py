@@ -279,7 +279,7 @@ def tab_section(tab_id, title, properties_list, is_comp=False, show_sources=Fals
 PH = ""
 
 only_tab = [
-    {"address":"1335 Fortuna Ave, Landers, CA 92285","region":"Landers","price":375000,"beds":2,"baths":1,"sqft":952,"dom":110,"img_src":b64("4"),"fin":compute(375000,4863.63,2337.42,112500,952)},
+    {"address":"1335 Fortuna Ave, Landers, CA 92285","region":"Landers","price":345000,"original_price":375000,"beds":2,"baths":1,"sqft":952,"dom":145,"img_src":b64("4"),"fin":compute(345000,4863.63,2166.38,103500,952)},
     {"address":"56367 Scandia Ln, Yucca Valley, CA 92284","region":"Yucca Valley","price":510000,"beds":1,"baths":2,"sqft":994,"dom":763,"img_src":b64("5"),"fin":compute(510000,0,3106.13,153000,994)},
     {"address":"8500 S Samel Rd, Morongo Valley, CA 92256","region":"Morongo Valley","price":440000,"beds":1,"baths":1,"sqft":936,"img_src":b64("6"),"airbnb_link":"https://www.airbnb.com/rooms/1096561622451349502","fin":compute(440000,81500,2707.13,132000,936)},
     {"address":"1224 Shangri La Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":325000,"beds":1,"baths":1,"sqft":1937,"img_src":b64("7"),"fin":compute(325000,0,2052.56,97500,1937)},
@@ -318,7 +318,7 @@ sold_tab = [
 ]
 
 adu_tab = [
-    {"address":"57920 Buena Vista Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":475000,"beds":3,"baths":2,"sqft":1600,"img_src":zillow_img("f0422669224f64ea639fda4d2c808777"),"airbnb_link":"https://www.airbnb.com/rooms/930306660730554905","fin":compute(475000,35900,2907.13,142500,1600)},
+    {"address":"57920 Buena Vista Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":470000,"original_price":499000,"beds":3,"baths":2,"sqft":1600,"img_src":zillow_img("f0422669224f64ea639fda4d2c808777"),"airbnb_link":"https://www.airbnb.com/rooms/930306660730554905","fin":compute(470000,35900,2878.73,141000,1600)},
     {"address":"6888 Sunnyhill Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":569000,"beds":4,"baths":3,"sqft":2795,"dom":52,"img_src":zillow_img("05c913cf734a51803acd71c5045e1b12"),"zillow_link":"https://www.zillow.com/homedetails/6888-Sunnyhill-Rd-Joshua-Tree-CA-92252/17499703_zpid/","airbnb_link":"https://www.airbnb.com/rooms/53215914","rev_source":"Airbnb verified","fin":compute(569000,61500,3443.12,170700,2795,has_pool=True,furnished=True)},
 ]
 
@@ -331,9 +331,9 @@ money_tab = [
     {"address":"60654 Mitch Ln, Landers, CA 92285","region":"Landers","price":365000,"original_price":385000,"beds":1,"baths":1,"sqft":448,"dom":72,"img_src":zillow_img("085bad920e162f8a6d0146a5585f2efa"),"zillow_link":"https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/","airbnb_link":"https://www.airbnb.com/rooms/647212501055315908","rev_source":"Airbnb verified","fin":compute(365000,71300,2274.74,109500,448)},
     {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"airbnb_link":"https://www.airbnb.com/rooms/769512618474065409","fin":compute(599000,80232,3613.61,179700,1303)},
     {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","airbnb_link":"https://www.airbnb.com/rooms/971911711973779101","fin":compute(374900,52364,2336.95,112470,662)},
-    {"address":"72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":2,"baths":1,"sqft":1094,"img_src":zillow_img("814e00f87608b29e697cd736fa6f9baa"),"airbnb_link":"https://www.airbnb.com/rooms/49347365","fin":compute(599000,75000,3613.61,179700,1094)},
+    {"address":"72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":584000,"original_price":599000,"beds":2,"baths":1,"sqft":1094,"dom":129,"img_src":zillow_img("814e00f87608b29e697cd736fa6f9baa"),"airbnb_link":"https://www.airbnb.com/rooms/49347365","fin":compute(584000,75000,3528.39,175200,1094)},
     {"address":"55921 Ornelas Ln, Landers, CA 92285","region":"Landers","price":349000,"beds":2,"baths":2,"sqft":976,"dom":126,"img_src":zillow_img("ecc9f6617ce31a3f847e31005f94a436"),"zillow_link":"https://www.zillow.com/homedetails/55921-Ornelas-Ln-Landers-CA-92285/17507410_zpid/","airbnb_link":"https://www.airbnb.com/rooms/48836260","fin":compute(349000,42219,2189.33,104700,976)},
-    {"address":"290 Bluegrass Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":359000,"beds":3,"baths":1,"sqft":1451,"img_src":zillow_img("8d3178634371ed1fcfc9df50fbac384f"),"airbnb_link":"https://www.airbnb.com/rooms/38159960","fin":compute(359000,51387,2245.91,107700,1451)},
+    {"address":"290 Bluegrass Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":319000,"original_price":359000,"beds":3,"baths":1,"sqft":1451,"img_src":zillow_img("8d3178634371ed1fcfc9df50fbac384f"),"airbnb_link":"https://www.airbnb.com/rooms/38159960","fin":compute(319000,51387,2018.21,95700,1451)},
     {"address":"1564 Luna Mesa Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":498000,"beds":2,"baths":2,"sqft":792,"dom":47,"img_src":zillow_img("b80decd558b9a98a713ea98e760ef422"),"zillow_link":"https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/","airbnb_link":"https://www.airbnb.com/rooms/45222274","fin":compute(498000,77000,3038.24,149400,792)},
     {"address":"2351 N Cambria Ave, Landers, CA 92285","region":"Landers","price":499000,"beds":3,"baths":2,"sqft":1467,"dom":6,"img_src":b64("12"),"zillow_link":"https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/","fin":compute(499000,109600,3043.90,149700,1467,has_pool=True)},
     {"address":"4883 Avenida La Candela, Joshua Tree, CA 92252","region":"Joshua Tree","price":425000,"beds":3,"baths":2,"sqft":1392,"dom":377,"img_src":"photos/4883-avenida-la-candela.jpg","rev_source":"Adj. 6-mo actuals","fin":compute(425000,42000,2622.28,127500,1392,furnished=True)},
@@ -408,6 +408,19 @@ apply_comps([only_tab, laquinta_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab,
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 adu_tab.extend(duplex_tab)
 
+# ---- Sold: retired from every active tab; never eligible for Top 5 or Favorites ----
+NEWLY_SOLD = {
+    "63300 Tilford Way, Joshua Tree, CA 92252",
+    "2351 N Cambria Ave, Landers, CA 92285",
+    "57920 Buena Vista Dr, Yucca Valley, CA 92284",
+}
+for _tab in (only_tab, laquinta_tab, duplex_tab, bigbear_tab, adu_tab, money_tab, competition_tab):
+    for _sp in [q for q in _tab if q["address"] in NEWLY_SOLD]:
+        _tab.remove(_sp)
+        if not any(s["address"] == _sp["address"] for s in sold_tab):
+            sold_tab.append(dict(_sp, sold=True))
+SOLD_ADDRS = {p["address"] for p in sold_tab}
+
 # Favorites seeds live on their natural region tab; hearts move them at runtime
 FAV_DEFAULT_ADDRS = [p["address"] for p in only_tab]
 for _p in only_tab:
@@ -434,6 +447,7 @@ comp_tracker = [
 top5_pool = {}
 def collect(props, source_label):
     for p in props:
+        if p["address"] in SOLD_ADDRS: continue
         f = p.get("fin", {})
         coc = f.get("coc")
         if coc is None: continue
