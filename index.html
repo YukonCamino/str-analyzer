@@ -1095,7 +1095,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
   <div id="tab-bigbear" class="tab-content" style="display:none">
     <div class="tab-header">
       <h2>🏔️ Big Bear</h2>
-      <span class="prop-count">5 properties</span>
+      <span class="prop-count">6 properties</span>
     </div>
     <div class="cards-grid">
     <div class="property-card card-green" data-addr="346 San Bernardino Ave, Sugarloaf, CA 92386" data-lat="34.246" data-lng="-116.83386" data-price="285000" data-orig-price="295000" data-annual-rev="44200" data-piti="1824.4400" data-pool="0" data-base-startup="111615.5000" data-util="391" data-hoa="0">
@@ -1361,6 +1361,59 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         </div>
         
         <div class="card-links"><a href="https://www.zillow.com/homedetails/396-Kern-Ave-Sugarloaf-CA-92386/17621919_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/769657678133226978" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+      </div>
+    </div>
+    <div class="property-card card-red" data-addr="872 Hill Ln, Big Bear Lake, CA 92315" data-lat="34.237048" data-lng="-116.932207" data-price="219000" data-orig-price="325000" data-annual-rev="7298.5" data-piti="1448.3300" data-pool="0" data-base-startup="86356.5000" data-util="391" data-hoa="0">
+      <div class="card-image">
+        <img src="https://listing-images.homejunction.com/crmls/1174771932/photo_1.jpg" alt="872 Hill Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><del>$325,000</del> <span class="price-cur">$219,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
+        
+      </div>
+      <div class="card-body">
+        <div class="card-address">872 Hill Ln</div>
+        <div class="card-city">Big Bear Lake, CA 92315</div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">504 sqft</span><span class="chip chip-region">Big Bear</span><span class="chip chip-dom-yellow" title="Days on Market">📅 56d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,389)</span></span><span class="amount neutral mo-rev-val">+$608/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,448/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$140/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$1,371/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:1.4%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-19.1%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Avg of 2 comps</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="7,298" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$28,665/yr</span></div>
+          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>7% occ · $262 ADR</span></div>
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$65,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$8,064</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$5,475</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$4,380</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$2,738</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$86,356</span></div>
+        </div>
+        <div class="comp-strips"><div class="comp-strips-title">Comps (2)</div><div class="comp-strip comp-strip-nolink" title="Jaybird Cabin"><span>7% occ</span><span>$385 ADR</span><span>$10.7K/yr</span></div><div class="comp-strip comp-strip-nolink" title="Cozy Hideaway"><span>7% occ</span><span>$138 ADR</span><span>$3.9K/yr</span></div></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/872-Hill-Ln-Big-Bear-Lake-CA-92315_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
       </div>
     </div>
     </div>

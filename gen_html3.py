@@ -45,6 +45,7 @@ LATLNG = {
     "697 Villa Grove Ave, Big Bear City, CA 92314": (34.238971, -116.855846),
     "346 San Bernardino Ave, Sugarloaf, CA 92386": (34.246000, -116.833860),
     "446 Riverside Ave, Sugarloaf, CA 92386": (34.244053, -116.834633),
+    "872 Hill Ln, Big Bear Lake, CA 92315": (34.237048, -116.932207),
     "1388 Jemez Trl, Landers, CA 92285": (34.273390, -116.454986),
     "57920 Buena Vista Dr, Yucca Valley, CA 92284": (34.164106, -116.399646),
     "2088 Acoma Trl, Landers, CA 92285": (34.287326, -116.439652),
@@ -310,6 +311,7 @@ bigbear_tab = [
     {"address":"346 San Bernardino Ave, Sugarloaf, CA 92386","region":"Big Bear","price":285000,"original_price":295000,"beds":2,"baths":1,"sqft":608,"dom":161,"img_src":zillow_img("06724d0ccfa7d6dce1c83230eb026a58"),"zillow_link":"https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/","fin":compute(285000,44200,1824.44,85500,608)},
     {"address":"909 E Big Bear Blvd, Big Bear City, CA 92314","region":"Big Bear","price":199888,"beds":2,"baths":1,"sqft":480,"dom":4,"img_src":zillow_img("fb246303bcf643a106c738de416a7791"),"zillow_link":"https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/","fin":compute(199888,0,1339.33,59966.40,480)},
     {"address":"845 Moreno Ln, Sugarloaf, CA 92386","region":"Big Bear","price":299000,"original_price":320000,"beds":2,"baths":1,"sqft":1248,"dom":44,"img_src":"","zillow_link":"https://www.zillow.com/homes/845-Moreno-Ln-Sugarloaf-CA-92386_rb/","fin":compute(299000,0,1904.23,89700,1248)},
+    {"address":"872 Hill Ln, Big Bear Lake, CA 92315","region":"Big Bear","price":219000,"original_price":325000,"beds":2,"baths":1,"sqft":504,"dom":56,"img_src":"https://listing-images.homejunction.com/crmls/1174771932/photo_1.jpg","fin":compute(219000,0,1448.33,65700,504)},
 ]
 
 sold_tab = [
@@ -378,6 +380,10 @@ COMPS = {
         {"name":"Moto Cabin: PetsStayFree, FencedYard, Fireplace","url":"https://www.airbnb.com/rooms/894949705871445120","annual_rev":18000,"adr":209,"occ":18.6},
         {"name":"2BR Beartime Story Cabin, BBQ & Fireplace","url":"https://www.airbnb.com/rooms/1369554510720905694","annual_rev":24400,"adr":179,"occ":29.6},
         {"name":"Cozy Cabin, Perfect for Families, Dog friendly","url":"https://www.airbnb.com/rooms/502441421412592496","annual_rev":15900,"adr":159,"occ":20.5},
+    ],
+    "872 Hill Ln, Big Bear Lake, CA 92315": [
+        {"name":"Jaybird Cabin","annual_rev":10700,"adr":385,"occ":7.4},
+        {"name":"Cozy Hideaway","annual_rev":3897,"adr":138,"occ":6.6},
     ],
     "697 Villa Grove Ave, Big Bear City, CA 92314": [
         {"name":"PANSIZE: Cozy Moonridge Chalet in the Wood","url":"https://www.airbnb.com/rooms/54398781","annual_rev":58700,"adr":230,"occ":55.1},
