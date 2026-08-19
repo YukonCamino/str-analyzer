@@ -46,6 +46,7 @@ LATLNG = {
     "346 San Bernardino Ave, Sugarloaf, CA 92386": (34.246000, -116.833860),
     "446 Riverside Ave, Sugarloaf, CA 92386": (34.244053, -116.834633),
     "872 Hill Ln, Big Bear Lake, CA 92315": (34.237048, -116.932207),
+    "69538 Jim Pine Rd #29, Twentynine Palms, CA 92277": (34.205124, -116.145570),
     "1388 Jemez Trl, Landers, CA 92285": (34.273390, -116.454986),
     "57920 Buena Vista Dr, Yucca Valley, CA 92284": (34.164106, -116.399646),
     "2088 Acoma Trl, Landers, CA 92285": (34.287326, -116.439652),
@@ -71,7 +72,7 @@ def fmt_plain(v):
 
 UTILITIES = 391  # fixed monthly utilities per property
 
-def compute(price, annual_rev, piti_30, down_30, sqft, has_pool=False, hoa=0, util=None, furnished=False):
+def compute(price, annual_rev, piti_30, down_30, sqft, has_pool=False, hoa=0, util=None, furnished=False, clean_pct=0.23):
     furnishing = 0 if furnished else sqft * 16
     buyer_agent = price * 0.025
     closing = price * 0.02
@@ -79,16 +80,16 @@ def compute(price, annual_rev, piti_30, down_30, sqft, has_pool=False, hoa=0, ut
     startup = down_30 + furnishing + buyer_agent + closing + supp_tax
     util = UTILITIES if util is None else util
     if not annual_rev or annual_rev <= 0:
-        return {"mo_rev":0,"piti":piti_30,"cleaning":0,"pool":250 if has_pool else 0,"utilities":util,"hoa":hoa,
+        return {"mo_rev":0,"piti":piti_30,"cleaning":0,"clean_pct":clean_pct,"pool":250 if has_pool else 0,"utilities":util,"hoa":hoa,
                 "cf":None,"coc":None,"down":down_30,"furnishing":furnishing,
                 "buyer_agent":buyer_agent,"closing":closing,"supp_tax":supp_tax,"startup":startup,
                 "annual_rev":annual_rev or 0,"no_rev":True}
     mo = annual_rev / 12
-    cl = mo * 0.23
+    cl = mo * clean_pct
     po = 250 if has_pool else 0
     cf = mo - piti_30 - util - hoa - cl - po
     coc = (cf * 12) / startup * 100 if startup > 0 else 0
-    return {"mo_rev":mo,"piti":piti_30,"cleaning":cl,"pool":po,"utilities":util,"hoa":hoa,
+    return {"mo_rev":mo,"piti":piti_30,"cleaning":cl,"clean_pct":clean_pct,"pool":po,"utilities":util,"hoa":hoa,
             "cf":cf,"coc":coc,"down":down_30,"furnishing":furnishing,
             "buyer_agent":buyer_agent,"closing":closing,"supp_tax":supp_tax,"startup":startup,
             "annual_rev":annual_rev,"no_rev":False}
@@ -125,9 +126,10 @@ def card(p, show_source=None):
 
     da = ""
     if f:
-        da = f' data-annual-rev="{f["annual_rev"]}" data-piti="{f["piti"]:.4f}" data-pool="{f["pool"]}" data-base-startup="{f["startup"]:.4f}" data-util="{f["utilities"]}" data-hoa="{f["hoa"]}"'
+        da = f' data-annual-rev="{f["annual_rev"]}" data-piti="{f["piti"]:.4f}" data-pool="{f["pool"]}" data-base-startup="{f["startup"]:.4f}" data-util="{f["utilities"]}" data-hoa="{f["hoa"]}" data-clean="{f.get("clean_pct",0.23)}"'
 
-    be_mo = ((f["piti"] + f["pool"] + f["utilities"] + f["hoa"]) / 0.77) if f else None
+    _cp = f.get("clean_pct", 0.23) if f else 0.23
+    be_mo = ((f["piti"] + f["pool"] + f["utilities"] + f["hoa"]) / (1 - _cp)) if f else None
     if f and not f.get("no_rev"):
         mo_rev = f["mo_rev"]
         cf = f["cf"]
@@ -137,7 +139,7 @@ def card(p, show_source=None):
         cash_rows = f'''
           <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven {fmt_plain(be_mo)})</span></span><span class="amount neutral mo-rev-val">+{fmt_plain(mo_rev)}/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-{fmt_plain(f["piti"])}/mo</span></div>{_util_row}{_hoa_row}
-          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-{fmt_plain(f["cleaning"])}/mo</span></div>'''
+          <div class="cost-row"><span class="label">Cleaning ({_cp*100:.0f}%)</span><span class="amount negative cleaning-val">-{fmt_plain(f["cleaning"])}/mo</span></div>'''
         _pool_on = f["pool"] > 0
         _pool_chk = "checked" if _pool_on else ""
         cash_rows += f'\n          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" {_pool_chk}>Pool service</label><span class="amount {"negative" if _pool_on else "neutral"} pool-val">{"-$250" if _pool_on else "$0"}/mo</span></div>'
@@ -306,11 +308,11 @@ duplex_tab = [
 
 bigbear_tab = [
     {"address":"376 Riverside Ave, Sugarloaf, CA 92386","region":"Big Bear","price":245000,"original_price":259900,"beds":1,"baths":1,"sqft":504,"img_src":"photos/376-riverside-ave.png","fin":compute(245000,19700,1596.5,73500.0,504)},
-    {"address":"396 Kern Ave, Sugarloaf, CA 92386","region":"Big Bear","price":299999,"beds":2,"baths":1,"sqft":720,"img_src":"photos/396-kern-ave.jpg","zillow_link":"https://www.zillow.com/homedetails/396-Kern-Ave-Sugarloaf-CA-92386/17621919_zpid/","airbnb_link":"https://www.airbnb.com/rooms/769657678133226978","fin":compute(299999,19000,1909.13,89999,720)},
+    {"address":"396 Kern Ave, Sugarloaf, CA 92386","region":"Big Bear","price":299999,"beds":2,"baths":1,"sqft":720,"img_src":zillow_img("eb6114d0b6b72e6af5b7cd6f20aec2a8"),"zillow_link":"https://www.zillow.com/homedetails/396-Kern-Ave-Sugarloaf-CA-92386/17621919_zpid/","airbnb_link":"https://www.airbnb.com/rooms/769657678133226978","fin":compute(299999,19000,1909.13,89999,720)},
     {"address":"697 Villa Grove Ave, Big Bear City, CA 92314","region":"Big Bear","price":299900,"beds":2,"baths":1,"sqft":750,"dom":53,"img_src":zillow_img("58a1652c34b769e0b9521cd7ab9c77fd"),"zillow_link":"https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/","fin":compute(299900,44500,1908.67,89970,750)},
     {"address":"346 San Bernardino Ave, Sugarloaf, CA 92386","region":"Big Bear","price":285000,"original_price":295000,"beds":2,"baths":1,"sqft":608,"dom":161,"img_src":zillow_img("06724d0ccfa7d6dce1c83230eb026a58"),"zillow_link":"https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/","fin":compute(285000,44200,1824.44,85500,608)},
     {"address":"909 E Big Bear Blvd, Big Bear City, CA 92314","region":"Big Bear","price":199888,"beds":2,"baths":1,"sqft":480,"dom":4,"img_src":zillow_img("fb246303bcf643a106c738de416a7791"),"zillow_link":"https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/","fin":compute(199888,0,1339.33,59966.40,480)},
-    {"address":"845 Moreno Ln, Sugarloaf, CA 92386","region":"Big Bear","price":299000,"original_price":320000,"beds":2,"baths":1,"sqft":1248,"dom":44,"img_src":"","zillow_link":"https://www.zillow.com/homes/845-Moreno-Ln-Sugarloaf-CA-92386_rb/","fin":compute(299000,0,1904.23,89700,1248)},
+    {"address":"845 Moreno Ln, Sugarloaf, CA 92386","region":"Big Bear","price":280000,"original_price":320000,"beds":2,"baths":1,"sqft":1248,"dom":44,"img_src":zillow_img("be01b928550952f27e1a74ab059d8b4e"),"zillow_link":"https://www.zillow.com/homedetails/845-Moreno-Ln-Sugarloaf-CA-92386/17624371_zpid/","fin":compute(280000,0,1795.96,84000,1248)},
     {"address":"872 Hill Ln, Big Bear Lake, CA 92315","region":"Big Bear","price":219000,"original_price":325000,"beds":2,"baths":1,"sqft":504,"dom":56,"img_src":"https://listing-images.homejunction.com/crmls/1174771932/photo_1.jpg","fin":compute(219000,0,1448.33,65700,504)},
 ]
 
@@ -323,6 +325,7 @@ sold_tab = [
 adu_tab = [
     {"address":"57920 Buena Vista Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":470000,"original_price":475000,"beds":3,"baths":2,"sqft":1600,"img_src":zillow_img("f0422669224f64ea639fda4d2c808777"),"airbnb_link":"https://www.airbnb.com/rooms/930306660730554905","fin":compute(470000,35900,2878.73,141000.0,1600)},
     {"address":"6888 Sunnyhill Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":569000,"beds":4,"baths":3,"sqft":2795,"dom":52,"img_src":zillow_img("05c913cf734a51803acd71c5045e1b12"),"zillow_link":"https://www.zillow.com/homedetails/6888-Sunnyhill-Rd-Joshua-Tree-CA-92252/17499703_zpid/","airbnb_link":"https://www.airbnb.com/rooms/53215914","rev_source":"Airbnb verified","fin":compute(569000,61500,3443.12,170700,2795,has_pool=True,furnished=True)},
+    {"address":"69538 Jim Pine Rd #29, Twentynine Palms, CA 92277","region":"29 Palms","price":259000,"beds":6,"baths":4,"sqft":1170,"dom":153,"img_src":zillow_img("dca92abbbc376cd4f3b868272ecc623e"),"zillow_link":"https://www.zillow.com/homedetails/69538-Jim-Pine-Rd-29-Twentynine-Palms-CA-92277/463192614_zpid/","rev_source":"Long-term rent est.","fin":compute(259000,21600,1676.29,77700,1170,has_pool=True,clean_pct=0)},
 ]
 
 competition_tab = [
@@ -408,7 +411,7 @@ def apply_comps(tabs):
             p["comp_avg"] = {"adr": sum(c["adr"] for c in comps)/n, "occ": sum(c["occ"] for c in comps)/n}
             p["rev_source"] = f"Avg of {n} comps"
             f0 = p["fin"]
-            p["fin"] = compute(p["price"], avg_rev, f0["piti"], f0["down"], p["sqft"], has_pool=f0["pool"] > 0, hoa=f0.get("hoa",0), util=f0.get("utilities"))
+            p["fin"] = compute(p["price"], avg_rev, f0["piti"], f0["down"], p["sqft"], has_pool=f0["pool"] > 0, hoa=f0.get("hoa",0), util=f0.get("utilities"), clean_pct=f0.get("clean_pct",0.23))
 
 apply_comps([only_tab, laquinta_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
 
@@ -651,7 +654,8 @@ function recalcCardEl(card) {
   var closeEl = card.querySelector('.closing-val'); if (closeEl) closeEl.textContent = fmtUSD(curPrice*0.02);
   var suppEl = card.querySelector('.supp-val'); if (suppEl) suppEl.textContent = fmtUSD(curPrice*0.0125);
   var stEl = card.querySelector('.startup-total-val'); if (stEl) stEl.textContent = fmtUSD(startup);
-  var beMo = (piti + pool + util + hoa) / 0.77;
+  var cleanPct = card.dataset.clean !== undefined ? parseFloat(card.dataset.clean) : 0.23;
+  var beMo = (piti + pool + util + hoa) / (1 - cleanPct);
   var beInline = card.querySelector('.be-inline'); if (beInline) beInline.textContent = '(breakeven ' + fmtUSD(beMo) + ')';
   var beVal = card.querySelector('.be-val'); if (beVal) beVal.textContent = fmtUSD(beMo*12) + '/yr';
   var beNote = card.querySelector('.be-note'); if (beNote) beNote.textContent = fmtUSD(beMo) + '/mo · ' + fmtUSD(beMo*12) + '/yr';
@@ -660,7 +664,7 @@ function recalcCardEl(card) {
     var annualRev = parseFloat(card.dataset.annualRev) || 0;
     var adjRev = parseFloat((revEl.value||String(annualRev)).replace(/[^0-9.]/g,'')) || annualRev;
     var mo = adjRev / 12;
-    var cleaning = mo * 0.23;
+    var cleaning = mo * cleanPct;
     var cf = mo - piti - util - hoa - cleaning - pool;
     var coc = startup > 0 ? (cf * 12 / startup * 100) : 0;
     var moRevEl = card.querySelector('.mo-rev-val'); if (moRevEl) moRevEl.textContent = '+' + fmtUSD(mo) + '/mo';
