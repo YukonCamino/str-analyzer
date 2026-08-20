@@ -355,6 +355,11 @@ COMPS = {
         {"name":"CouplesPool, Spa&Tub | Bikes | Telescope | Theater","url":"https://www.airbnb.com/rooms/1313828204666358101","annual_rev":84300,"adr":291,"occ":69.0},
         {"name":"DTJT House 2 - SWIM, SOAK & STARGAZE","url":"https://www.airbnb.com/rooms/45829660","annual_rev":62000,"adr":245,"occ":58.1},
     ],
+    "56674 Cone Blvd, Landers, CA 92285": [
+        {"name":"Landers Cove","url":"https://www.airbnb.com/rooms/33657790","annual_rev":22300,"adr":148,"occ":39.7},
+        {"name":"Landers Hideaway Near Joshua Tree National Park","url":"https://www.airbnb.com/rooms/28644985","annual_rev":39100,"adr":172,"occ":59.7},
+        {"name":"The Yucca Escape","url":"https://www.airbnb.com/rooms/49210867","annual_rev":58400,"adr":170,"occ":75.9},
+    ],
     "2351 N Cambria Ave, Landers, CA 92285": [
         {"name":"Casa Verde · Poolside Stargazing Paradise","url":"https://www.airbnb.com/rooms/1421212089738528659","annual_rev":88300,"adr":322,"occ":72.1},
         {"name":"Escondite By Homestead Modern","url":"https://www.airbnb.com/rooms/1010358724851399161","annual_rev":103000,"adr":417,"occ":58.1},
