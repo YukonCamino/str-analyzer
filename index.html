@@ -815,6 +815,59 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-links"><a href="https://www.zillow.com/homedetails/55921-Ornelas-Ln-Landers-CA-92285/17507410_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/48836260" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
       </div>
     </div>
+    <div class="property-card card-green" data-addr="5188 Godwin Rd, Twentynine Palms, CA 92277" data-lat="34.15759" data-lng="-115.933533" data-price="375000" data-orig-price="375000" data-annual-rev="44275.0" data-piti="2337.3400" data-pool="0" data-base-startup="158446.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="photos/5188-godwin-rd.jpg" alt="5188 Godwin Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$375,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
+        
+      </div>
+      <div class="card-body">
+        <div class="card-address">5188 Godwin Rd</div>
+        <div class="card-city">Twentynine Palms, CA 92277</div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,524 sqft</span><span class="chip chip-region">29 Palms</span><span class="chip chip-dom-green" title="Days on Market">📅 5d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,543)</span></span><span class="amount neutral mo-rev-val">+$3,690/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,337/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$849/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$113/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:29.8%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+0.9%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Avg of 4 comps</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="44,275" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$42,520/yr</span></div>
+          <div class="rev-adjust-row comp-avg-row"><span>Comp avg</span><span>63% occ · $163 ADR</span></div>
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$112,500</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$24,384</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$9,375</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,500</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,688</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$158,446</span></div>
+        </div>
+        <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/593459348639844586" target="_blank" class="comp-strip" title="Still nights under vast, dark heavens"><span>72% occ</span><span>$211 ADR</span><span>$67.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/31042148" target="_blank" class="comp-strip" title="Maison 29 Peaceful Views, EV Charger, Starlink!"><span>62% occ</span><span>$200 ADR</span><span>$51.5K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/31931556" target="_blank" class="comp-strip" title="Wonder Years Cabin"><span>78% occ</span><span>$122 ADR</span><span>$38.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/28837545" target="_blank" class="comp-strip" title="Valley Mountain Homestead Solitude & Star Gazing"><span>40% occ</span><span>$120 ADR</span><span>$20.2K/yr</span><span class="cs-arrow">↗</span></a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
+      </div>
+    </div>
     <div class="property-card card-red" data-addr="4883 Avenida La Candela, Joshua Tree, CA 92252" data-lat="34.164303" data-lng="-116.314651" data-price="425000" data-orig-price="425000" data-annual-rev="42000" data-piti="2622.2800" data-pool="0" data-base-startup="151937.5000" data-util="391" data-hoa="0" data-clean="0.23">
       <div class="card-image">
         <img src="photos/4883-avenida-la-candela.jpg" alt="4883 Avenida La Candela" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
@@ -1078,37 +1131,6 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         </div>
         
         <div class="card-links"><a href="https://www.zillow.com/homes/1335-Fortuna-Ave-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
-      </div>
-    </div>
-    <div class="property-card" data-addr="5188 Godwin Rd, Twentynine Palms, CA 92277" data-lat="34.15759" data-lng="-115.933533" data-price="375000" data-orig-price="375000" data-annual-rev="0" data-piti="2337.3400" data-pool="0" data-base-startup="158446.5000" data-util="391" data-hoa="0" data-clean="0.23">
-      <div class="card-image">
-        <img src="photos/5188-godwin-rd.jpg" alt="5188 Godwin Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
-        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$375,000</span></div>
-        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
-        
-      </div>
-      <div class="card-body">
-        <div class="card-address">5188 Godwin Rd</div>
-        <div class="card-city">Twentynine Palms, CA 92277</div>
-        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,524 sqft</span><span class="chip chip-region">29 Palms</span><span class="chip chip-dom-green" title="Days on Market">📅 5d</span></div>
-        <div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p><div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral be-note">$3,543/mo · $42,520/yr</span></div></div>
-        <div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>
-        
-        <div class="startup-section">
-          <div class="startup-title">Startup Costs</div>
-          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$112,500</span></div>
-          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$24,384</span></div>
-          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$9,375</span></div>
-          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$7,500</span></div>
-          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,688</span></div>
-          <div class="startup-row remodel-row">
-            <span>Remodel Budget</span>
-            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
-          </div>
-          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$158,446</span></div>
-        </div>
-        
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
       </div>
     </div>
     <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-price="510000" data-orig-price="510000" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="198229.0000" data-util="391" data-hoa="0" data-clean="0.23">

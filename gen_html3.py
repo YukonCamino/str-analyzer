@@ -357,6 +357,12 @@ COMPS = {
         {"name":"CouplesPool, Spa&Tub | Bikes | Telescope | Theater","url":"https://www.airbnb.com/rooms/1313828204666358101","annual_rev":84300,"adr":291,"occ":69.0},
         {"name":"DTJT House 2 - SWIM, SOAK & STARGAZE","url":"https://www.airbnb.com/rooms/45829660","annual_rev":62000,"adr":245,"occ":58.1},
     ],
+    "5188 Godwin Rd, Twentynine Palms, CA 92277": [
+        {"name":"Still nights under vast, dark heavens","url":"https://www.airbnb.com/rooms/593459348639844586","annual_rev":67100,"adr":211,"occ":71.5},
+        {"name":"Maison 29 Peaceful Views, EV Charger, Starlink!","url":"https://www.airbnb.com/rooms/31042148","annual_rev":51500,"adr":200,"occ":62.2},
+        {"name":"Wonder Years Cabin","url":"https://www.airbnb.com/rooms/31931556","annual_rev":38300,"adr":122,"occ":77.5},
+        {"name":"Valley Mountain Homestead Solitude & Star Gazing","url":"https://www.airbnb.com/rooms/28837545","annual_rev":20200,"adr":120,"occ":39.7},
+    ],
     "56674 Cone Blvd, Landers, CA 92285": [
         {"name":"Landers Cove","url":"https://www.airbnb.com/rooms/33657790","annual_rev":22300,"adr":148,"occ":39.7},
         {"name":"Landers Hideaway Near Joshua Tree National Park","url":"https://www.airbnb.com/rooms/28644985","annual_rev":39100,"adr":172,"occ":59.7},
