@@ -60,6 +60,7 @@ LATLNG = {
     "4883 Avenida La Candela, Joshua Tree, CA 92252": (34.164303, -116.314651),
     "56674 Cone Blvd, Landers, CA 92285": (34.287687, -116.426631),
     "5188 Godwin Rd, Twentynine Palms, CA 92277": (34.157590, -115.933533),
+    "5188 Godwin Rd (house hack), Twentynine Palms, CA 92277": (34.158390, -115.933533),
 }
 
 def fmt_money(v):
@@ -347,6 +348,7 @@ money_tab = [
     {"address":"4883 Avenida La Candela, Joshua Tree, CA 92252","region":"Joshua Tree","price":425000,"beds":3,"baths":2,"sqft":1392,"dom":377,"img_src":"photos/4883-avenida-la-candela.jpg","rev_source":"Adj. 6-mo actuals","fin":compute(425000,42000,2622.28,127500,1392,furnished=True)},
     {"address":"56674 Cone Blvd, Landers, CA 92285","region":"Landers","price":265000,"original_price":285000,"beds":2,"baths":1,"sqft":909,"dom":91,"img_src":"https://listing-images.homejunction.com/crmls/1169348988/photo_1.jpg","zillow_link":"https://www.zillow.com/homedetails/56674-Cone-Blvd-Landers-CA-92285/17507455_zpid/","fin":compute(265000,0,1710.48,79500.0,909)},
     {"address":"5188 Godwin Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":375000,"beds":2,"baths":2,"sqft":1524,"dom":5,"img_src":"photos/5188-godwin-rd.jpg","zillow_link":"https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/","fin":compute(375000,0,2337.34,112500,1524)},
+    {"address":"5188 Godwin Rd (house hack), Twentynine Palms, CA 92277","region":"29 Palms","price":375000,"beds":2,"baths":2,"sqft":1524,"dom":5,"img_src":"photos/5188-godwin-rd.jpg","zillow_link":"https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/","rev_source":"LTR 2nd house $1,800","fin":compute(375000,21600,3107.05,44100,680,util=0,clean_pct=0)},
 ]
 
 # ---- Comps: per-property Airbnb comps. Averages drive the property's revenue assumption. ----
