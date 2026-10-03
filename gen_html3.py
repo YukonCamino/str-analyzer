@@ -349,9 +349,9 @@ money_tab = [
     {"address":"290 Bluegrass Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":319000,"original_price":359000,"beds":3,"baths":1,"sqft":1451,"img_src":zillow_img("8d3178634371ed1fcfc9df50fbac384f"),"airbnb_link":"https://www.airbnb.com/rooms/38159960","fin":compute(319000,51387,2018.21,95700.0,1451)},
     {"address":"1564 Luna Mesa Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":498000,"beds":2,"baths":2,"sqft":792,"dom":47,"img_src":zillow_img("b80decd558b9a98a713ea98e760ef422"),"zillow_link":"https://www.zillow.com/homedetails/1564-Luna-Mesa-Rd-Yucca-Valley-CA-92284/17508241_zpid/","airbnb_link":"https://www.airbnb.com/rooms/45222274","fin":compute(498000,77000,3038.24,149400,792)},
     {"address":"2351 N Cambria Ave, Landers, CA 92285","region":"Landers","price":499000,"beds":3,"baths":2,"sqft":1467,"dom":6,"img_src":b64("12"),"zillow_link":"https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/","fin":compute(499000,109600,3043.90,149700,1467,has_pool=True)},
-    {"address":"4883 Avenida La Candela, Joshua Tree, CA 92252","region":"Joshua Tree","price":425000,"beds":3,"baths":2,"sqft":1392,"dom":377,"img_src":"photos/4883-avenida-la-candela.jpg","rev_source":"Adj. 6-mo actuals","fin":compute(425000,42000,2622.28,127500,1392,furnished=True)},
+    {"address":"4883 Avenida La Candela, Joshua Tree, CA 92252","region":"Joshua Tree","price":430000,"original_price":425000,"beds":3,"baths":2,"sqft":1392,"dom":377,"img_src":"photos/4883-avenida-la-candela.jpg","rev_source":"Adj. 6-mo actuals","fin":compute(430000,42000,2650.78,129000.0,1392,furnished=True)},
     {"address":"56674 Cone Blvd, Landers, CA 92285","region":"Landers","price":265000,"original_price":285000,"beds":2,"baths":1,"sqft":909,"dom":91,"img_src":"https://listing-images.homejunction.com/crmls/1169348988/photo_1.jpg","zillow_link":"https://www.zillow.com/homedetails/56674-Cone-Blvd-Landers-CA-92285/17507455_zpid/","fin":compute(265000,0,1710.48,79500.0,909)},
-    {"address":"5188 Godwin Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":375000,"beds":2,"baths":2,"sqft":1524,"dom":5,"img_src":"photos/5188-godwin-rd.jpg","zillow_link":"https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/","fin":compute(375000,0,2337.34,112500,1524)},
+    {"address":"5188 Godwin Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":352850,"original_price":375000,"beds":2,"baths":2,"sqft":1524,"dom":5,"img_src":"photos/5188-godwin-rd.jpg","zillow_link":"https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/","fin":compute(352850,0,2211.12,105855.0,1524)},
     {"address":"5188 Godwin Rd (house hack), Twentynine Palms, CA 92277","region":"29 Palms","price":375000,"beds":2,"baths":2,"sqft":1524,"dom":5,"img_src":"photos/5188-godwin-rd.jpg","zillow_link":"https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/","rev_source":"LTR 2nd house $1,800","fin":compute(375000,21600,3107.05,44100,680,util=0,clean_pct=0)},
 ]
 
@@ -448,6 +448,9 @@ for _p in only_tab:
 # ---- Sold: once a home sells it leaves every active tab and is excluded from Top 5. ----
 # Add an address here and it is pulled from wherever it lives and reposted under Sold.
 SOLD_ADDRS = {
+    "5188 Godwin Rd, Twentynine Palms, CA 92277",
+    "5188 Godwin Rd (house hack), Twentynine Palms, CA 92277",
+    "4883 Avenida La Candela, Joshua Tree, CA 92252",
     "63300 Tilford Way, Joshua Tree, CA 92252",
     "2351 N Cambria Ave, Landers, CA 92285",
     "69450 Amboy Rd, Twentynine Palms, CA 92277",
@@ -457,8 +460,15 @@ SOLD_ADDRS = {
 
 # Delisted / off market: retired the same way as sold, but badged honestly.
 OFFMARKET_ADDRS = {
+    "72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277",
     "7276 Encina Rd, Joshua Tree, CA 92252",
     "50740 Santa Rosa Plz APT 2, La Quinta, CA 92253",
+}
+
+# Under contract / pending: retired like sold, badged PENDING.
+PENDING_ADDRS = {
+    "290 Bluegrass Rd, Twentynine Palms, CA 92277",
+    "1224 Shangri La Rd, Joshua Tree, CA 92252",
 }
 
 def retire_sold(tabs):
@@ -477,11 +487,15 @@ def retire_sold(tabs):
         if not any(q["address"] == addr for q in sold_tab):
             if addr in OFFMARKET_ADDRS:
                 sold_tab.append(dict(p, retired_label="OFF MARKET"))
+            elif addr in PENDING_ADDRS:
+                sold_tab.append(dict(p, retired_label="PENDING"))
             else:
                 sold_tab.append(dict(p, sold=True))
 
-SOLD_ADDRS |= OFFMARKET_ADDRS
+SOLD_ADDRS |= OFFMARKET_ADDRS | PENDING_ADDRS
 retire_sold([only_tab, laquinta_tab, duplex_tab, bigbear_tab, adu_tab, money_tab, competition_tab])
+# Godwin house-hack is a second view of the same sold home; keep one card in Sold.
+sold_tab[:] = [p for p in sold_tab if p["address"] != "5188 Godwin Rd (house hack), Twentynine Palms, CA 92277"]
 
 FAV_DEFAULT_ADDRS = [p["address"] for p in only_tab]
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
