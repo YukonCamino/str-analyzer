@@ -441,7 +441,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
   <div id="tab-money" class="tab-content" style="display:none">
     <div class="tab-header">
       <h2>🌵 Desert</h2>
-      <span class="prop-count">17 properties</span>
+      <span class="prop-count">18 properties</span>
     </div>
     <div class="cards-grid">
     <div class="property-card card-green" data-addr="60654 Mitch Ln, Landers, CA 92285" data-lat="34.280575" data-lng="-116.338752" data-price="355000" data-orig-price="385000" data-annual-rev="71300" data-piti="2223.3700" data-pool="0" data-base-startup="134080.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -760,6 +760,59 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         </div>
         
         <div class="card-links"><a href="https://www.zillow.com/homes/72767-Mesquite-Dunes-Rd-Twentynine-Palms-CA-92277_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/49347365" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
+      </div>
+    </div>
+    <div class="property-card card-green" data-addr="58860 Ocotillo Dr, Yucca Valley, CA 92284" data-lat="34.156848" data-lng="-116.379172" data-price="885000" data-orig-price="885000" data-annual-rev="107400" data-piti="5243.7200" data-pool="250" data-base-startup="316387.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/fdf02db8430adb0dea65ceb0d6fd656c-cc_ft_1536.jpg" alt="58860 Ocotillo Dr" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$885,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">♥</button>
+        
+      </div>
+      <div class="card-body">
+        <div class="card-address">58860 Ocotillo Dr</div>
+        <div class="card-city">Yucca Valley, CA 92284</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,478 sqft</span><span class="chip chip-region">Yucca Valley</span><span class="chip chip-dom-green" title="Days on Market">📅 25d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $7,642)</span></span><span class="amount neutral mo-rev-val">+$8,950/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$5,244/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,058/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" checked>Pool service</label><span class="amount negative pool-val">-$250/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,007/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:34.0%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+3.8%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="107,400" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$91,710/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$265,500</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>Included (fully furnished)</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$22,125</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$17,700</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$11,062</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$316,388</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/58860-Ocotillo-Dr-Yucca-Valley-CA-92284/304026878_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/42228923" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a></div>
       </div>
     </div>
     <div class="property-card card-green" data-addr="6242 Mandarin Rd, Yucca Valley, CA 92284" data-lat="34.140062" data-lng="-116.405757" data-price="649000" data-orig-price="649000" data-annual-rev="75700" data-piti="3898.8100" data-pool="250" data-base-startup="232017.5000" data-util="391" data-hoa="0" data-clean="0.23">

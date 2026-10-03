@@ -52,6 +52,7 @@ LATLNG = {
     "2088 Acoma Trl, Landers, CA 92285": (34.287326, -116.439652),
     "60654 Mitch Ln, Landers, CA 92285": (34.280575, -116.338752),
     "6242 Mandarin Rd, Yucca Valley, CA 92284": (34.140062, -116.405757),
+    "58860 Ocotillo Dr, Yucca Valley, CA 92284": (34.156848, -116.379172),
     "8729 Rockhaven Rd, Joshua Tree, CA 92252": (34.095479, -116.268885),
     "72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277": (34.210884, -116.073092),
     "55921 Ornelas Ln, Landers, CA 92285": (34.292666, -116.443584),
@@ -337,6 +338,7 @@ competition_tab = [
 ]
 
 money_tab = [
+    {"address":"58860 Ocotillo Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":885000,"beds":3,"baths":2,"sqft":1478,"dom":25,"img_src":zillow_img("fdf02db8430adb0dea65ceb0d6fd656c"),"zillow_link":"https://www.zillow.com/homedetails/58860-Ocotillo-Dr-Yucca-Valley-CA-92284/304026878_zpid/","airbnb_link":"https://www.airbnb.com/rooms/42228923","rev_source":"Airbnb verified","fin":compute(885000,107400,5243.72,265500,1478,has_pool=True,furnished=True)},
     {"address":"6242 Mandarin Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":649000,"beds":3,"baths":2,"sqft":1926,"dom":1,"img_src":zillow_img("208b107883315f6146316d802f894d27"),"zillow_link":"https://www.zillow.com/homedetails/6242-Mandarin-Rd-Yucca-Valley-CA-92284/17496921_zpid/","airbnb_link":"https://www.airbnb.com/rooms/729783192864388881","rev_source":"Airbnb verified","fin":compute(649000,75700,3898.81,194700,1926,has_pool=True,furnished=True)},
     {"address":"7025 Park Blvd, Joshua Tree, CA 92252","region":"Joshua Tree","price":340000,"beds":2,"baths":1,"sqft":1000,"dom":1,"img_src":zillow_img("2dda97dcce92f488967e9207f892b2f0"),"zillow_link":"https://www.zillow.com/homedetails/7025-Park-Blvd-Joshua-Tree-CA-92252/17500223_zpid/","fin":compute(340000,0,2137.91,102000,1000)},
     {"address":"60654 Mitch Ln, Landers, CA 92285","region":"Landers","price":355000,"original_price":385000,"beds":1,"baths":1,"sqft":448,"dom":72,"img_src":zillow_img("085bad920e162f8a6d0146a5585f2efa"),"zillow_link":"https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/","airbnb_link":"https://www.airbnb.com/rooms/647212501055315908","rev_source":"Airbnb verified","fin":compute(355000,71300,2223.37,106500.0,448)},
