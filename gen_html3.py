@@ -290,7 +290,7 @@ PH = ""
 only_tab = [
     {"address":"1335 Fortuna Ave, Landers, CA 92285","region":"Landers","price":345000,"original_price":375000,"beds":2,"baths":1,"sqft":952,"dom":110,"img_src":b64("4"),"fin":compute(345000,4863.63,2166.38,103500.0,952)},
     {"address":"56367 Scandia Ln, Yucca Valley, CA 92284","region":"Yucca Valley","price":510000,"beds":1,"baths":2,"sqft":994,"dom":763,"img_src":b64("5"),"fin":compute(510000,0,3106.13,153000,994)},
-    {"address":"8500 S Samel Rd, Morongo Valley, CA 92256","region":"Morongo Valley","price":439000,"original_price":440000,"beds":1,"baths":1,"sqft":936,"img_src":b64("6"),"airbnb_link":"https://www.airbnb.com/rooms/1096561622451349502","fin":compute(439000,81500,2702.07,131700.0,936)},
+    {"address":"8500 S Samel Rd, Morongo Valley, CA 92256","region":"Morongo Valley","price":320000,"original_price":439000,"beds":1,"baths":1,"sqft":936,"img_src":b64("6"),"airbnb_link":"https://www.airbnb.com/rooms/1096561622451349502","fin":compute(320000,81500,2023.91,96000.0,936)},
     {"address":"1224 Shangri La Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":215000,"original_price":325000,"beds":1,"baths":1,"sqft":1937,"img_src":b64("7"),"fin":compute(215000,0,1425.54,64500.0,1937)},
     {"address":"4650 Sizer Canyon Rd, Johnson Valley, CA 92285","region":"Johnson Valley","price":440000,"beds":2,"baths":1,"sqft":947,"dom":254,"img_src":b64("8"),"fin":compute(440000,36800,2707.13,132000,947)},
     {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","airbnb_link":"https://www.airbnb.com/rooms/971911711973779101","fin":compute(374900,62600,2336.95,112470,662)},
@@ -302,11 +302,11 @@ only_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None e
 
 laquinta_tab = [
     {"address":"50740 Santa Rosa Plz APT 2, La Quinta, CA 92253","region":"La Quinta","price":315000,"beds":1,"baths":1,"sqft":682,"img_src":zillow_img("dbac82a7b26bc71760fc21cac9d4c4e2"),"airbnb_link":"https://www.airbnb.com/rooms/748771224286105523","fin":compute(315000,28400,1994.99,94500,682)},
-    {"address":"1111 E Palm Canyon Dr #104, Palm Springs, CA 92264","region":"Palm Springs","price":315000,"beds":1,"baths":1,"sqft":525,"img_src":zillow_img("9bbdffe576f0deccf9d13cc5b425c219"),"zillow_link":"https://www.zillow.com/homedetails/1111-E-Palm-Canyon-Dr-104-Palm-Springs-CA-92264/89235759_zpid/","fin":compute(315000,0,1995.42,94500,525,hoa=799,util=0)},
+    {"address":"1111 E Palm Canyon Dr #104, Palm Springs, CA 92264","region":"Palm Springs","price":300000,"original_price":315000,"beds":1,"baths":1,"sqft":525,"img_src":zillow_img("9bbdffe576f0deccf9d13cc5b425c219"),"zillow_link":"https://www.zillow.com/homedetails/1111-E-Palm-Canyon-Dr-104-Palm-Springs-CA-92264/89235759_zpid/","fin":compute(300000,0,1909.94,90000.0,525,hoa=799,util=0)},
 ]
 
 duplex_tab = [
-    {"address":"4537 Anita Ave, Yucca Valley, CA 92284","region":"Morongo","price":585000,"original_price":620000,"beds":6,"baths":3,"sqft":2965,"img_src":zillow_img("abbeb38ee830ad6682c5095ca7fdeb68"),"fin":compute(585000,53500,3534.09,175500.0,2965)},
+    {"address":"4537 Anita Ave, Yucca Valley, CA 92284","region":"Morongo","price":510000,"original_price":585000,"beds":6,"baths":3,"sqft":2965,"img_src":zillow_img("abbeb38ee830ad6682c5095ca7fdeb68"),"fin":compute(510000,53500,3106.68,153000.0,2965)},
     {"address":"56367 Scandia Ln, Yucca Valley, CA 92284","region":"Morongo","price":510000,"beds":1,"baths":2,"sqft":994,"dom":763,"img_src":b64("5"),"fin":compute(510000,0,3106.13,153000,994)},
     {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"airbnb_link":"https://www.airbnb.com/rooms/769512618474065409","fin":compute(599000,103600,3613.61,179700,1303)},
 ]
@@ -314,9 +314,9 @@ duplex_tab = [
 bigbear_tab = [
     {"address":"376 Riverside Ave, Sugarloaf, CA 92386","region":"Big Bear","price":245000,"original_price":259900,"beds":1,"baths":1,"sqft":504,"img_src":"photos/376-riverside-ave.png","fin":compute(245000,19700,1596.5,73500.0,504)},
     {"address":"396 Kern Ave, Sugarloaf, CA 92386","region":"Big Bear","price":299999,"beds":2,"baths":1,"sqft":720,"img_src":zillow_img("eb6114d0b6b72e6af5b7cd6f20aec2a8"),"zillow_link":"https://www.zillow.com/homedetails/396-Kern-Ave-Sugarloaf-CA-92386/17621919_zpid/","airbnb_link":"https://www.airbnb.com/rooms/769657678133226978","fin":compute(299999,19000,1909.13,89999,720)},
-    {"address":"697 Villa Grove Ave, Big Bear City, CA 92314","region":"Big Bear","price":299900,"beds":2,"baths":1,"sqft":750,"dom":53,"img_src":zillow_img("58a1652c34b769e0b9521cd7ab9c77fd"),"zillow_link":"https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/","fin":compute(299900,44500,1908.67,89970,750)},
+    {"address":"697 Villa Grove Ave, Big Bear City, CA 92314","region":"Big Bear","price":270000,"original_price":299900,"beds":2,"baths":1,"sqft":750,"dom":53,"img_src":zillow_img("58a1652c34b769e0b9521cd7ab9c77fd"),"zillow_link":"https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/","fin":compute(270000,44500,1738.97,81000.0,750)},
     {"address":"346 San Bernardino Ave, Sugarloaf, CA 92386","region":"Big Bear","price":285000,"original_price":295000,"beds":2,"baths":1,"sqft":608,"dom":161,"img_src":zillow_img("06724d0ccfa7d6dce1c83230eb026a58"),"zillow_link":"https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/","fin":compute(285000,44200,1824.44,85500,608)},
-    {"address":"909 E Big Bear Blvd, Big Bear City, CA 92314","region":"Big Bear","price":199888,"beds":2,"baths":1,"sqft":480,"dom":4,"img_src":zillow_img("fb246303bcf643a106c738de416a7791"),"zillow_link":"https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/","fin":compute(199888,0,1339.33,59966.40,480)},
+    {"address":"909 E Big Bear Blvd, Big Bear City, CA 92314","region":"Big Bear","price":180000,"original_price":199888,"beds":2,"baths":1,"sqft":480,"dom":4,"img_src":zillow_img("fb246303bcf643a106c738de416a7791"),"zillow_link":"https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/","fin":compute(180000,0,1226.08,54000.0,480)},
     {"address":"845 Moreno Ln, Sugarloaf, CA 92386","region":"Big Bear","price":280000,"original_price":320000,"beds":2,"baths":1,"sqft":1248,"dom":44,"img_src":zillow_img("be01b928550952f27e1a74ab059d8b4e"),"zillow_link":"https://www.zillow.com/homedetails/845-Moreno-Ln-Sugarloaf-CA-92386/17624371_zpid/","fin":compute(280000,0,1795.96,84000,1248)},
     {"address":"872 Hill Ln, Big Bear Lake, CA 92315","region":"Big Bear","price":219000,"original_price":325000,"beds":2,"baths":1,"sqft":504,"dom":56,"img_src":"https://listing-images.homejunction.com/crmls/1174771932/photo_1.jpg","fin":compute(219000,0,1448.33,65700,504)},
 ]
@@ -330,7 +330,7 @@ sold_tab = [
 adu_tab = [
     {"address":"57920 Buena Vista Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":470000,"original_price":475000,"beds":3,"baths":2,"sqft":1600,"img_src":zillow_img("f0422669224f64ea639fda4d2c808777"),"airbnb_link":"https://www.airbnb.com/rooms/930306660730554905","fin":compute(470000,35900,2878.73,141000.0,1600)},
     {"address":"6888 Sunnyhill Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":569000,"beds":4,"baths":3,"sqft":2795,"dom":52,"img_src":zillow_img("05c913cf734a51803acd71c5045e1b12"),"zillow_link":"https://www.zillow.com/homedetails/6888-Sunnyhill-Rd-Joshua-Tree-CA-92252/17499703_zpid/","airbnb_link":"https://www.airbnb.com/rooms/53215914","rev_source":"Airbnb verified","fin":compute(569000,61500,3443.12,170700,2795,has_pool=True,furnished=True)},
-    {"address":"69538 Jim Pine Rd #29, Twentynine Palms, CA 92277","region":"29 Palms","price":259000,"beds":6,"baths":4,"sqft":1170,"dom":153,"img_src":zillow_img("dca92abbbc376cd4f3b868272ecc623e"),"zillow_link":"https://www.zillow.com/homedetails/69538-Jim-Pine-Rd-29-Twentynine-Palms-CA-92277/463192614_zpid/","rev_source":"Long-term rent est.","fin":compute(259000,21600,1676.29,77700,1170,has_pool=True,clean_pct=0)},
+    {"address":"69538 Jim Pine Rd #29, Twentynine Palms, CA 92277","region":"29 Palms","price":255000,"original_price":259000,"beds":6,"baths":4,"sqft":1170,"dom":153,"img_src":zillow_img("dca92abbbc376cd4f3b868272ecc623e"),"zillow_link":"https://www.zillow.com/homedetails/69538-Jim-Pine-Rd-29-Twentynine-Palms-CA-92277/463192614_zpid/","rev_source":"Long-term rent est.","fin":compute(255000,21600,1653.49,76500.0,1170,has_pool=True,clean_pct=0)},
 ]
 
 competition_tab = [
@@ -340,7 +340,7 @@ competition_tab = [
 money_tab = [
     {"address":"58860 Ocotillo Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":885000,"beds":3,"baths":2,"sqft":1478,"dom":25,"img_src":zillow_img("fdf02db8430adb0dea65ceb0d6fd656c"),"zillow_link":"https://www.zillow.com/homedetails/58860-Ocotillo-Dr-Yucca-Valley-CA-92284/304026878_zpid/","airbnb_link":"https://www.airbnb.com/rooms/42228923","rev_source":"Airbnb verified","fin":compute(885000,107400,5243.72,265500,1478,has_pool=True,furnished=True)},
     {"address":"6242 Mandarin Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":649000,"beds":3,"baths":2,"sqft":1926,"dom":1,"img_src":zillow_img("208b107883315f6146316d802f894d27"),"zillow_link":"https://www.zillow.com/homedetails/6242-Mandarin-Rd-Yucca-Valley-CA-92284/17496921_zpid/","airbnb_link":"https://www.airbnb.com/rooms/729783192864388881","rev_source":"Airbnb verified","fin":compute(649000,75700,3898.81,194700,1926,has_pool=True,furnished=True)},
-    {"address":"7025 Park Blvd, Joshua Tree, CA 92252","region":"Joshua Tree","price":340000,"beds":2,"baths":1,"sqft":1000,"dom":1,"img_src":zillow_img("2dda97dcce92f488967e9207f892b2f0"),"zillow_link":"https://www.zillow.com/homedetails/7025-Park-Blvd-Joshua-Tree-CA-92252/17500223_zpid/","fin":compute(340000,0,2137.91,102000,1000)},
+    {"address":"7025 Park Blvd, Joshua Tree, CA 92252","region":"Joshua Tree","price":315000,"original_price":340000,"beds":2,"baths":1,"sqft":1000,"dom":1,"img_src":zillow_img("2dda97dcce92f488967e9207f892b2f0"),"zillow_link":"https://www.zillow.com/homedetails/7025-Park-Blvd-Joshua-Tree-CA-92252/17500223_zpid/","fin":compute(315000,0,1995.42,94500.0,1000)},
     {"address":"60654 Mitch Ln, Landers, CA 92285","region":"Landers","price":355000,"original_price":385000,"beds":1,"baths":1,"sqft":448,"dom":72,"img_src":zillow_img("085bad920e162f8a6d0146a5585f2efa"),"zillow_link":"https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/","airbnb_link":"https://www.airbnb.com/rooms/647212501055315908","rev_source":"Airbnb verified","fin":compute(355000,71300,2223.37,106500.0,448)},
     {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"airbnb_link":"https://www.airbnb.com/rooms/769512618474065409","fin":compute(599000,80232,3613.61,179700,1303)},
     {"address":"7276 Encina Rd, Joshua Tree, CA 92252","region":"Joshua Tree","price":374900,"original_price":399000,"beds":1,"baths":1,"sqft":662,"dom":118,"img_src":b64("9"),"zillow_link":"https://www.zillow.com/homedetails/7276-Encina-Rd-Joshua-Tree-CA-92252/337970717_zpid/","airbnb_link":"https://www.airbnb.com/rooms/971911711973779101","fin":compute(374900,52364,2336.95,112470,662)},
@@ -448,6 +448,12 @@ for _p in only_tab:
 # ---- Sold: once a home sells it leaves every active tab and is excluded from Top 5. ----
 # Add an address here and it is pulled from wherever it lives and reposted under Sold.
 SOLD_ADDRS = {
+    "8500 S Samel Rd, Morongo Valley, CA 92256",
+    "697 Villa Grove Ave, Big Bear City, CA 92314",
+    "909 E Big Bear Blvd, Big Bear City, CA 92314",
+    "4537 Anita Ave, Yucca Valley, CA 92284",
+    "1111 E Palm Canyon Dr #104, Palm Springs, CA 92264",
+    "845 Moreno Ln, Sugarloaf, CA 92386",
     "5188 Godwin Rd, Twentynine Palms, CA 92277",
     "5188 Godwin Rd (house hack), Twentynine Palms, CA 92277",
     "4883 Avenida La Candela, Joshua Tree, CA 92252",
@@ -460,6 +466,8 @@ SOLD_ADDRS = {
 
 # Delisted / off market: retired the same way as sold, but badged honestly.
 OFFMARKET_ADDRS = {
+    "4650 Sizer Canyon Rd, Johnson Valley, CA 92285",
+    "1335 Fortuna Ave, Landers, CA 92285",
     "72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277",
     "7276 Encina Rd, Joshua Tree, CA 92252",
     "50740 Santa Rosa Plz APT 2, La Quinta, CA 92253",
@@ -467,6 +475,8 @@ OFFMARKET_ADDRS = {
 
 # Under contract / pending: retired like sold, badged PENDING.
 PENDING_ADDRS = {
+    "396 Kern Ave, Sugarloaf, CA 92386",
+    "872 Hill Ln, Big Bear Lake, CA 92315",
     "290 Bluegrass Rd, Twentynine Palms, CA 92277",
     "1224 Shangri La Rd, Joshua Tree, CA 92252",
 }
