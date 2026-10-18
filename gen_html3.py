@@ -176,7 +176,12 @@ def card(p, show_source=None):
         </div>'''
     else:
         _be_note = f'<div class="cost-row"><span class="label">Breakeven Revenue</span><span class="amount neutral be-note">{fmt_plain(be_mo)}/mo · {fmt_plain(be_mo*12)}/yr</span></div>' if f else ""
-        cost_html = f'<div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p>{_be_note}</div>'
+        _nr_rows = ''
+        if f:
+            _nr_rows += f'<div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-{fmt_plain(f["piti"])}/mo</span></div>'
+            if f["utilities"]: _nr_rows += f'<div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-{fmt_plain(f["utilities"])}/mo</span></div>'
+            if f["hoa"]: _nr_rows += f'<div class="cost-row"><span class="label">HOA</span><span class="amount negative">-{fmt_plain(f["hoa"])}/mo</span></div>'
+        cost_html = f'<div class="cost-breakdown"><p class="no-data-msg">Revenue data not yet available</p>{_nr_rows}{_be_note}</div>'
         coc_html = '<div class="coc-section"><span class="coc-label">Cash-on-Cash Return</span><span class="coc-value coc-na" style="margin-left:auto">N/A</span></div>'
         rev_html = ''
 
