@@ -24,6 +24,7 @@ def zillow_url(addr):
     return f"https://www.zillow.com/homes/{a}_rb/"
 
 LATLNG = {
+    "2073 Deer Trl, Yucca Valley, CA 92284": (34.215427, -116.44509),
     "1335 Fortuna Ave, Landers, CA 92285": (34.274045, -116.426363),
     "56367 Scandia Ln, Yucca Valley, CA 92284": (34.195217, -116.432860),
     "8500 S Samel Rd, Morongo Valley, CA 92256": (34.097905, -116.511178),
@@ -338,6 +339,7 @@ competition_tab = [
 ]
 
 money_tab = [
+    {"address":"2073 Deer Trl, Yucca Valley, CA 92284","region":"Yucca Valley","price":289900,"beds":1,"baths":1,"sqft":1092,"dom":2,"img_src":zillow_img("9c682a6e4f59f4733bd8179358f7abd8"),"zillow_link":"https://www.zillow.com/homedetails/2073-Deer-Trl-Yucca-Valley-CA-92284/17506833_zpid/","fin":compute(289900,0,1852.38,86970.0,1092)},
     {"address":"58860 Ocotillo Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":885000,"beds":3,"baths":2,"sqft":1478,"dom":25,"img_src":zillow_img("fdf02db8430adb0dea65ceb0d6fd656c"),"zillow_link":"https://www.zillow.com/homedetails/58860-Ocotillo-Dr-Yucca-Valley-CA-92284/304026878_zpid/","airbnb_link":"https://www.airbnb.com/rooms/42228923","rev_source":"Airbnb verified","fin":compute(885000,107400,5243.72,265500,1478,has_pool=True,furnished=True)},
     {"address":"6242 Mandarin Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":649000,"beds":3,"baths":2,"sqft":1926,"dom":1,"img_src":zillow_img("208b107883315f6146316d802f894d27"),"zillow_link":"https://www.zillow.com/homedetails/6242-Mandarin-Rd-Yucca-Valley-CA-92284/17496921_zpid/","airbnb_link":"https://www.airbnb.com/rooms/729783192864388881","rev_source":"Airbnb verified","fin":compute(649000,75700,3898.81,194700,1926,has_pool=True,furnished=True)},
     {"address":"7025 Park Blvd, Joshua Tree, CA 92252","region":"Joshua Tree","price":315000,"original_price":340000,"beds":2,"baths":1,"sqft":1000,"dom":1,"img_src":zillow_img("2dda97dcce92f488967e9207f892b2f0"),"zillow_link":"https://www.zillow.com/homedetails/7025-Park-Blvd-Joshua-Tree-CA-92252/17500223_zpid/","fin":compute(315000,0,1995.42,94500.0,1000)},
