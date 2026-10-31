@@ -441,6 +441,67 @@ def apply_comps(tabs):
             f0 = p["fin"]
             p["fin"] = compute(p["price"], avg_rev, f0["piti"], f0["down"], p["sqft"], has_pool=f0["pool"] > 0, hoa=f0.get("hoa",0), util=f0.get("utilities"), clean_pct=f0.get("clean_pct",0.23))
 
+# ---- houses sent over from Zero ---------------------------------------
+#
+# Zero, the mail app at ~/Developer/Mail, writes added.json when Alex
+# presses "Add to STR tracker" on a listing inside an email.
+#
+# IT IS A SEPARATE FILE ON PURPOSE. This script is hand-written and a
+# thousand lines long, and nothing should be rewriting it automatically.
+# A machine appending to a list of Python dicts is one bad regex away
+# from eating the lot.
+#
+# IT SITS HERE, not beside only_tab, for two reasons: every tab has to
+# exist before a house can be checked against all of them, and this runs
+# BEFORE apply_comps so a house from Zero gets the same comp treatment as
+# every other. only_tab is re-sorted afterwards with the same key its own
+# sort uses, or the new house would simply land at the bottom.
+#
+# The figures come from Zero, which works them out exactly as compute()
+# does here: 30% down, the same furnishing, agent and closing costs. The
+# revenue is an ESTIMATE from market data rather than a figure Alex has
+# looked up, so anything arriving this way is worth a second glance.
+import os as _os, json as _json
+_added_file = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "added.json")
+if _os.path.exists(_added_file):
+    try:
+        _rows = _json.load(open(_added_file))
+    except Exception as _e:
+        print("added.json could not be read, ignoring it:", _e)
+        _rows = []
+    # A house already on any tab is not added again, whichever tab it is
+    # on, so pressing the button twice is harmless.
+    _known = {p["address"].strip().lower()
+              for _t in (only_tab, laquinta_tab, duplex_tab, bigbear_tab,
+                         sold_tab, adu_tab, competition_tab, money_tab)
+              for p in _t}
+    _new = 0
+    for _a in _rows:
+        _addr = (_a.get("address") or "").strip()
+        if not _addr or _addr.lower() in _known:
+            continue
+        _known.add(_addr.lower())
+        _price = _a.get("price") or 0
+        _region = _a.get("region") or ""
+        if not _region and "," in _addr:
+            _region = _addr.split(",")[1].strip()
+        only_tab.append({
+            "address": _addr,
+            "region": _region,
+            "price": _price,
+            "beds": _a.get("beds"),
+            "baths": _a.get("baths"),
+            "sqft": _a.get("sqft"),
+            "zillow_link": _a.get("zillow_link") or "",
+            "img_src": _a.get("img_src") or "",
+            "fin": compute(_price, _a.get("annual_rev") or 0,
+                           _a.get("piti") or 0, _price * 0.30,
+                           _a.get("sqft") or 0),
+        })
+        _new += 1
+    only_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
+    print(f"added.json: {len(_rows)} listed, {_new} new, only_tab now {len(only_tab)}")
+
 apply_comps([only_tab, laquinta_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
 
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
@@ -971,7 +1032,7 @@ try:
     sp.run(['git','-C',repo,'config','user.email','alexcomery@gmail.com'],check=True,capture_output=True)
     sp.run(['git','-C',repo,'config','user.name','Alex Comery'],check=True,capture_output=True)
     sp.run(['git','-C',repo,'remote','set-url','origin',f'https://YukonCamino:{token}@github.com/YukonCamino/str-analyzer.git'],check=True,capture_output=True)
-    sp.run(['git','-C',repo,'add','index.html','gen_html3.py'],check=True,capture_output=True)
+    sp.run(['git','-C',repo,'add','index.html','gen_html3.py','added.json'],check=True,capture_output=True)
     r = sp.run(['git','-C',repo,'commit','-m',f'Update STR Analyzer - {datetime.date.today()}'],capture_output=True,text=True)
     if 'nothing to commit' in r.stdout+r.stderr:
         print("No changes to push.")

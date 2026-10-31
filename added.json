@@ -1,0 +1,15 @@
+[
+  {
+    "address": "124 Wabash Ln, Sugarloaf, CA 92386",
+    "region": "Sugarloaf",
+    "price": 249999,
+    "beds": 2,
+    "baths": 1,
+    "sqft": 760,
+    "annual_rev": 42000,
+    "piti": 1588.42,
+    "zillow_link": "https://www.zillow.com/homedetails/17622658_zpid/",
+    "added": "2026-10-31",
+    "from": "zero"
+  }
+]
