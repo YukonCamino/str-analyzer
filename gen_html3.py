@@ -24,6 +24,7 @@ def zillow_url(addr):
     return f"https://www.zillow.com/homes/{a}_rb/"
 
 LATLNG = {
+    "219 Pine Canyon Dr, Frazier Park, CA 93225": (34.818707, -118.95014),
     "2073 Deer Trl, Yucca Valley, CA 92284": (34.215427, -116.44509),
     "1335 Fortuna Ave, Landers, CA 92285": (34.274045, -116.426363),
     "56367 Scandia Ln, Yucca Valley, CA 92284": (34.195217, -116.432860),
@@ -311,6 +312,10 @@ laquinta_tab = [
     {"address":"1111 E Palm Canyon Dr #104, Palm Springs, CA 92264","region":"Palm Springs","price":300000,"original_price":315000,"beds":1,"baths":1,"sqft":525,"img_src":zillow_img("9bbdffe576f0deccf9d13cc5b425c219"),"zillow_link":"https://www.zillow.com/homedetails/1111-E-Palm-Canyon-Dr-104-Palm-Springs-CA-92264/89235759_zpid/","fin":compute(300000,0,1909.94,90000.0,525,hoa=799,util=0)},
 ]
 
+frazier_tab = [
+    {"address":"219 Pine Canyon Dr, Frazier Park, CA 93225","region":"Frazier Park","price":228888,"beds":2,"baths":1,"sqft":672,"dom":65,"img_src":zillow_img("bf427350a920a2c9841f3b19d615755e"),"zillow_link":"https://www.zillow.com/homedetails/219-Pine-Canyon-Dr-Frazier-Park-CA-93225/18972908_zpid/","fin":compute(228888,13600,1504.68,68666.4,672)},
+]
+
 duplex_tab = [
     {"address":"4537 Anita Ave, Yucca Valley, CA 92284","region":"Morongo","price":510000,"original_price":585000,"beds":6,"baths":3,"sqft":2965,"img_src":zillow_img("abbeb38ee830ad6682c5095ca7fdeb68"),"fin":compute(510000,53500,3106.68,153000.0,2965)},
     {"address":"56367 Scandia Ln, Yucca Valley, CA 92284","region":"Morongo","price":510000,"beds":1,"baths":2,"sqft":994,"dom":763,"img_src":b64("5"),"fin":compute(510000,0,3106.13,153000,994)},
@@ -364,6 +369,9 @@ money_tab = [
 
 # ---- Comps: per-property Airbnb comps. Averages drive the property's revenue assumption. ----
 COMPS = {
+    "219 Pine Canyon Dr, Frazier Park, CA 93225": [
+        {"name":"Black Magic A-Frame","url":"https://www.airbnb.com/rooms/1225308994456946435","annual_rev":13600,"adr":144,"occ":23.3},
+    ],
     "63300 Tilford Way, Joshua Tree, CA 92252": [
         {"name":"Romantic Cabin, Sweeping Views, Spa · Stone Hill","url":"https://www.airbnb.com/rooms/1050251825957778903","annual_rev":117900,"adr":360,"occ":83.8},
         {"name":"Casa Lenta · Romantic Retreat w/ Pool, Spa, Views","url":"https://www.airbnb.com/rooms/583294576342371719","annual_rev":99100,"adr":338,"occ":69.9},
@@ -472,7 +480,7 @@ if _os.path.exists(_added_file):
     # A house already on any tab is not added again, whichever tab it is
     # on, so pressing the button twice is harmless.
     _known = {p["address"].strip().lower()
-              for _t in (only_tab, laquinta_tab, duplex_tab, bigbear_tab,
+              for _t in (only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab,
                          sold_tab, adu_tab, competition_tab, money_tab)
               for p in _t}
     _new = 0
@@ -502,14 +510,14 @@ if _os.path.exists(_added_file):
     only_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
     print(f"added.json: {len(_rows)} listed, {_new} new, only_tab now {len(only_tab)}")
 
-apply_comps([only_tab, laquinta_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
+apply_comps([only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
 
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 adu_tab.extend(duplex_tab)
 
 # Favorites seeds live on their natural region tab; hearts move them at runtime
 for _p in only_tab:
-    _target = bigbear_tab if ("Sugarloaf" in _p["address"] or "Big Bear" in _p["address"] or _p.get("region")=="Big Bear") else money_tab
+    _target = frazier_tab if "Frazier Park" in _p["address"] else bigbear_tab if ("Sugarloaf" in _p["address"] or "Big Bear" in _p["address"] or _p.get("region")=="Big Bear") else money_tab
     if not any(q["address"] == _p["address"] for q in _target):
         _target.append(_p)
 
@@ -571,14 +579,14 @@ def retire_sold(tabs):
                 sold_tab.append(dict(p, sold=True))
 
 SOLD_ADDRS |= OFFMARKET_ADDRS | PENDING_ADDRS
-retire_sold([only_tab, laquinta_tab, duplex_tab, bigbear_tab, adu_tab, money_tab, competition_tab])
+retire_sold([only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab, adu_tab, money_tab, competition_tab])
 # Godwin house-hack is a second view of the same sold home; keep one card in Sold.
 sold_tab[:] = [p for p in sold_tab if p["address"] != "5188 Godwin Rd (house hack), Twentynine Palms, CA 92277"]
 
 FAV_DEFAULT_ADDRS = [p["address"] for p in only_tab]
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 
-for _t in (laquinta_tab, bigbear_tab, adu_tab, sold_tab):
+for _t in (laquinta_tab, frazier_tab, bigbear_tab, adu_tab, sold_tab):
     _t.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 
 comp_tracker = [
@@ -606,6 +614,7 @@ def collect(props, source_label):
 
 collect(laquinta_tab, "🌴 Low Desert")
 collect(bigbear_tab, "🏔️ Big Bear")
+collect(frazier_tab, "🌲 Frazier Park")
 collect(adu_tab, "🏠 ADU")
 collect(money_tab, "🌵 Desert")
 # sold_tab intentionally excluded from Top 5
@@ -942,6 +951,7 @@ tabs_def = [
     ("only",    "❤️ Favorites",   [],       False, False),
     ("money",   "🌵 Desert",      money_tab,      False, False),
     ("bigbear", "🏔️ Big Bear",   bigbear_tab,    False, False),
+    ("frazier", "🌲 Frazier Park", frazier_tab,   False, False),
     ("adu",     "🏠 ADU",         adu_tab,        False, False),
     ("laquinta","🌴 Low Desert",   laquinta_tab,   False, False),
     ("sold",    "🔴 Sold",        sold_tab,       False, False),
