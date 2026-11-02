@@ -24,6 +24,7 @@ def zillow_url(addr):
     return f"https://www.zillow.com/homes/{a}_rb/"
 
 LATLNG = {
+    "940 Hemming Way, Frazier Park, CA 93225": (34.826216, -118.940309),
     "1716 Zion Way, Pine Mountain Club, CA 93222": (34.83975, -119.163864),
     "4137 Grant Trl, Frazier Park, CA 93225": (34.820995, -118.95505),
     "219 Pine Canyon Dr, Frazier Park, CA 93225": (34.818707, -118.95014),
@@ -315,6 +316,7 @@ laquinta_tab = [
 ]
 
 frazier_tab = [
+    {"address":"940 Hemming Way, Frazier Park, CA 93225","region":"Frazier Park","price":265000,"beds":3,"baths":2,"sqft":1066,"dom":129,"img_src":"https://images-listings.coldwellbanker.com/SANDICOR/SR/26/13/92/72/_P/SR26139272_P00.webp","zillow_link":"https://www.coldwellbanker.com/ca/frazier-park/940-hemming-way/lid-P00800000HD7f7PuWcighW76VrVJrE9C31QtUKgY","fin":compute(265000,0,1710.48,79500.0,1066)},
     {"address":"1716 Zion Way, Pine Mountain Club, CA 93222","region":"Pine Mountain Club","price":246000,"original_price":258000,"beds":3,"baths":2,"sqft":1100,"dom":124,"img_src":zillow_img("78a370ecdbcb8649ebf375e420754993"),"zillow_link":"https://www.zillow.com/homedetails/1716-Zion-Way-Pine-Mountain-Club-CA-93222/18979032_zpid/","fin":compute(246000,0,1602.2,73800.0,1100,hoa=150)},
     {"address":"4137 Grant Trl, Frazier Park, CA 93225","region":"Frazier Park","price":249000,"beds":2,"baths":1,"sqft":676,"dom":26,"img_src":zillow_img("722c40a0d789a1a61eb65f5dba72c4e9"),"zillow_link":"https://www.zillow.com/homedetails/4137-Grant-Trl-Frazier-Park-CA-93225/54774974_zpid/","fin":compute(249000,13600,1619.3,74700.0,676)},
     {"address":"219 Pine Canyon Dr, Frazier Park, CA 93225","region":"Frazier Park","price":228888,"beds":2,"baths":1,"sqft":672,"dom":65,"img_src":zillow_img("bf427350a920a2c9841f3b19d615755e"),"zillow_link":"https://www.zillow.com/homedetails/219-Pine-Canyon-Dr-Frazier-Park-CA-93225/18972908_zpid/","fin":compute(228888,13600,1504.68,68666.4,672)},
