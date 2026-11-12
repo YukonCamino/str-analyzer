@@ -927,8 +927,8 @@ function refreshFavs(){
   var cloned={};
   document.querySelectorAll('.tab-content:not(#tab-only):not(#tab-top5) .property-card').forEach(function(c){
     var addr=c.dataset.addr;
+    c.style.display='';
     if(favs.indexOf(addr)>=0){
-      c.style.display='none';
       if(!cloned[addr]){
         var clone=c.cloneNode(true);
         clone.classList.add('fav-clone');
@@ -936,8 +936,6 @@ function refreshFavs(){
         grid.appendChild(clone);
         cloned[addr]=true;
       }
-    } else {
-      c.style.display='';
     }
   });
   document.querySelectorAll('.property-card').forEach(function(c){
