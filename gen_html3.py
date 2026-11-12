@@ -1,4 +1,4 @@
-import json, subprocess, datetime
+import json, subprocess, datetime, os, urllib.parse, urllib.request
 
 CDN = "https://photos.zillowstatic.com/fp/"
 PHOTOS_BASE = "photos/"
@@ -23,7 +23,35 @@ def zillow_url(addr):
     a = addr.replace(',','').replace(' ','-').replace('--','-')
     return f"https://www.zillow.com/homes/{a}_rb/"
 
+# FIND THIS HOUSE ON AIRROI.
+#
+# The same thing the button in Zero does, ported here on 12 November 2026
+# at Alex's request. AirROI's Atlas takes a polygon of points in its query
+# string, so a small box drawn around the house opens the map on this
+# street rather than on the whole town, which is the slow part of looking
+# a property up.
+#
+# 0.0035 degrees is about 390 metres, so the box is roughly a quarter mile
+# across. Same figure as Zero uses, deliberately: the two should agree.
+AIRROI_BOX = 0.0035
+
+def airroi_url(lat, lon):
+    d = AIRROI_BOX
+    pts = [[lat + d, lon - d], [lat + d, lon + d],
+           [lat - d, lon + d], [lat - d, lon - d]]
+    pts = [[round(a, 6), round(b, 6)] for a, b in pts]
+    # Compact JSON, then URL-encoded, which is the shape the Atlas expects.
+    # &amp; rather than a bare &, because this goes straight into an href.
+    # A bare & in HTML is the start of an entity; "&points" happens to be
+    # harmless today only because no entity is named that.
+    return ("https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points="
+            + urllib.parse.quote(json.dumps(pts, separators=(",", ":"))))
+
 LATLNG = {
+    "940 Hemming Way, Frazier Park, CA 93225": (34.826216, -118.940309),
+    "1716 Zion Way, Pine Mountain Club, CA 93222": (34.83975, -119.163864),
+    "4137 Grant Trl, Frazier Park, CA 93225": (34.820995, -118.95505),
+    "219 Pine Canyon Dr, Frazier Park, CA 93225": (34.818707, -118.95014),
     "2073 Deer Trl, Yucca Valley, CA 92284": (34.215427, -116.44509),
     "1335 Fortuna Ave, Landers, CA 92285": (34.274045, -116.426363),
     "56367 Scandia Ln, Yucca Valley, CA 92284": (34.195217, -116.432860),
@@ -53,6 +81,7 @@ LATLNG = {
     "2088 Acoma Trl, Landers, CA 92285": (34.287326, -116.439652),
     "60654 Mitch Ln, Landers, CA 92285": (34.280575, -116.338752),
     "6242 Mandarin Rd, Yucca Valley, CA 92284": (34.140062, -116.405757),
+    "6429 Palo Alto Ave, Yucca Valley, CA 92284": (34.138284, -116.406534),
     "58860 Ocotillo Dr, Yucca Valley, CA 92284": (34.156848, -116.379172),
     "8729 Rockhaven Rd, Joshua Tree, CA 92252": (34.095479, -116.268885),
     "72767 Mesquite Dunes Rd, Twentynine Palms, CA 92277": (34.210884, -116.073092),
@@ -65,6 +94,84 @@ LATLNG = {
     "5188 Godwin Rd, Twentynine Palms, CA 92277": (34.157590, -115.933533),
     "5188 Godwin Rd (house hack), Twentynine Palms, CA 92277": (34.158390, -115.933533),
 }
+
+# COORDINATES FOR THE ADDRESSES THE TABLE ABOVE DOES NOT NAME.
+#
+# LATLNG is hand-written and covers 45 of the properties. The rest had no
+# AirROI button at all, so they are looked up once, at build time, and
+# kept in latlng.json beside this file. After the first run it is a file
+# read and nothing else.
+#
+# The US Census geocoder: free, no key, no account, and it answers with
+# the address it actually matched, so a wrong match is visible rather
+# than silent. The same source Zero uses, so the two agree.
+#
+# IT NEVER STOPS A BUILD. No network, a timeout, a bad answer: the house
+# simply has no button, exactly as before this existed.
+LATLNG_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "latlng.json")
+
+def _load_cache():
+    try:
+        with open(LATLNG_CACHE, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+# SOME "ADDRESSES" ARE ALREADY COORDINATES. Two of the unlisted desert
+# parcels are written as "GPS: 34.30113, -116.42657 (unlisted)", because
+# they have no street address to give. Sending that to a geocoder is
+# pointless; the numbers are right there in the string.
+_GPS_RE = __import__("re").compile(
+    r"GPS:\s*(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)", __import__("re").I)
+
+def _gps_in(addr):
+    m = _GPS_RE.search(addr or "")
+    if not m:
+        return None
+    return {"lat": float(m.group(1)), "lon": float(m.group(2)), "matched": "GPS in the address"}
+
+def _geocode(addr):
+    url = ("https://geocoding.geo.census.gov/geocoder/locations/onelineaddress"
+           "?benchmark=Public_AR_Current&format=json&address="
+           + urllib.parse.quote(addr))
+    try:
+        with urllib.request.urlopen(url, timeout=15) as r:
+            j = json.loads(r.read().decode("utf-8"))
+        m = (j.get("result", {}).get("addressMatches") or [None])[0]
+        if not m:
+            return None
+        c = m["coordinates"]
+        return {"lat": c["y"], "lon": c["x"], "matched": m.get("matchedAddress", "")}
+    except Exception as e:
+        print(f"  geocode failed for {addr}: {e}")
+        return None
+
+def fill_latlng(addresses):
+    """Make sure every address has coordinates, looking up only the new ones."""
+    cache = _load_cache()
+    fresh = 0
+    for a in addresses:
+        if a in LATLNG or a in cache:
+            continue
+        hit = _gps_in(a) or _geocode(a)
+        # A miss is remembered too, as null, or every build asks again
+        # about the same unfindable address.
+        cache[a] = hit
+        fresh += 1
+        if hit:
+            print(f"  placed {a} -> {hit['matched']}")
+        else:
+            print(f"  could not place {a}")
+    if fresh:
+        try:
+            with open(LATLNG_CACHE, "w", encoding="utf-8") as f:
+                json.dump(cache, f, indent=1, sort_keys=True)
+        except Exception as e:
+            print(f"  could not write {LATLNG_CACHE}: {e}")
+    for a, hit in cache.items():
+        if hit and a not in LATLNG:
+            LATLNG[a] = (hit["lat"], hit["lon"])
+    return fresh
 
 def fmt_money(v):
     if v is None: return "N/A"
@@ -214,6 +321,15 @@ def card(p, show_source=None):
     links_html = f'<a href="{zillow_link}" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a>'
     if airbnb_link and airbnb_link.startswith("http"):
         links_html += f'<a href="{airbnb_link}" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a>'
+    # FIND THIS HOUSE ON AIRROI, the same button Zero carries. It opens the
+    # Atlas on a quarter-mile box around the house rather than on the town.
+    # No button at all when the address could not be placed: a link to the
+    # wrong part of the map is worse than no link.
+    _ll_btn = LATLNG.get(p["address"])
+    if _ll_btn:
+        links_html += (f'<a href="{airroi_url(_ll_btn[0], _ll_btn[1])}" target="_blank" '
+                       f'class="listing-btn airroi-btn" '
+                       f'title="Open AirROI Atlas on this street">🔭 AirROI</a>')
 
     comps_html = ""
     if p.get("comps"):
@@ -311,6 +427,13 @@ laquinta_tab = [
     {"address":"1111 E Palm Canyon Dr #104, Palm Springs, CA 92264","region":"Palm Springs","price":300000,"original_price":315000,"beds":1,"baths":1,"sqft":525,"img_src":zillow_img("9bbdffe576f0deccf9d13cc5b425c219"),"zillow_link":"https://www.zillow.com/homedetails/1111-E-Palm-Canyon-Dr-104-Palm-Springs-CA-92264/89235759_zpid/","fin":compute(300000,0,1909.94,90000.0,525,hoa=799,util=0)},
 ]
 
+frazier_tab = [
+    {"address":"940 Hemming Way, Frazier Park, CA 93225","region":"Frazier Park","price":265000,"beds":3,"baths":2,"sqft":1066,"dom":129,"img_src":"https://images-listings.coldwellbanker.com/SANDICOR/SR/26/13/92/72/_P/SR26139272_P00.webp","zillow_link":"https://www.coldwellbanker.com/ca/frazier-park/940-hemming-way/lid-P00800000HD7f7PuWcighW76VrVJrE9C31QtUKgY","fin":compute(265000,0,1710.48,79500.0,1066)},
+    {"address":"1716 Zion Way, Pine Mountain Club, CA 93222","region":"Pine Mountain Club","price":246000,"original_price":258000,"beds":3,"baths":2,"sqft":1100,"dom":124,"img_src":zillow_img("78a370ecdbcb8649ebf375e420754993"),"zillow_link":"https://www.zillow.com/homedetails/1716-Zion-Way-Pine-Mountain-Club-CA-93222/18979032_zpid/","fin":compute(246000,0,1602.2,73800.0,1100,hoa=150)},
+    {"address":"4137 Grant Trl, Frazier Park, CA 93225","region":"Frazier Park","price":249000,"beds":2,"baths":1,"sqft":676,"dom":26,"img_src":zillow_img("722c40a0d789a1a61eb65f5dba72c4e9"),"zillow_link":"https://www.zillow.com/homedetails/4137-Grant-Trl-Frazier-Park-CA-93225/54774974_zpid/","fin":compute(249000,13600,1619.3,74700.0,676)},
+    {"address":"219 Pine Canyon Dr, Frazier Park, CA 93225","region":"Frazier Park","price":228888,"beds":2,"baths":1,"sqft":672,"dom":65,"img_src":zillow_img("bf427350a920a2c9841f3b19d615755e"),"zillow_link":"https://www.zillow.com/homedetails/219-Pine-Canyon-Dr-Frazier-Park-CA-93225/18972908_zpid/","fin":compute(228888,13600,1504.68,68666.4,672)},
+]
+
 duplex_tab = [
     {"address":"4537 Anita Ave, Yucca Valley, CA 92284","region":"Morongo","price":510000,"original_price":585000,"beds":6,"baths":3,"sqft":2965,"img_src":zillow_img("abbeb38ee830ad6682c5095ca7fdeb68"),"fin":compute(510000,53500,3106.68,153000.0,2965)},
     {"address":"56367 Scandia Ln, Yucca Valley, CA 92284","region":"Morongo","price":510000,"beds":1,"baths":2,"sqft":994,"dom":763,"img_src":b64("5"),"fin":compute(510000,0,3106.13,153000,994)},
@@ -347,6 +470,7 @@ money_tab = [
     {"address":"2073 Deer Trl, Yucca Valley, CA 92284","region":"Yucca Valley","price":289900,"beds":1,"baths":1,"sqft":1092,"dom":2,"img_src":zillow_img("9c682a6e4f59f4733bd8179358f7abd8"),"zillow_link":"https://www.zillow.com/homedetails/2073-Deer-Trl-Yucca-Valley-CA-92284/17506833_zpid/","fin":compute(289900,0,1852.38,86970.0,1092)},
     {"address":"58860 Ocotillo Dr, Yucca Valley, CA 92284","region":"Yucca Valley","price":885000,"beds":3,"baths":2,"sqft":1478,"dom":25,"img_src":zillow_img("fdf02db8430adb0dea65ceb0d6fd656c"),"zillow_link":"https://www.zillow.com/homedetails/58860-Ocotillo-Dr-Yucca-Valley-CA-92284/304026878_zpid/","airbnb_link":"https://www.airbnb.com/rooms/42228923","rev_source":"Airbnb verified","fin":compute(885000,107400,5243.72,265500,1478,has_pool=True,furnished=True)},
     {"address":"6242 Mandarin Rd, Yucca Valley, CA 92284","region":"Yucca Valley","price":649000,"beds":3,"baths":2,"sqft":1926,"dom":1,"img_src":zillow_img("208b107883315f6146316d802f894d27"),"zillow_link":"https://www.zillow.com/homedetails/6242-Mandarin-Rd-Yucca-Valley-CA-92284/17496921_zpid/","airbnb_link":"https://www.airbnb.com/rooms/729783192864388881","rev_source":"Airbnb verified","fin":compute(649000,75700,3898.81,194700,1926,has_pool=True,furnished=True)},
+    {"address":"6429 Palo Alto Ave, Yucca Valley, CA 92284","region":"Yucca Valley","price":839000,"beds":3,"baths":4,"sqft":2172,"img_src":"photos/6429-palo-alto-ave.jpg","zillow_link":"https://www.zillow.com/homedetails/6429-Palo-Alto-Ave-Yucca-Valley-CA-92284/333258126_zpid/","airbnb_link":"https://www.airbnb.com/rooms/1506270566201007040","rev_source":"Airbnb verified","fin":compute(839000,100000,4981.58,251700,2172,has_pool=True,furnished=True)},
     {"address":"7025 Park Blvd, Joshua Tree, CA 92252","region":"Joshua Tree","price":315000,"original_price":340000,"beds":2,"baths":1,"sqft":1000,"dom":1,"img_src":zillow_img("2dda97dcce92f488967e9207f892b2f0"),"zillow_link":"https://www.zillow.com/homedetails/7025-Park-Blvd-Joshua-Tree-CA-92252/17500223_zpid/","fin":compute(315000,0,1995.42,94500.0,1000)},
     {"address":"60654 Mitch Ln, Landers, CA 92285","region":"Landers","price":355000,"original_price":385000,"beds":1,"baths":1,"sqft":448,"dom":72,"img_src":zillow_img("085bad920e162f8a6d0146a5585f2efa"),"zillow_link":"https://www.zillow.com/homedetails/60654-Mitch-Ln-Landers-CA-92285/299170864_zpid/","airbnb_link":"https://www.airbnb.com/rooms/647212501055315908","rev_source":"Airbnb verified","fin":compute(355000,71300,2223.37,106500.0,448)},
     {"address":"69450 Amboy Rd, Twentynine Palms, CA 92277","region":"29 Palms","price":599000,"beds":4,"baths":2,"sqft":1303,"img_src":zillow_img("61b95dfdcdc15b9a01b143800fa70b97"),"airbnb_link":"https://www.airbnb.com/rooms/769512618474065409","fin":compute(599000,80232,3613.61,179700,1303)},
@@ -364,6 +488,12 @@ money_tab = [
 
 # ---- Comps: per-property Airbnb comps. Averages drive the property's revenue assumption. ----
 COMPS = {
+    "4137 Grant Trl, Frazier Park, CA 93225": [
+        {"name":"Black Magic A-Frame","url":"https://www.airbnb.com/rooms/1225308994456946435","annual_rev":13600,"adr":144,"occ":23.3},
+    ],
+    "219 Pine Canyon Dr, Frazier Park, CA 93225": [
+        {"name":"Black Magic A-Frame","url":"https://www.airbnb.com/rooms/1225308994456946435","annual_rev":13600,"adr":144,"occ":23.3},
+    ],
     "63300 Tilford Way, Joshua Tree, CA 92252": [
         {"name":"Romantic Cabin, Sweeping Views, Spa · Stone Hill","url":"https://www.airbnb.com/rooms/1050251825957778903","annual_rev":117900,"adr":360,"occ":83.8},
         {"name":"Casa Lenta · Romantic Retreat w/ Pool, Spa, Views","url":"https://www.airbnb.com/rooms/583294576342371719","annual_rev":99100,"adr":338,"occ":69.9},
@@ -472,7 +602,7 @@ if _os.path.exists(_added_file):
     # A house already on any tab is not added again, whichever tab it is
     # on, so pressing the button twice is harmless.
     _known = {p["address"].strip().lower()
-              for _t in (only_tab, laquinta_tab, duplex_tab, bigbear_tab,
+              for _t in (only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab,
                          sold_tab, adu_tab, competition_tab, money_tab)
               for p in _t}
     _new = 0
@@ -502,14 +632,14 @@ if _os.path.exists(_added_file):
     only_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
     print(f"added.json: {len(_rows)} listed, {_new} new, only_tab now {len(only_tab)}")
 
-apply_comps([only_tab, laquinta_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
+apply_comps([only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
 
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 adu_tab.extend(duplex_tab)
 
 # Favorites seeds live on their natural region tab; hearts move them at runtime
 for _p in only_tab:
-    _target = bigbear_tab if ("Sugarloaf" in _p["address"] or "Big Bear" in _p["address"] or _p.get("region")=="Big Bear") else money_tab
+    _target = frazier_tab if "Frazier Park" in _p["address"] else bigbear_tab if ("Sugarloaf" in _p["address"] or "Big Bear" in _p["address"] or _p.get("region")=="Big Bear") else money_tab
     if not any(q["address"] == _p["address"] for q in _target):
         _target.append(_p)
 
@@ -571,14 +701,14 @@ def retire_sold(tabs):
                 sold_tab.append(dict(p, sold=True))
 
 SOLD_ADDRS |= OFFMARKET_ADDRS | PENDING_ADDRS
-retire_sold([only_tab, laquinta_tab, duplex_tab, bigbear_tab, adu_tab, money_tab, competition_tab])
+retire_sold([only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab, adu_tab, money_tab, competition_tab])
 # Godwin house-hack is a second view of the same sold home; keep one card in Sold.
 sold_tab[:] = [p for p in sold_tab if p["address"] != "5188 Godwin Rd (house hack), Twentynine Palms, CA 92277"]
 
 FAV_DEFAULT_ADDRS = [p["address"] for p in only_tab]
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 
-for _t in (laquinta_tab, bigbear_tab, adu_tab, sold_tab):
+for _t in (laquinta_tab, frazier_tab, bigbear_tab, adu_tab, sold_tab):
     _t.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 
 comp_tracker = [
@@ -606,6 +736,7 @@ def collect(props, source_label):
 
 collect(laquinta_tab, "🌴 Low Desert")
 collect(bigbear_tab, "🏔️ Big Bear")
+collect(frazier_tab, "🌲 Frazier Park")
 collect(adu_tab, "🏠 ADU")
 collect(money_tab, "🌵 Desert")
 # sold_tab intentionally excluded from Top 5
@@ -635,6 +766,10 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .tab-content { padding:20px 16px 48px;max-width:1400px;margin:0 auto; }
 .tab-header { display:flex;align-items:baseline;gap:10px;margin-bottom:18px; }
 .tab-header h2 { font-family:'Anton',sans-serif;font-size:1.2rem;font-weight:400;text-transform:uppercase;letter-spacing:0.4px; }
+.tab-header { flex-wrap:wrap; }
+.sort-wrap { margin-left:auto;display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--text2); }
+.sort-select { font:inherit;font-size:0.78rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:5px 8px;cursor:pointer; }
+.sort-dir { font:inherit;font-size:0.8rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px 9px;cursor:pointer;line-height:1.2; }
 .prop-count { font-size:0.72rem;color:var(--text2);background:var(--surface2);padding:2px 8px;border-radius:99px; }
 .cards-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px; }
 #tab-top5 .cards-grid { grid-template-columns:repeat(5,1fr);gap:14px; }
@@ -719,6 +854,9 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .listing-btn:hover { opacity:0.88;transform:translateY(-1px); }
 .zillow-btn { background:#1a5f8a;color:#fff; }
 .airbnb-btn { background:#7c1f3a;color:#fff; }
+/* AirROI's own teal, so the three buttons are told apart by colour
+   as well as by their words. */
+.airroi-btn { background:#0f6b63;color:#fff; }
 .comp-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:15px; }
 .comp-card { background:var(--surface);border-radius:10px;padding:14px;border:1px solid var(--border);transition:transform 0.15s; }
 .comp-card:hover { transform:translateY(-2px); }
@@ -903,8 +1041,8 @@ function refreshFavs(){
   var cloned={};
   document.querySelectorAll('.tab-content:not(#tab-only):not(#tab-top5) .property-card').forEach(function(c){
     var addr=c.dataset.addr;
+    c.style.display='';
     if(favs.indexOf(addr)>=0){
-      c.style.display='none';
       if(!cloned[addr]){
         var clone=c.cloneNode(true);
         clone.classList.add('fav-clone');
@@ -912,8 +1050,6 @@ function refreshFavs(){
         grid.appendChild(clone);
         cloned[addr]=true;
       }
-    } else {
-      c.style.display='';
     }
   });
   document.querySelectorAll('.property-card').forEach(function(c){
@@ -930,6 +1066,52 @@ function refreshFavs(){
   if(currentTab && currentTab!=='only') updateTabMap(currentTab);
   scheduleEqualize();
 }
+// Per-tab sort. Values are computed live, so price cuts and revenue/remodel edits count.
+var sortState={};
+var SORT_DEFAULT_DIR={coc:-1,cf:-1,rev:-1,price:1,cash:1};
+function sortVals(card){
+  var p0=parseFloat(card.dataset.price)||0;
+  var cur=parseFloat(card.dataset.curPrice); if(isNaN(cur)) cur=p0;
+  var piti=(parseFloat(card.dataset.piti)||0)+0.0056996*(cur-p0);
+  var startup=(parseFloat(card.dataset.baseStartup)||0)+0.3575*(cur-p0);
+  var remodelEl=card.querySelector('.remodel-input');
+  startup+=remodelEl?(parseFloat((remodelEl.value||'0').replace(/[^0-9.]/g,''))||0):0;
+  var poolCheck=card.querySelector('.pool-check');
+  var pool=poolCheck?(poolCheck.checked?250:0):(parseFloat(card.dataset.pool)||0);
+  var util=parseFloat(card.dataset.util); if(isNaN(util)) util=391;
+  var hoa=parseFloat(card.dataset.hoa)||0;
+  var cleanPct=card.dataset.clean!==undefined?parseFloat(card.dataset.clean):0.23;
+  var rev=parseFloat(card.dataset.annualRev)||0;
+  var revEl=card.querySelector('.rev-input');
+  if(revEl){ var v=parseFloat((revEl.value||'').replace(/[^0-9.]/g,'')); if(v) rev=v; }
+  var out={price:cur,cash:startup,rev:rev||null,cf:null,coc:null};
+  if(rev>0){ var mo=rev/12; var cf=mo-piti-util-hoa-mo*cleanPct-pool; out.cf=cf; out.coc=startup>0?cf*12/startup*100:0; }
+  return out;
+}
+function applySort(tid){
+  var st=sortState[tid]; if(!st) return;
+  var grid=document.querySelector('#tab-'+tid+' .cards-grid'); if(!grid) return;
+  var cards=Array.prototype.slice.call(grid.querySelectorAll(':scope > .property-card'));
+  var keyed=cards.map(function(c,i){ return {c:c,v:sortVals(c)[st.key],i:i}; });
+  keyed.sort(function(a,b){
+    var an=(a.v==null||isNaN(a.v)), bn=(b.v==null||isNaN(b.v));
+    if(an&&bn) return a.i-b.i; if(an) return 1; if(bn) return -1;
+    return (a.v-b.v)*st.dir || a.i-b.i;
+  });
+  keyed.forEach(function(k){ grid.appendChild(k.c); });
+  var tab=document.getElementById('tab-'+tid);
+  var btn=tab&&tab.querySelector('.sort-dir'); if(btn) btn.innerHTML=st.dir<0?'&darr;':'&uarr;';
+  if(tid===currentTab){ updateTabMap(tid); scheduleEqualize(); }
+}
+function setSort(tid,key){ sortState[tid]={key:key,dir:SORT_DEFAULT_DIR[key]||-1}; applySort(tid); }
+function flipSort(tid,btn){
+  var tab=document.getElementById('tab-'+tid);
+  var sel=tab&&tab.querySelector('.sort-select');
+  var st=sortState[tid]||{key:sel?sel.value:'coc',dir:-1};
+  st.dir=-st.dir; sortState[tid]=st; applySort(tid);
+}
+var _refreshFavs0=refreshFavs;
+refreshFavs=function(){ _refreshFavs0(); if(sortState.only) applySort('only'); };
 loadPriceCuts();
 refreshFavs();
 showTab('top5');
@@ -942,6 +1124,7 @@ tabs_def = [
     ("only",    "❤️ Favorites",   [],       False, False),
     ("money",   "🌵 Desert",      money_tab,      False, False),
     ("bigbear", "🏔️ Big Bear",   bigbear_tab,    False, False),
+    ("frazier", "🌲 Frazier Park", frazier_tab,   False, False),
     ("adu",     "🏠 ADU",         adu_tab,        False, False),
     ("laquinta","🌴 Low Desert",   laquinta_tab,   False, False),
     ("sold",    "🔴 Sold",        sold_tab,       False, False),
@@ -960,17 +1143,40 @@ def render_tab(tid, title, props, is_comp, show_sources):
         grid_class = "cards-grid"
     extra = ''
     suffix = f'\n    <div class="tab-map" id="map-{tid}"></div>' if not is_comp else ''
+    sort_ui = '' if is_comp else f'''
+      <label class="sort-wrap">Sort
+        <select class="sort-select" onchange="setSort('{tid}',this.value)">
+          <option value="coc">Cash on cash</option>
+          <option value="cf">Cash flow</option>
+          <option value="rev">Revenue</option>
+          <option value="price">Price</option>
+          <option value="cash">Total cash in</option>
+        </select>
+        <button type="button" class="sort-dir" onclick="flipSort('{tid}',this)" title="Flip sort order">&darr;</button>
+      </label>'''
     if tid == 'top5':
         extra = '<div class="top5-banner">⚡ Best CoC across all tabs — deduplicated, highest-revenue version of each property shown. Adjust revenue or remodel budget on any card to see live CoC updates.</div>\n    '
     return f'''  <div id="tab-{tid}" class="tab-content" style="display:none">
     <div class="tab-header">
       <h2>{title}</h2>
-      <span class="prop-count">{len(props)} properties</span>
+      <span class="prop-count">{len(props)} properties</span>{sort_ui}
     </div>
     {extra}<div class="{grid_class}">
     {cards_html}
     </div>{suffix}
   </div>'''
+
+# Every address on the page gets coordinates before any card is drawn,
+# so the AirROI button appears on all of them and not only on the 45 in
+# the hand-written table. Looked up once and kept in latlng.json.
+_addrs = []
+for _tid, _title, _props, _isc, _ss in tabs_def:
+    for _p in _props:
+        if _p.get("address") and _p["address"] not in _addrs:
+            _addrs.append(_p["address"])
+_fresh = fill_latlng(_addrs)
+print(f"AirROI: {sum(1 for a in _addrs if a in LATLNG)} of {len(_addrs)} placed"
+      + (f", {_fresh} looked up just now" if _fresh else ""))
 
 tabs_html = "\n".join(render_tab(tid,title,props,is_c,ss) for tid,title,props,is_c,ss in tabs_def)
 
@@ -1032,7 +1238,7 @@ try:
     sp.run(['git','-C',repo,'config','user.email','alexcomery@gmail.com'],check=True,capture_output=True)
     sp.run(['git','-C',repo,'config','user.name','Alex Comery'],check=True,capture_output=True)
     sp.run(['git','-C',repo,'remote','set-url','origin',f'https://YukonCamino:{token}@github.com/YukonCamino/str-analyzer.git'],check=True,capture_output=True)
-    sp.run(['git','-C',repo,'add','index.html','gen_html3.py','added.json'],check=True,capture_output=True)
+    sp.run(['git','-C',repo,'add','index.html','gen_html3.py','added.json','latlng.json'],check=True,capture_output=True)
     r = sp.run(['git','-C',repo,'commit','-m',f'Update STR Analyzer - {datetime.date.today()}'],capture_output=True,text=True)
     if 'nothing to commit' in r.stdout+r.stderr:
         print("No changes to push.")

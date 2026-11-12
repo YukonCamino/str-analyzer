@@ -1,0 +1,43 @@
+{
+ "124 Wabash Ln, Sugarloaf, CA 92386": null,
+ "2088 Acoma Trail, Landers, CA 92285": {
+  "lat": 34.287329241904,
+  "lon": -116.439651318951,
+  "matched": "2088 ACOMA TRL, LANDERS, CA, 92285"
+ },
+ "3275 Dusty Mile Rd, Landers, CA 92285": {
+  "lat": 34.30853886881,
+  "lon": -116.448065003354,
+  "matched": "3275 DUSTY MILE RD, LANDERS, CA, 92285"
+ },
+ "3979 Dusty Mile Rd, Landers, CA 92285": {
+  "lat": 34.321281660691,
+  "lon": -116.448062189122,
+  "matched": "3979 DUSTY MILE RD, LANDERS, CA, 92285"
+ },
+ "55125 Gleason Rd, Landers, CA 92285": {
+  "lat": 34.297323961731,
+  "lon": -116.462694593184,
+  "matched": "55125 GLEASON RD, LANDERS, CA, 92285"
+ },
+ "55150 Gleason Rd, Landers, CA 92285": {
+  "lat": 34.297373762262,
+  "lon": -116.460635243414,
+  "matched": "55150 GLEASON RD, LANDERS, CA, 92285"
+ },
+ "55960 Einstein Rd, Landers, CA 92285": {
+  "lat": 34.310718603647,
+  "lon": -116.442744276198,
+  "matched": "55960 EINSTEIN, LANDERS, CA, 92285"
+ },
+ "GPS: 34.30113, -116.42657 (unlisted)": {
+  "lat": 34.30113,
+  "lon": -116.42657,
+  "matched": "GPS in the address"
+ },
+ "GPS: 34.30735, -116.44860 (unlisted)": {
+  "lat": 34.30735,
+  "lon": -116.4486,
+  "matched": "GPS in the address"
+ }
+}
