@@ -655,6 +655,10 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .tab-content { padding:20px 16px 48px;max-width:1400px;margin:0 auto; }
 .tab-header { display:flex;align-items:baseline;gap:10px;margin-bottom:18px; }
 .tab-header h2 { font-family:'Anton',sans-serif;font-size:1.2rem;font-weight:400;text-transform:uppercase;letter-spacing:0.4px; }
+.tab-header { flex-wrap:wrap; }
+.sort-wrap { margin-left:auto;display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--text2); }
+.sort-select { font:inherit;font-size:0.78rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:5px 8px;cursor:pointer; }
+.sort-dir { font:inherit;font-size:0.8rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px 9px;cursor:pointer;line-height:1.2; }
 .prop-count { font-size:0.72rem;color:var(--text2);background:var(--surface2);padding:2px 8px;border-radius:99px; }
 .cards-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px; }
 #tab-top5 .cards-grid { grid-template-columns:repeat(5,1fr);gap:14px; }
@@ -950,6 +954,52 @@ function refreshFavs(){
   if(currentTab && currentTab!=='only') updateTabMap(currentTab);
   scheduleEqualize();
 }
+// Per-tab sort. Values are computed live, so price cuts and revenue/remodel edits count.
+var sortState={};
+var SORT_DEFAULT_DIR={coc:-1,cf:-1,rev:-1,price:1,cash:1};
+function sortVals(card){
+  var p0=parseFloat(card.dataset.price)||0;
+  var cur=parseFloat(card.dataset.curPrice); if(isNaN(cur)) cur=p0;
+  var piti=(parseFloat(card.dataset.piti)||0)+0.0056996*(cur-p0);
+  var startup=(parseFloat(card.dataset.baseStartup)||0)+0.3575*(cur-p0);
+  var remodelEl=card.querySelector('.remodel-input');
+  startup+=remodelEl?(parseFloat((remodelEl.value||'0').replace(/[^0-9.]/g,''))||0):0;
+  var poolCheck=card.querySelector('.pool-check');
+  var pool=poolCheck?(poolCheck.checked?250:0):(parseFloat(card.dataset.pool)||0);
+  var util=parseFloat(card.dataset.util); if(isNaN(util)) util=391;
+  var hoa=parseFloat(card.dataset.hoa)||0;
+  var cleanPct=card.dataset.clean!==undefined?parseFloat(card.dataset.clean):0.23;
+  var rev=parseFloat(card.dataset.annualRev)||0;
+  var revEl=card.querySelector('.rev-input');
+  if(revEl){ var v=parseFloat((revEl.value||'').replace(/[^0-9.]/g,'')); if(v) rev=v; }
+  var out={price:cur,cash:startup,rev:rev||null,cf:null,coc:null};
+  if(rev>0){ var mo=rev/12; var cf=mo-piti-util-hoa-mo*cleanPct-pool; out.cf=cf; out.coc=startup>0?cf*12/startup*100:0; }
+  return out;
+}
+function applySort(tid){
+  var st=sortState[tid]; if(!st) return;
+  var grid=document.querySelector('#tab-'+tid+' .cards-grid'); if(!grid) return;
+  var cards=Array.prototype.slice.call(grid.querySelectorAll(':scope > .property-card'));
+  var keyed=cards.map(function(c,i){ return {c:c,v:sortVals(c)[st.key],i:i}; });
+  keyed.sort(function(a,b){
+    var an=(a.v==null||isNaN(a.v)), bn=(b.v==null||isNaN(b.v));
+    if(an&&bn) return a.i-b.i; if(an) return 1; if(bn) return -1;
+    return (a.v-b.v)*st.dir || a.i-b.i;
+  });
+  keyed.forEach(function(k){ grid.appendChild(k.c); });
+  var tab=document.getElementById('tab-'+tid);
+  var btn=tab&&tab.querySelector('.sort-dir'); if(btn) btn.innerHTML=st.dir<0?'&darr;':'&uarr;';
+  if(tid===currentTab){ updateTabMap(tid); scheduleEqualize(); }
+}
+function setSort(tid,key){ sortState[tid]={key:key,dir:SORT_DEFAULT_DIR[key]||-1}; applySort(tid); }
+function flipSort(tid,btn){
+  var tab=document.getElementById('tab-'+tid);
+  var sel=tab&&tab.querySelector('.sort-select');
+  var st=sortState[tid]||{key:sel?sel.value:'coc',dir:-1};
+  st.dir=-st.dir; sortState[tid]=st; applySort(tid);
+}
+var _refreshFavs0=refreshFavs;
+refreshFavs=function(){ _refreshFavs0(); if(sortState.only) applySort('only'); };
 loadPriceCuts();
 refreshFavs();
 showTab('top5');
@@ -981,12 +1031,23 @@ def render_tab(tid, title, props, is_comp, show_sources):
         grid_class = "cards-grid"
     extra = ''
     suffix = f'\n    <div class="tab-map" id="map-{tid}"></div>' if not is_comp else ''
+    sort_ui = '' if is_comp else f'''
+      <label class="sort-wrap">Sort
+        <select class="sort-select" onchange="setSort('{tid}',this.value)">
+          <option value="coc">Cash on cash</option>
+          <option value="cf">Cash flow</option>
+          <option value="rev">Revenue</option>
+          <option value="price">Price</option>
+          <option value="cash">Total cash in</option>
+        </select>
+        <button type="button" class="sort-dir" onclick="flipSort('{tid}',this)" title="Flip sort order">&darr;</button>
+      </label>'''
     if tid == 'top5':
         extra = '<div class="top5-banner">⚡ Best CoC across all tabs — deduplicated, highest-revenue version of each property shown. Adjust revenue or remodel budget on any card to see live CoC updates.</div>\n    '
     return f'''  <div id="tab-{tid}" class="tab-content" style="display:none">
     <div class="tab-header">
       <h2>{title}</h2>
-      <span class="prop-count">{len(props)} properties</span>
+      <span class="prop-count">{len(props)} properties</span>{sort_ui}
     </div>
     {extra}<div class="{grid_class}">
     {cards_html}
