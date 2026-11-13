@@ -1,0 +1,160 @@
+{
+  "updated": "2026-11-13T04:18:43.136Z",
+  "listings": {
+    "17390266": {
+      "addr": "909 E Big Bear Blvd, Big Bear City, CA 92314",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 180000
+    },
+    "17488368": {
+      "addr": "51818 Cheyenne Trl, Morongo Valley, CA 92256",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 999000
+    },
+    "17496921": {
+      "addr": "6242 Mandarin Rd, Yucca Valley, CA 92284",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 649000
+    },
+    "17499703": {
+      "addr": "6888 Sunnyhill Rd, Joshua Tree, CA 92252",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 569000
+    },
+    "17500223": {
+      "addr": "7025 Park Blvd, Joshua Tree, CA 92252",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 315000
+    },
+    "17506255": {
+      "addr": "5188 Godwin Rd, Twentynine Palms, CA 92277",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 352850
+    },
+    "17506833": {
+      "addr": "2073 Deer Trl, Yucca Valley, CA 92284",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 289900
+    },
+    "17507410": {
+      "addr": "55921 Ornelas Ln, Landers, CA 92285",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 295000,
+      "prev": 349000,
+      "changed": "2026-11-13"
+    },
+    "17507455": {
+      "addr": "56674 Cone Blvd, Landers, CA 92285",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 265000
+    },
+    "17508176": {
+      "addr": "877 E Phillips Rd, Landers, CA 92285",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 299000
+    },
+    "17508241": {
+      "addr": "1564 Luna Mesa Rd, Yucca Valley, CA 92284",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 450000,
+      "prev": 498000,
+      "changed": "2026-11-13"
+    },
+    "17508509": {
+      "addr": "63300 Tilford Way, Joshua Tree, CA 92252",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 385000,
+      "prev": 399000,
+      "changed": "2026-11-13"
+    },
+    "17621284": {
+      "addr": "697 Villa Grove Ave, Big Bear City, CA 92314",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 270000
+    },
+    "17621919": {
+      "addr": "396 Kern Ave, Sugarloaf, CA 92386",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 290000,
+      "prev": 299999,
+      "changed": "2026-11-13"
+    },
+    "17622658": {
+      "addr": "124 Wabash Ln, Sugarloaf, CA 92386",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 249000,
+      "prev": 249999,
+      "changed": "2026-11-13"
+    },
+    "17624371": {
+      "addr": "845 Moreno Ln, Sugarloaf, CA 92386",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 280000
+    },
+    "18972908": {
+      "addr": "219 Pine Canyon Dr, Frazier Park, CA 93225",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 228888
+    },
+    "18979032": {
+      "addr": "1716 Zion Way, Pine Mountain Club, CA 93222",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 245000,
+      "prev": 246000,
+      "changed": "2026-11-13"
+    },
+    "54774974": {
+      "addr": "4137 Grant Trl, Frazier Park, CA 93225",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 249000
+    },
+    "89235759": {
+      "addr": "1111 E Palm Canyon Dr #104, Palm Springs, CA 92264",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 300000
+    },
+    "299170864": {
+      "addr": "60654 Mitch Ln, Landers, CA 92285",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 355000
+    },
+    "304026878": {
+      "addr": "58860 Ocotillo Dr, Yucca Valley, CA 92284",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 849000,
+      "prev": 885000,
+      "changed": "2026-11-13"
+    },
+    "333258126": {
+      "addr": "6429 Palo Alto Ave, Yucca Valley, CA 92284",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 839000
+    },
+    "337970717": {
+      "addr": "7276 Encina Rd, Joshua Tree, CA 92252",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 330000,
+      "prev": 374900,
+      "changed": "2026-11-13"
+    },
+    "463192614": {
+      "addr": "69538 Jim Pine Rd #29, Twentynine Palms, CA 92277",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 219000,
+      "prev": 255000,
+      "changed": "2026-11-13"
+    },
+    "463469847": {
+      "addr": "2351 N Cambria Ave, Landers, CA 92285",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 530000,
+      "prev": 499000,
+      "changed": "2026-11-13"
+    },
+    "2070283678": {
+      "addr": "346 San Bernardino Ave, Sugarloaf, CA 92386",
+      "checked": "2026-11-13T04:18:43.136Z",
+      "price": 285000
+    }
+  }
+}
