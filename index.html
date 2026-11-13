@@ -3833,8 +3833,8 @@ loadPriceCuts();
 refreshFavs();
 showTab('top5');
 // ---- TO VIEW -------------------------------------------------------------
-// A "To View" button on every card MOVES that house to the To View tab: it
-// leaves every other tab until the button is pressed again. The list is kept
+// A "To View" button on every card COPIES that house to the To View tab; it
+// stays on its own tabs too. Pressing the button again takes the copy away. The list is kept
 // in this browser (localStorage), the same way Favorites is. The tab, its
 // button and the card buttons are all built here, so cards from any source
 // (the generator, the Chrome plugin, Zero) get one without knowing about it.
@@ -3872,7 +3872,7 @@ function toggleToView(btn){
       +'<option value="coc">Cash on cash</option><option value="cf">Cash flow</option><option value="rev">Revenue</option>'
       +'<option value="price">Price</option><option value="cash">Total cash in</option></select>'
       +'<button type="button" class="sort-dir" onclick="flipSort(&quot;view&quot;,this)" title="Flip sort order">&darr;</button></label></div>'
-      +'<p class="view-empty">Nothing here yet. Press To View on a house to move it here.</p>'
+      +'<p class="view-empty">Nothing here yet. Press To View on a house to add it here.</p>'
       +'<div class="cards-grid"></div>';
     favTab.parentNode.insertBefore(t, favTab.nextSibling);
   }
@@ -3903,14 +3903,12 @@ function applyToView(){
       grid.appendChild(clone);
       cloned[addr]=true;
     }
-    // MOVED, not copied: while it is in To View it is nowhere else
-    if(on) c.style.display='none';
-    else if(c.closest('#tab-top5')) c.style.display='';
+    // COPIED, not moved: the house stays on its own tabs as well.
   });
   document.querySelectorAll('.property-card').forEach(function(c){
     var on=toView.indexOf(c.dataset.addr)>=0;
     var b=c.querySelector('.view-btn');
-    if(b){ b.classList.toggle('active', on); b.textContent=on?'✓ To View':'To View'; b.title=on?'Move it back off the To View tab':'Move this house to the To View tab'; }
+    if(b){ b.classList.toggle('active', on); b.textContent=on?'✓ To View':'To View'; b.title=on?'Take this house off the To View tab':'Add this house to the To View tab'; }
     var f=c.querySelector('.fav-btn'); if(f) f.classList.toggle('active', favs.indexOf(c.dataset.addr)>=0);
   });
   var empty=document.querySelector('#tab-view .view-empty'); if(empty) empty.style.display=grid.children.length?'none':'';
