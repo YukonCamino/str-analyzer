@@ -482,6 +482,56 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-green" data-addr="60789 Pueblo Trl, Joshua Tree, CA 92252" data-lat="34.115734" data-lng="-116.33825" data-price="799000" data-annual-rev="112600" data-piti="4753.9804" data-pool="0" data-base-startup="316314.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/a4903dcbcb69a0c0e3a117e10e02d5b0-cc_ft_1536.jpg" alt="60789 Pueblo Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$799,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">60789 Pueblo Trl</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,917 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-yellow" title="Days on Market">📅 55d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $6,682)</span></span><span class="amount neutral mo-rev-val">+$9,383/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$4,754/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,158/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,080/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:24.2%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+7.9%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="112,600" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$80,182/yr</span></div>
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$239,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$30,672</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$19,975</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$15,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$9,988</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$316,315</span></div>
+        </div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/60789-Pueblo-Trl-Joshua-Tree-CA-92252/125110927_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/689873300188269229" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.119234%2C-116.34175%5D%2C%5B34.119234%2C-116.33475%5D%2C%5B34.112234%2C-116.33475%5D%2C%5B34.112234%2C-116.34175%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-green" data-addr="49624 Oak Dr, Morongo Valley, CA 92256" data-lat="34.06415" data-lng="-116.58234" data-price="329888" data-annual-rev="48381" data-piti="2080.2296" data-pool="0" data-base-startup="130222.9600" data-util="391" data-hoa="0" data-clean="0.23">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/49b1414f97065eb2150854e22a148e66-cc_ft_1536.jpg" alt="49624 Oak Dr" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
