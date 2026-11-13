@@ -1296,6 +1296,100 @@ function applyToView(){
 var _refreshFavs1=refreshFavs;
 refreshFavs=function(){ _refreshFavs1(); applyToView(); };
 refreshFavs();
+// ---- FAVORITES AND TO VIEW, SHARED --------------------------------------
+// Both lists are published in picks.json beside this page, so anyone who
+// opens the site sees the same houses marked. Reading it needs nothing.
+// CHANGING it needs the STR Scout Chrome extension with a GitHub token: the
+// extension marks <html data-str-scout="ready">, this page announces each
+// change as a 'str-picks-save' event, and the extension commits the file.
+// Without the extension the buttons are view-only.
+//
+// If picks.json cannot be read at all (it does not exist yet, or the page is
+// opened from a file), the lists stay private to this browser as before.
+var PENDING_KEY='strPicksPending';
+var picksShared=false, picksMissing=false, picksTimer=null;
+function scoutState(){ return document.documentElement.getAttribute('data-str-scout')||''; }
+function picksToast(text, bad){
+  var t=document.getElementById('picks-toast');
+  if(!t){
+    t=document.createElement('div'); t.id='picks-toast';
+    t.setAttribute('style','position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:9999;padding:10px 16px;border-radius:999px;color:#fff;font:600 0.82rem Inter,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.3);max-width:90vw;text-align:center;transition:opacity .3s');
+    document.body.appendChild(t);
+  }
+  t.textContent=text; t.style.background=bad?'#b91c1c':'#1f2937'; t.style.opacity='1';
+  clearTimeout(t._hide); t._hide=setTimeout(function(){ t.style.opacity='0'; }, 3800);
+}
+function readPending(){
+  try { var p=JSON.parse(localStorage.getItem(PENDING_KEY)); return (p && Array.isArray(p.favs) && Array.isArray(p.toView)) ? p : null; } catch(e) { return null; }
+}
+function usePicks(p){
+  favs=(p.favs||[]).slice(); toView=(p.toView||[]).slice();
+  saveFavs(); saveToView(); refreshFavs();
+}
+function sendPicks(p){
+  document.dispatchEvent(new CustomEvent('str-picks-save', { detail: JSON.stringify(p) }));
+}
+function queuePicksSave(){
+  var p={ favs:favs.slice(), toView:toView.slice(), updatedAt:new Date().toISOString() };
+  // kept here too, so a reload before the site has rebuilt still shows it
+  try { localStorage.setItem(PENDING_KEY, JSON.stringify(p)); } catch(e) {}
+  clearTimeout(picksTimer);
+  picksTimer=setTimeout(function(){ sendPicks(p); }, 1500);
+}
+function canChangePicks(){
+  var s=scoutState();
+  if(s==='ready') return true;
+  if(!picksShared && !picksMissing) return true;      // file unreadable: private lists, as before
+  if(!picksShared && picksMissing && !s) return true; // nothing shared yet and no extension: private
+  picksToast(s ? 'Add your GitHub token in STR Scout’s options to change these lists.'.replace('’', String.fromCharCode(8217))
+               : 'View only. These lists belong to the owner of this page.', true);
+  return false;
+}
+var _toggleFav0=toggleFav;
+toggleFav=function(btn){ if(!canChangePicks()) return; _toggleFav0(btn); if(scoutState()==='ready') queuePicksSave(); };
+var _toggleToView0=toggleToView;
+toggleToView=function(btn){ if(!canChangePicks()) return; _toggleToView0(btn); if(scoutState()==='ready') queuePicksSave(); };
+document.addEventListener('str-picks-saved', function(e){
+  var r; try { r=JSON.parse(e.detail); } catch(err) { r=null; }
+  if(r && r.ok){ picksShared=true; picksMissing=false; picksToast(r.skipped ? 'Already saved.' : 'Saved. Everyone sees it in about a minute.'); }
+  else picksToast('Could not save: ' + ((r && r.error) || 'no answer from STR Scout'), true);
+});
+// The extension answers a moment after the page loads. When it does: send
+// anything that was changed here but is not in the published file yet, and
+// if nothing has ever been published, publish this browser's lists as the
+// starting point so earlier picks are not lost.
+function picksEditorReady(){
+  if(scoutState()!=='ready') return;
+  var pend=readPending();
+  if(picksMissing){
+    if(favs.length || toView.length) sendPicks({ favs:favs.slice(), toView:toView.slice(), updatedAt:new Date().toISOString() });
+  } else if(picksShared && pend && pend._newer){ sendPicks(pend); }
+}
+document.addEventListener('str-scout-ready', picksEditorReady);
+(function loadPicks(){
+  if(!window.fetch || location.protocol==='file:') return;
+  fetch('picks.json?t=' + Date.now(), { cache:'no-store' }).then(function(res){
+    if(res.status===404){ picksMissing=true; picksEditorReady(); return null; }
+    if(!res.ok) return null;
+    return res.json();
+  }).then(function(file){
+    if(!file || !Array.isArray(file.favs) || !Array.isArray(file.toView)) return;
+    picksShared=true;
+    var pend=readPending();
+    // A change made here after the published file was written wins until
+    // the site catches up; otherwise the published file is the truth.
+    if(pend && scoutState() && Date.parse(pend.updatedAt) > Date.parse(file.updatedAt||0)
+       && JSON.stringify([pend.favs,pend.toView]) !== JSON.stringify([file.favs,file.toView])){
+      pend._newer=true;
+      try { localStorage.setItem(PENDING_KEY, JSON.stringify(pend)); } catch(e) {}
+      usePicks(pend);
+    } else {
+      try { localStorage.removeItem(PENDING_KEY); } catch(e) {}
+      usePicks(file);
+    }
+    picksEditorReady();
+  }).catch(function(){ /* unreadable: the lists stay private to this browser */ });
+})();
 window.addEventListener('load', equalizeRows);
 // The maths arrives a moment after the page (it is a module). When it does,
 // redo every card and put the sorted tabs back in order.
