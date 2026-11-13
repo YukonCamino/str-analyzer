@@ -485,6 +485,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-red" data-addr="73457 Sullivan Rd, Twentynine Palms, CA 92277" data-lat="34.127823" data-lng="-116.05963" data-price="408000" data-annual-rev="37942" data-piti="2525.4368" data-pool="0" data-base-startup="171012.0000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="3" data-sqft="1572" data-hot-tub="1" data-as-of="2026-11-13">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/4583916d90ad9b4d60cf5bea049d02d1-p_f.jpg" alt="73457 Sullivan Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$408,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">73457 Sullivan Rd</div>
+        <div class="card-city">Twentynine Palms, CA 92277</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,572 sqft</span><span class="chip chip-region">Twentynine Palms</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 3d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,788)</span></span><span class="amount neutral mo-rev-val">+$3,162/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,525/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$727/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$482/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:10.4%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-3.4%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Avg of 5 comps</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="37,942" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$45,451/yr</span></div>
+          <div class="rev-adjust-row comp-avg-row"><span>Comp median</span><span>~55% occ · $189 ADR</span></div>
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$122,400</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$25,152</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$10,200</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$8,160</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$5,100</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$171,012</span></div>
+        </div>
+        <div class="comp-strips"><div class="comp-strips-title">Comps (5)</div><a href="https://www.airbnb.com/rooms/1742892134582530150" target="_blank" class="comp-strip" title="Wellness Escape | Sauna, Cold Plunge + Hot Tub (occupancy assumed)"><span>~55% occ</span><span>$177 ADR</span><span>$35.5K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1613933905793669676" target="_blank" class="comp-strip" title="Desert Queen Cabin | Downtown 29 Palms | Cozy Home (occupancy assumed)"><span>~55% occ</span><span>$189 ADR</span><span>$37.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/51564868" target="_blank" class="comp-strip" title="Desert Blush • Pink Designer Retreat • Hot Tub (occupancy assumed)"><span>~55% occ</span><span>$143 ADR</span><span>$28.7K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/831058491600282579" target="_blank" class="comp-strip" title="Historic Adobe, 5m to Jtree, walk to downtown 29 (occupancy assumed)"><span>~55% occ</span><span>$252 ADR</span><span>$50.6K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/831065211512127936" target="_blank" class="comp-strip" title="1930s adobe, fireplace &amp; 5m to park (occupancy assumed)"><span>~55% occ</span><span>$269 ADR</span><span>$54.0K/yr</span><span class="cs-arrow">↗</span></a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/73457-Sullivan-Rd-Twentynine-Palms-CA-92277/17503702_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.131323%2C-116.06313%5D%2C%5B34.131323%2C-116.05613%5D%2C%5B34.124323%2C-116.05613%5D%2C%5B34.124323%2C-116.06313%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-green" data-addr="51818 Cheyenne Trl, Morongo Valley, CA 92256" data-lat="34.08712" data-lng="-116.53453" data-price="999000" data-annual-rev="150270" data-piti="5893.9004" data-pool="0" data-base-startup="385654.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="4" data-sqft="1782" data-as-of="2026-11-13">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/7911aee19ccee6ddc5cb6bc59a35744f-p_f.jpg" alt="51818 Cheyenne Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
