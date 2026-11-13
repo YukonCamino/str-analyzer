@@ -1223,6 +1223,35 @@ function toggleToView(btn){
   if(i>=0) toView.splice(i,1); else toView.push(addr);
   saveToView(); refreshFavs();
 }
+/* Big Bear trash rules by ZIP. Same rule as the plugin's src/trash-rules.js; change both. */
+function trashRule(addr){
+  var text=String(addr||'');
+  var zips=text.match(/[0-9]{5}/g);
+  var zip=zips ? zips[zips.length-1] : '';
+  if(zip==='92315') return {level:'avoid', text:'Trash: City of Big Bear Lake. City law bans trash at a vacant rental, so guests usually have to haul it to the Clean Bear Site. Avoid.'};
+  if(zip==='92314'){
+    if(/baldwin lake/i.test(text)) return {level:'avoid', text:'Trash: Baldwin Lake has no residential curbside, so guests haul in practice. Avoid.'};
+    return {level:'check', text:'Trash: 92314 is mixed. Big Bear City and Erwin Lake have weekly curbside (fine). Baldwin Lake has none (avoid). Check the street.'};
+  }
+  if(zip==='92333') return {level:'ok', text:'Trash: Fawnskin, county. Curbside is optional: sign up for it and guests need not haul.'};
+  if(zip==='92386') return {level:'ok', text:'Trash: Sugarloaf, county. Weekly curbside, guests need not haul.'};
+  return null;
+}
+(function addTrashFlags(){
+  var st=document.createElement('style');
+  st.textContent='.trash-flag{margin:6px 0 2px;padding:6px 9px;border-radius:8px;font-size:0.74rem;font-weight:600;line-height:1.35}'
+    +'.trash-flag.avoid{background:#fde2e2;color:#9b1c1c}.trash-flag.check{background:#fdf0d5;color:#8a5a00}.trash-flag.ok{background:#dcf3e4;color:#17603a}';
+  document.head.appendChild(st);
+  document.querySelectorAll('.property-card[data-addr]').forEach(function(card){
+    if(card.querySelector('.trash-flag')) return;
+    var r=trashRule(card.getAttribute('data-addr'));
+    if(!r) return;
+    var d=document.createElement('div');
+    d.className='trash-flag '+r.level; d.textContent=r.text;
+    var city=card.querySelector('.card-city');
+    if(city) city.parentNode.insertBefore(d, city.nextSibling); else card.insertBefore(d, card.firstChild);
+  });
+})();
 document.addEventListener('click', function(e){
   var t=e.target.closest && e.target.closest('.comp-strips-title');
   if(t && t.parentNode) t.parentNode.classList.toggle('open');
