@@ -881,7 +881,11 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .be-inline { display:block;font-size:0.68rem;color:var(--text2);font-weight:400;line-height:1.3; }
 .be-val { font-weight:600;color:var(--text); }
 .comp-strips { display:flex;flex-direction:column;gap:6px;margin-top:8px; }
-.comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px; }
+.comp-strips-title { font-size:0.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;user-select:none; }
+.comp-strips-title::before { content:"▸ "; }
+.comp-strips.open .comp-strips-title::before { content:"▾ "; }
+.comp-strips-title:hover { color:var(--text); }
+.comp-strips:not(.open) .comp-strip { display:none; }
 .comp-strip { display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 10px;border-radius:7px;background:#F3EEE3;border:1px solid var(--border);color:var(--text);font-size:0.74rem;font-weight:600;text-decoration:none;transition:background 0.15s,transform 0.1s; }
 .comp-strip:hover { background:#EDE6D6;transform:translateY(-1px); }
 .comp-strip-nolink { cursor:default; }
@@ -1219,6 +1223,10 @@ function toggleToView(btn){
   if(i>=0) toView.splice(i,1); else toView.push(addr);
   saveToView(); refreshFavs();
 }
+document.addEventListener('click', function(e){
+  var t=e.target.closest && e.target.closest('.comp-strips-title');
+  if(t && t.parentNode) t.parentNode.classList.toggle('open');
+});
 (function buildToViewTab(){
   var st=document.createElement('style');
   st.textContent='.view-btn{position:absolute;top:10px;left:10px;padding:6px 11px;border-radius:999px;border:none;background:rgba(0,0,0,0.55);color:#fff;font:600 0.78rem Inter,sans-serif;cursor:pointer;backdrop-filter:blur(6px);z-index:2}'
