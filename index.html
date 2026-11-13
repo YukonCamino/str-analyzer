@@ -3381,6 +3381,13 @@ function cardDeal(card){
   var s={}; var base=window.STRMath.settings; for(var k in base) s[k]=base[k];
   var util=parseFloat(d.util); if(!isNaN(util)) s.utilitiesInternetPerYear=util*12;
   if(d.clean!==undefined && !isNaN(parseFloat(d.clean))) s.cleaningPctIfNoOccupancy=parseFloat(d.clean)*100;
+  // A house sold fully furnished says so on its Furnishing row; it must not
+  // also be charged for furniture in the cash to start.
+  var srows=card.querySelectorAll('.startup-row');
+  for(var i=0;i<srows.length;i++){
+    var tx=srows[i].textContent;
+    if(tx.indexOf('Furnishing')>=0 && tx.indexOf('Included')>=0){ s.furnishingPerSqft=0; s.furnishing=0; }
+  }
   return window.STRMath.analyze(input, s);
 }
 function lineAmt(r, keys){ var t=0; r.lines.forEach(function(l){ if(keys.indexOf(l.key)>=0) t+=(l.amount||0); }); return t; }
