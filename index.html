@@ -489,6 +489,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-red" data-addr="5120 Tom Mix Rd, Pioneertown, CA 92268" data-lat="34.160442" data-lng="-116.49992" data-price="595000" data-annual-rev="44000" data-piti="3591.2620" data-pool="0" data-base-startup="227112.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="2" data-sqft="900" data-clean-fee="154" data-as-of="2026-11-13">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/f8c07ed59677fb716dd5e4cbc887631e-p_f.jpg" alt="5120 Tom Mix Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$595,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">5120 Tom Mix Rd</div>
+        <div class="card-city">Pioneertown, CA 92268</div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">900 sqft</span><span class="chip chip-region">Pioneertown</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-yellow" title="Days on Market">📅 43d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $5,172)</span></span><span class="amount neutral mo-rev-val">+$3,667/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,591/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$843/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$1,159/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:18.8%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-6.1%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="44,000" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$62,061/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$178,500</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$14,400</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$14,875</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$11,900</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$7,438</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$227,113</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/5120-Tom-Mix-Rd-Pioneertown-CA-92268/64839794_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/51882309" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.163942%2C-116.50342%5D%2C%5B34.163942%2C-116.49642%5D%2C%5B34.156942%2C-116.49642%5D%2C%5B34.156942%2C-116.50342%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-red" data-addr="6425 Indian Cove Rd, Twentynine Palms, CA 92277" data-lat="34.136402" data-lng="-116.1545" data-price="595000" data-annual-rev="40351" data-piti="3591.2620" data-pool="250" data-base-startup="247816.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="4" data-sqft="2194" data-as-of="2026-11-13">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/b217e89a106008e3f520211f8c179d8d-p_f.jpg" alt="6425 Indian Cove Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
