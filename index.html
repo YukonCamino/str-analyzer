@@ -3832,6 +3832,103 @@ refreshFavs=function(){ _refreshFavs0(); if(sortState.only) applySort('only'); }
 loadPriceCuts();
 refreshFavs();
 showTab('top5');
+// ---- TO VIEW -------------------------------------------------------------
+// A "To View" button on every card MOVES that house to the To View tab: it
+// leaves every other tab until the button is pressed again. The list is kept
+// in this browser (localStorage), the same way Favorites is. The tab, its
+// button and the card buttons are all built here, so cards from any source
+// (the generator, the Chrome plugin, Zero) get one without knowing about it.
+var VIEW_KEY='strToView';
+var toView;
+try { toView=JSON.parse(localStorage.getItem(VIEW_KEY)); } catch(e) { toView=null; }
+if(!Array.isArray(toView)) toView=[];
+function saveToView(){ try{ localStorage.setItem(VIEW_KEY, JSON.stringify(toView)); }catch(e){} }
+function toggleToView(btn){
+  var card=btn.closest('.property-card'); if(!card) return;
+  var addr=card.dataset.addr; if(!addr) return;
+  var i=toView.indexOf(addr);
+  if(i>=0) toView.splice(i,1); else toView.push(addr);
+  saveToView(); refreshFavs();
+}
+(function buildToViewTab(){
+  var st=document.createElement('style');
+  st.textContent='.view-btn{position:absolute;top:10px;left:10px;padding:6px 11px;border-radius:999px;border:none;background:rgba(0,0,0,0.55);color:#fff;font:600 0.78rem Inter,sans-serif;cursor:pointer;backdrop-filter:blur(6px);z-index:2}'
+    +'.view-btn:hover{transform:scale(1.05)}.view-btn.active{background:#2563eb}'
+    +'.view-empty{opacity:.65;padding:24px 4px}';
+  document.head.appendChild(st);
+  var favBtn=document.getElementById('btn-only');
+  if(favBtn && !document.getElementById('btn-view')){
+    var b=document.createElement('button');
+    b.className='tab-btn'; b.id='btn-view'; b.textContent='👀 To View';
+    b.onclick=function(){ showTab('view'); };
+    favBtn.parentNode.insertBefore(b, favBtn.nextSibling);
+  }
+  var favTab=document.getElementById('tab-only');
+  if(favTab && !document.getElementById('tab-view')){
+    var t=document.createElement('div');
+    t.id='tab-view'; t.className='tab-content'; t.style.display='none';
+    t.innerHTML='<div class="tab-header"><h2>👀 To View</h2><span class="prop-count">0 properties</span>'
+      +'<label class="sort-wrap">Sort <select class="sort-select" onchange="setSort(&quot;view&quot;,this.value)">'
+      +'<option value="coc">Cash on cash</option><option value="cf">Cash flow</option><option value="rev">Revenue</option>'
+      +'<option value="price">Price</option><option value="cash">Total cash in</option></select>'
+      +'<button type="button" class="sort-dir" onclick="flipSort(&quot;view&quot;,this)" title="Flip sort order">&darr;</button></label></div>'
+      +'<p class="view-empty">Nothing here yet. Press To View on a house to move it here.</p>'
+      +'<div class="cards-grid"></div>';
+    favTab.parentNode.insertBefore(t, favTab.nextSibling);
+  }
+})();
+function applyToView(){
+  var grid=document.querySelector('#tab-view .cards-grid'); if(!grid) return;
+  grid.querySelectorAll('.view-clone').forEach(function(el){ el.remove(); });
+  // every card gets the button, once
+  document.querySelectorAll('.property-card').forEach(function(c){
+    var img=c.querySelector('.card-image');
+    if(img && !c.querySelector('.view-btn')){
+      var b=document.createElement('button');
+      b.type='button'; b.className='view-btn'; b.setAttribute('onclick','toggleToView(this)');
+      img.appendChild(b);
+    }
+  });
+  var cloned={};
+  // the home tabs first, so the copy is taken from a card's own tab
+  var cards=Array.prototype.slice.call(document.querySelectorAll('.tab-content:not(#tab-view):not(#tab-top5):not(#tab-only) .property-card'))
+    .concat(Array.prototype.slice.call(document.querySelectorAll('#tab-top5 .property-card, #tab-only .property-card')));
+  cards.forEach(function(c){
+    var addr=c.dataset.addr;
+    var on=toView.indexOf(addr)>=0;
+    if(on && !cloned[addr]){
+      var clone=c.cloneNode(true);
+      clone.classList.remove('fav-clone'); clone.classList.add('view-clone');
+      clone.style.display='';
+      grid.appendChild(clone);
+      cloned[addr]=true;
+    }
+    // MOVED, not copied: while it is in To View it is nowhere else
+    if(on) c.style.display='none';
+    else if(c.closest('#tab-top5')) c.style.display='';
+  });
+  document.querySelectorAll('.property-card').forEach(function(c){
+    var on=toView.indexOf(c.dataset.addr)>=0;
+    var b=c.querySelector('.view-btn');
+    if(b){ b.classList.toggle('active', on); b.textContent=on?'✓ To View':'To View'; b.title=on?'Move it back off the To View tab':'Move this house to the To View tab'; }
+    var f=c.querySelector('.fav-btn'); if(f) f.classList.toggle('active', favs.indexOf(c.dataset.addr)>=0);
+  });
+  var empty=document.querySelector('#tab-view .view-empty'); if(empty) empty.style.display=grid.children.length?'none':'';
+  document.querySelectorAll('.tab-content').forEach(function(t){
+    var cnt=t.querySelector('.prop-count');
+    if(!cnt||!t.querySelector('.cards-grid')) return;
+    var n=0; t.querySelectorAll('.cards-grid .property-card').forEach(function(c){ if(c.style.display!=='none') n++; });
+    cnt.textContent=n+' properties';
+  });
+  var tb=document.getElementById('btn-view'); if(tb) tb.textContent='👀 To View'+(toView.length?' ('+grid.children.length+')':'');
+  grid.querySelectorAll('.property-card').forEach(recalcCardEl);
+  if(sortState.view) applySort('view');
+  if(currentTab) updateTabMap(currentTab);
+  scheduleEqualize();
+}
+var _refreshFavs1=refreshFavs;
+refreshFavs=function(){ _refreshFavs1(); applyToView(); };
+refreshFavs();
 window.addEventListener('load', equalizeRows);
 // The maths arrives a moment after the page (it is a module). When it does,
 // redo every card and put the sorted tabs back in order.
