@@ -124,9 +124,6 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 /* AirROI's own teal, so the three buttons are told apart by colour
    as well as by their words. */
 .airroi-btn { background:#0f6b63;color:#fff; }
-/* OUTLINED, not filled, so a card where he has found the real listing
-   still stands out from one where there is only a search to run. */
-.airbnb-search-btn { background:transparent;color:#7c1f3a;box-shadow:inset 0 0 0 1.5px #7c1f3a; }
 .comp-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:15px; }
 .comp-card { background:var(--surface);border-radius:10px;padding:14px;border:1px solid var(--border);transition:transform 0.15s; }
 .comp-card:hover { transform:translateY(-2px); }
@@ -337,7 +334,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$101,535</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/17622658_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/124%20Wabash%20Ln%2C%20Sugarloaf%2C%20CA%2092386/homes" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb for this address">🔍 Airbnb</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/17622658_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
       </div>
     </div>
     <div class="property-card card-green" data-addr="346 San Bernardino Ave, Sugarloaf, CA 92386" data-lat="34.246" data-lng="-116.83386" data-price="285000" data-orig-price="295000" data-annual-rev="44200" data-piti="1824.4400" data-pool="0" data-base-startup="111615.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -390,7 +387,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$111,616</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.2495&amp;ne_lng=-116.83036&amp;sw_lat=34.2425&amp;sw_lng=-116.83736&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.2495%2C-116.83736%5D%2C%5B34.2495%2C-116.83036%5D%2C%5B34.2425%2C-116.83036%5D%2C%5B34.2425%2C-116.83736%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.2495%2C-116.83736%5D%2C%5B34.2495%2C-116.83036%5D%2C%5B34.2425%2C-116.83036%5D%2C%5B34.2425%2C-116.83736%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-green" data-addr="56674 Cone Blvd, Landers, CA 92285" data-lat="34.287687" data-lng="-116.426631" data-price="265000" data-orig-price="285000" data-annual-rev="39933.333333333336" data-piti="1710.4800" data-pool="0" data-base-startup="109281.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -443,7 +440,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$109,282</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (3)</div><a href="https://www.airbnb.com/rooms/49210867" target="_blank" class="comp-strip" title="The Yucca Escape"><span>76% occ</span><span>$170 ADR</span><span>$58.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/28644985" target="_blank" class="comp-strip" title="Landers Hideaway Near Joshua Tree National Park"><span>60% occ</span><span>$172 ADR</span><span>$39.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/33657790" target="_blank" class="comp-strip" title="Landers Cove"><span>40% occ</span><span>$148 ADR</span><span>$22.3K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/56674-Cone-Blvd-Landers-CA-92285/17507455_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.291187&amp;ne_lng=-116.423131&amp;sw_lat=34.284187&amp;sw_lng=-116.430131&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.291187%2C-116.430131%5D%2C%5B34.291187%2C-116.423131%5D%2C%5B34.284187%2C-116.423131%5D%2C%5B34.284187%2C-116.430131%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/56674-Cone-Blvd-Landers-CA-92285/17507455_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.291187%2C-116.430131%5D%2C%5B34.291187%2C-116.423131%5D%2C%5B34.284187%2C-116.423131%5D%2C%5B34.284187%2C-116.430131%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     </div>
@@ -485,6 +482,366 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-green" data-addr="5725 Sunfair Rd, Joshua Tree, CA 92252" data-lat="34.149147" data-lng="-116.24605" data-price="1199000" data-annual-rev="228200" data-piti="7033.8204" data-pool="0" data-base-startup="447362.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/fa26492f8d958535999e6e715f3fcfba-p_f.jpg" alt="5725 Sunfair Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$1,199,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">5725 Sunfair Rd</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">1,170 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 29d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $9,643)</span></span><span class="amount neutral mo-rev-val">+$19,017/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$7,034/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$4,374/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$7,218/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:59.4%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+19.4%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="228,200" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$115,711/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$359,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$18,720</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$29,975</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$23,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$14,988</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$447,363</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/5725-Sunfair-Rd-Joshua-Tree-CA-92252/17501234_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/737109226659262974" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.152647%2C-116.24955%5D%2C%5B34.152647%2C-116.24255%5D%2C%5B34.145647%2C-116.24255%5D%2C%5B34.145647%2C-116.24955%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
+      <div class="property-card card-green" data-addr="6715 Juniper Rd, Joshua Tree, CA 92252" data-lat="34.13106" data-lng="-116.331985" data-price="1999999" data-annual-rev="255687" data-piti="11599.1943" data-pool="0" data-base-startup="750983.6425" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/0ecf1607fe93e1c88722c9a37ea97cde-p_f.jpg" alt="6715 Juniper Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$1,999,999</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">6715 Juniper Rd</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">4 ba</span><span class="chip chip-sqft">2,249 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-yellow" title="Days on Market">📅 58d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $15,572)</span></span><span class="amount neutral mo-rev-val">+$21,307/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$11,599/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$4,901/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$4,416/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:21.6%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+7.1%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="255,687" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$186,860/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$600,000</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$35,984</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$50,000</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$40,000</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$25,000</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$750,984</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/6715-Juniper-Rd-Joshua-Tree-CA-92252/137799968_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/1110479968045552833" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.13456%2C-116.335485%5D%2C%5B34.13456%2C-116.328485%5D%2C%5B34.12756%2C-116.328485%5D%2C%5B34.12756%2C-116.335485%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
+      <div class="property-card card-green" data-addr="6920 Juniper Rd, Joshua Tree, CA 92252" data-lat="34.12703" data-lng="-116.33324" data-price="849000" data-annual-rev="114059" data-piti="5038.9604" data-pool="0" data-base-startup="327933.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/b80876da85245ee76de091fe77b4eb47-p_f.jpg" alt="6920 Juniper Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$849,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">6920 Juniper Rd</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,526 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-red" title="Days on Market">📅 70d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $7,052)</span></span><span class="amount neutral mo-rev-val">+$9,505/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$5,039/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,186/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,889/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:21.2%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+6.9%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="114,059" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$84,623/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$254,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$24,416</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$21,225</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$16,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$10,613</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$327,934</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/6920-Juniper-Rd-Joshua-Tree-CA-92252/137799914_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/54223480" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.13053%2C-116.33674%5D%2C%5B34.13053%2C-116.32974%5D%2C%5B34.12353%2C-116.32974%5D%2C%5B34.12353%2C-116.33674%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
+      <div class="property-card card-green" data-addr="60291 La Mirada Trl, Joshua Tree, CA 92252" data-lat="34.116997" data-lng="-116.34886" data-price="739500" data-annual-rev="105913" data-piti="4414.8542" data-pool="0" data-base-startup="301795.2500" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/506947af919eff18359d3b0ba560c8a6-cc_ft_1536.jpg" alt="60291 La Mirada Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$739,500</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">60291 La Mirada Trl</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">2,339 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-yellow" title="Days on Market">📅 39d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $6,241)</span></span><span class="amount neutral mo-rev-val">+$8,826/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$4,415/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,030/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,990/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:24.3%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+7.9%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="105,913" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$74,896/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$221,850</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$37,424</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$18,488</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$14,790</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$9,244</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$301,795</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/60291-La-Mirada-Trl-Joshua-Tree-CA-92252/17492964_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/999614155850433915" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.120497%2C-116.35236%5D%2C%5B34.120497%2C-116.34536%5D%2C%5B34.113497%2C-116.34536%5D%2C%5B34.113497%2C-116.35236%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
+      <div class="property-card card-green" data-addr="6699 San Angelo Ave, Joshua Tree, CA 92252" data-lat="34.131348" data-lng="-116.335815" data-price="739000" data-annual-rev="104962" data-piti="4412.0044" data-pool="0" data-base-startup="284672.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/d1f1d349b4b27dcb93cf94536dcbf525-p_f.jpg" alt="6699 San Angelo Ave" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$739,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">6699 San Angelo Ave</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">1,280 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 17d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $6,238)</span></span><span class="amount neutral mo-rev-val">+$8,747/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$4,412/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,012/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,932/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:25.0%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+8.1%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="104,962" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$74,852/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$221,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$20,480</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$18,475</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$14,780</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$9,238</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$284,673</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/6699-San-Angelo-Ave-Joshua-Tree-CA-92252/137799391_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/932696405615916119" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.134848%2C-116.339315%5D%2C%5B34.134848%2C-116.332315%5D%2C%5B34.127848%2C-116.332315%5D%2C%5B34.127848%2C-116.339315%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
+      <div class="property-card card-green" data-addr="60789 Pueblo Trl, Joshua Tree, CA 92252" data-lat="34.115734" data-lng="-116.33825" data-price="799000" data-annual-rev="112600" data-piti="4753.9804" data-pool="0" data-base-startup="316314.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/a4903dcbcb69a0c0e3a117e10e02d5b0-cc_ft_1536.jpg" alt="60789 Pueblo Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$799,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">60789 Pueblo Trl</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,917 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-yellow" title="Days on Market">📅 55d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $6,682)</span></span><span class="amount neutral mo-rev-val">+$9,383/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$4,754/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,158/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$2,080/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:24.2%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+7.9%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="112,600" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$80,182/yr</span></div>
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$239,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$30,672</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$19,975</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$15,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$9,988</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$316,315</span></div>
+        </div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/60789-Pueblo-Trl-Joshua-Tree-CA-92252/125110927_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/689873300188269229" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.119234%2C-116.34175%5D%2C%5B34.119234%2C-116.33475%5D%2C%5B34.112234%2C-116.33475%5D%2C%5B34.112234%2C-116.34175%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
+      <div class="property-card card-green" data-addr="49624 Oak Dr, Morongo Valley, CA 92256" data-lat="34.06415" data-lng="-116.58234" data-price="329888" data-annual-rev="48381" data-piti="2080.2296" data-pool="0" data-base-startup="130222.9600" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/49b1414f97065eb2150854e22a148e66-cc_ft_1536.jpg" alt="49624 Oak Dr" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$329,888</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">49624 Oak Dr</div>
+        <div class="card-city">Morongo Valley, CA 92256</div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">768 sqft</span><span class="chip chip-region">Morongo Valley</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-yellow" title="Days on Market">📅 43d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,209)</span></span><span class="amount neutral mo-rev-val">+$4,032/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,080/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$927/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$633/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:17.9%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+5.8%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Avg of 2 comps</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="48,381" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$38,513/yr</span></div>
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$98,966</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$12,288</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$8,247</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$6,598</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$4,124</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$130,223</span></div>
+        </div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/49624-Oak-Dr-Morongo-Valley-CA-92256/17488540_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.06765%2C-116.58584%5D%2C%5B34.06765%2C-116.57884%5D%2C%5B34.06065%2C-116.57884%5D%2C%5B34.06065%2C-116.58584%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
     <div class="property-card card-green" data-addr="60654 Mitch Ln, Landers, CA 92285" data-lat="34.280575" data-lng="-116.338752" data-price="355000" data-orig-price="385000" data-annual-rev="71300" data-piti="2223.3700" data-pool="0" data-base-startup="134080.5000" data-util="391" data-hoa="0" data-clean="0.23">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/085bad920e162f8a6d0146a5585f2efa-cc_ft_1536.jpg" alt="60654 Mitch Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
@@ -641,7 +998,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$109,282</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (3)</div><a href="https://www.airbnb.com/rooms/49210867" target="_blank" class="comp-strip" title="The Yucca Escape"><span>76% occ</span><span>$170 ADR</span><span>$58.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/28644985" target="_blank" class="comp-strip" title="Landers Hideaway Near Joshua Tree National Park"><span>60% occ</span><span>$172 ADR</span><span>$39.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/33657790" target="_blank" class="comp-strip" title="Landers Cove"><span>40% occ</span><span>$148 ADR</span><span>$22.3K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/56674-Cone-Blvd-Landers-CA-92285/17507455_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.291187&amp;ne_lng=-116.423131&amp;sw_lat=34.284187&amp;sw_lng=-116.430131&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.291187%2C-116.430131%5D%2C%5B34.291187%2C-116.423131%5D%2C%5B34.284187%2C-116.423131%5D%2C%5B34.284187%2C-116.430131%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/56674-Cone-Blvd-Landers-CA-92285/17507455_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.291187%2C-116.430131%5D%2C%5B34.291187%2C-116.423131%5D%2C%5B34.284187%2C-116.423131%5D%2C%5B34.284187%2C-116.430131%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-green" data-addr="58860 Ocotillo Dr, Yucca Valley, CA 92284" data-lat="34.156848" data-lng="-116.379172" data-price="885000" data-orig-price="885000" data-annual-rev="107400" data-piti="5243.7200" data-pool="250" data-base-startup="316387.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -906,7 +1263,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$128,612</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/1295781788676514285" target="_blank" class="comp-strip" title="Stargazing Fenced Home | Minutes to JTNP+Downtown"><span>59% occ</span><span>$173 ADR</span><span>$38.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/52013739" target="_blank" class="comp-strip" title="Modern Desert Casita w/ Hot Tub Near Natl Park"><span>41% occ</span><span>$195 ADR</span><span>$34.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1533613876844212624" target="_blank" class="comp-strip" title="Stay at the Sunburst"><span>28% occ</span><span>$231 ADR</span><span>$26.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/2853261" target="_blank" class="comp-strip" title="Opal House: Designer's home in central Joshua Tree"><span>27% occ</span><span>$220 ADR</span><span>$24.8K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/7025-Park-Blvd-Joshua-Tree-CA-92252/17500223_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.12892&amp;ne_lng=-116.311335&amp;sw_lat=34.12192&amp;sw_lng=-116.318335&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.12892%2C-116.318335%5D%2C%5B34.12892%2C-116.311335%5D%2C%5B34.12192%2C-116.311335%5D%2C%5B34.12192%2C-116.318335%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/7025-Park-Blvd-Joshua-Tree-CA-92252/17500223_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.12892%2C-116.318335%5D%2C%5B34.12892%2C-116.311335%5D%2C%5B34.12192%2C-116.311335%5D%2C%5B34.12192%2C-116.318335%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-red" data-addr="877 E Phillips Rd, Landers, CA 92285" data-lat="34.265415" data-lng="-116.325323" data-price="299000" data-orig-price="369000" data-annual-rev="26200" data-piti="1903.4800" data-pool="0" data-base-startup="117932.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -959,7 +1316,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$117,932</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/877-E-Phillips-Rd-Landers-CA-92285/17508176_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.268915&amp;ne_lng=-116.321823&amp;sw_lat=34.261915&amp;sw_lng=-116.328823&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.268915%2C-116.328823%5D%2C%5B34.268915%2C-116.321823%5D%2C%5B34.261915%2C-116.321823%5D%2C%5B34.261915%2C-116.328823%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/877-E-Phillips-Rd-Landers-CA-92285/17508176_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.268915%2C-116.328823%5D%2C%5B34.268915%2C-116.321823%5D%2C%5B34.261915%2C-116.321823%5D%2C%5B34.261915%2C-116.328823%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card" data-addr="2073 Deer Trl, Yucca Valley, CA 92284" data-lat="34.215427" data-lng="-116.44509" data-price="289900" data-orig-price="289900" data-annual-rev="0" data-piti="1852.3800" data-pool="0" data-base-startup="121111.2500" data-util="391" data-hoa="0" data-clean="0.23">
@@ -990,7 +1347,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$121,111</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/2073-Deer-Trl-Yucca-Valley-CA-92284/17506833_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.218927&amp;ne_lng=-116.44159&amp;sw_lat=34.211927&amp;sw_lng=-116.44859&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.218927%2C-116.44859%5D%2C%5B34.218927%2C-116.44159%5D%2C%5B34.211927%2C-116.44159%5D%2C%5B34.211927%2C-116.44859%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/2073-Deer-Trl-Yucca-Valley-CA-92284/17506833_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.218927%2C-116.44859%5D%2C%5B34.218927%2C-116.44159%5D%2C%5B34.211927%2C-116.44159%5D%2C%5B34.211927%2C-116.44859%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-price="510000" data-orig-price="510000" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="198229.0000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -1021,7 +1378,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$198,229</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/56367-Scandia-Ln-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.198717&amp;ne_lng=-116.42936&amp;sw_lat=34.191717&amp;sw_lng=-116.43636&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.198717%2C-116.43636%5D%2C%5B34.198717%2C-116.42936%5D%2C%5B34.191717%2C-116.42936%5D%2C%5B34.191717%2C-116.43636%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/56367-Scandia-Ln-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.198717%2C-116.43636%5D%2C%5B34.198717%2C-116.42936%5D%2C%5B34.191717%2C-116.42936%5D%2C%5B34.191717%2C-116.43636%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     </div>
@@ -1093,7 +1450,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$101,535</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/17622658_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/124%20Wabash%20Ln%2C%20Sugarloaf%2C%20CA%2092386/homes" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb for this address">🔍 Airbnb</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/17622658_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a></div>
       </div>
     </div>
     <div class="property-card card-green" data-addr="346 San Bernardino Ave, Sugarloaf, CA 92386" data-lat="34.246" data-lng="-116.83386" data-price="285000" data-orig-price="295000" data-annual-rev="44200" data-piti="1824.4400" data-pool="0" data-base-startup="111615.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -1146,7 +1503,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$111,616</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.2495&amp;ne_lng=-116.83036&amp;sw_lat=34.2425&amp;sw_lng=-116.83736&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.2495%2C-116.83736%5D%2C%5B34.2495%2C-116.83036%5D%2C%5B34.2425%2C-116.83036%5D%2C%5B34.2425%2C-116.83736%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/346-San-Bernardino-Ave-Sugarloaf-CA-92386/2070283678_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.2495%2C-116.83736%5D%2C%5B34.2495%2C-116.83036%5D%2C%5B34.2425%2C-116.83036%5D%2C%5B34.2425%2C-116.83736%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     </div>
@@ -1218,7 +1575,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$92,579</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (1)</div><a href="https://www.airbnb.com/rooms/1225308994456946435" target="_blank" class="comp-strip" title="Black Magic A-Frame"><span>23% occ</span><span>$144 ADR</span><span>$13.6K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/219-Pine-Canyon-Dr-Frazier-Park-CA-93225/18972908_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.822207&amp;ne_lng=-118.94664&amp;sw_lat=34.815207&amp;sw_lng=-118.95364&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.822207%2C-118.95364%5D%2C%5B34.822207%2C-118.94664%5D%2C%5B34.815207%2C-118.94664%5D%2C%5B34.815207%2C-118.95364%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/219-Pine-Canyon-Dr-Frazier-Park-CA-93225/18972908_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.822207%2C-118.95364%5D%2C%5B34.822207%2C-118.94664%5D%2C%5B34.815207%2C-118.94664%5D%2C%5B34.815207%2C-118.95364%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-red" data-addr="4137 Grant Trl, Frazier Park, CA 93225" data-lat="34.820995" data-lng="-118.95505" data-price="249000" data-orig-price="249000" data-annual-rev="13600.0" data-piti="1619.3000" data-pool="0" data-base-startup="99833.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -1271,7 +1628,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$99,834</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (1)</div><a href="https://www.airbnb.com/rooms/1225308994456946435" target="_blank" class="comp-strip" title="Black Magic A-Frame"><span>23% occ</span><span>$144 ADR</span><span>$13.6K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/4137-Grant-Trl-Frazier-Park-CA-93225/54774974_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.824495&amp;ne_lng=-118.95155&amp;sw_lat=34.817495&amp;sw_lng=-118.95855&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.824495%2C-118.95855%5D%2C%5B34.824495%2C-118.95155%5D%2C%5B34.817495%2C-118.95155%5D%2C%5B34.817495%2C-118.95855%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/4137-Grant-Trl-Frazier-Park-CA-93225/54774974_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.824495%2C-118.95855%5D%2C%5B34.824495%2C-118.95155%5D%2C%5B34.817495%2C-118.95155%5D%2C%5B34.817495%2C-118.95855%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card" data-addr="940 Hemming Way, Frazier Park, CA 93225" data-lat="34.826216" data-lng="-118.940309" data-price="265000" data-orig-price="265000" data-annual-rev="0" data-piti="1710.4800" data-pool="0" data-base-startup="111793.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -1302,7 +1659,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$111,794</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.coldwellbanker.com/ca/frazier-park/940-hemming-way/lid-P00800000HD7f7PuWcighW76VrVJrE9C31QtUKgY" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.829716&amp;ne_lng=-118.936809&amp;sw_lat=34.822716&amp;sw_lng=-118.943809&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.829716%2C-118.943809%5D%2C%5B34.829716%2C-118.936809%5D%2C%5B34.822716%2C-118.936809%5D%2C%5B34.822716%2C-118.943809%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.coldwellbanker.com/ca/frazier-park/940-hemming-way/lid-P00800000HD7f7PuWcighW76VrVJrE9C31QtUKgY" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.829716%2C-118.943809%5D%2C%5B34.829716%2C-118.936809%5D%2C%5B34.822716%2C-118.936809%5D%2C%5B34.822716%2C-118.943809%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card" data-addr="1716 Zion Way, Pine Mountain Club, CA 93222" data-lat="34.83975" data-lng="-119.163864" data-price="246000" data-orig-price="258000" data-annual-rev="0" data-piti="1602.2000" data-pool="0" data-base-startup="105545.0000" data-util="391" data-hoa="150" data-clean="0.23">
@@ -1333,7 +1690,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$105,545</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/1716-Zion-Way-Pine-Mountain-Club-CA-93222/18979032_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.84325&amp;ne_lng=-119.160364&amp;sw_lat=34.83625&amp;sw_lng=-119.167364&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.84325%2C-119.167364%5D%2C%5B34.84325%2C-119.160364%5D%2C%5B34.83625%2C-119.160364%5D%2C%5B34.83625%2C-119.167364%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/1716-Zion-Way-Pine-Mountain-Club-CA-93222/18979032_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.84325%2C-119.167364%5D%2C%5B34.84325%2C-119.160364%5D%2C%5B34.83625%2C-119.160364%5D%2C%5B34.83625%2C-119.167364%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     </div>
@@ -1458,7 +1815,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$109,882</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/69538-Jim-Pine-Rd-29-Twentynine-Palms-CA-92277/463192614_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.208624&amp;ne_lng=-116.14207&amp;sw_lat=34.201624&amp;sw_lng=-116.14907&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.208624%2C-116.14907%5D%2C%5B34.208624%2C-116.14207%5D%2C%5B34.201624%2C-116.14207%5D%2C%5B34.201624%2C-116.14907%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/69538-Jim-Pine-Rd-29-Twentynine-Palms-CA-92277/463192614_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.208624%2C-116.14907%5D%2C%5B34.208624%2C-116.14207%5D%2C%5B34.201624%2C-116.14207%5D%2C%5B34.201624%2C-116.14907%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card" data-addr="56367 Scandia Ln, Yucca Valley, CA 92284" data-lat="34.195217" data-lng="-116.43286" data-price="510000" data-orig-price="510000" data-annual-rev="0" data-piti="3106.1300" data-pool="0" data-base-startup="198229.0000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -1489,7 +1846,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$198,229</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/56367-Scandia-Ln-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.198717&amp;ne_lng=-116.42936&amp;sw_lat=34.191717&amp;sw_lng=-116.43636&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.198717%2C-116.43636%5D%2C%5B34.198717%2C-116.42936%5D%2C%5B34.191717%2C-116.42936%5D%2C%5B34.191717%2C-116.43636%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/56367-Scandia-Ln-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.198717%2C-116.43636%5D%2C%5B34.198717%2C-116.42936%5D%2C%5B34.191717%2C-116.42936%5D%2C%5B34.191717%2C-116.43636%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     </div>
@@ -1634,7 +1991,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$157,042</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/1050251825957778903" target="_blank" class="comp-strip" title="Romantic Cabin, Sweeping Views, Spa · Stone Hill"><span>84% occ</span><span>$360 ADR</span><span>$117.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/583294576342371719" target="_blank" class="comp-strip" title="Casa Lenta · Romantic Retreat w/ Pool, Spa, Views"><span>70% occ</span><span>$338 ADR</span><span>$99.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1313828204666358101" target="_blank" class="comp-strip" title="CouplesPool, Spa&Tub | Bikes | Telescope | Theater"><span>69% occ</span><span>$291 ADR</span><span>$84.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/45829660" target="_blank" class="comp-strip" title="DTJT House 2 - SWIM, SOAK & STARGAZE"><span>58% occ</span><span>$245 ADR</span><span>$62.0K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/63300-Tilford-Way-Joshua-Tree-CA-92252/17508509_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.216845&amp;ne_lng=-116.278174&amp;sw_lat=34.209845&amp;sw_lng=-116.285174&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.216845%2C-116.285174%5D%2C%5B34.216845%2C-116.278174%5D%2C%5B34.209845%2C-116.278174%5D%2C%5B34.209845%2C-116.285174%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/63300-Tilford-Way-Joshua-Tree-CA-92252/17508509_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.216845%2C-116.285174%5D%2C%5B34.216845%2C-116.278174%5D%2C%5B34.209845%2C-116.278174%5D%2C%5B34.209845%2C-116.285174%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="2351 N Cambria Ave, Landers, CA 92285" data-lat="34.291757" data-lng="-116.430646" data-price="499000" data-orig-price="499000" data-annual-rev="110175.0" data-piti="3043.9000" data-pool="250" data-base-startup="201864.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -1687,7 +2044,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$201,864</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/51925323" target="_blank" class="comp-strip" title="Newfoundland | Hot Tub | Fire Pit | Desert Views"><span>86% occ</span><span>$395 ADR</span><span>$142.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1052620076857830533" target="_blank" class="comp-strip" title="The G.O.A.T. | Pool & Spa | 5-Acres | No Neighbors"><span>68% occ</span><span>$363 ADR</span><span>$107.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1010358724851399161" target="_blank" class="comp-strip" title="Escondite By Homestead Modern"><span>58% occ</span><span>$417 ADR</span><span>$103.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1421212089738528659" target="_blank" class="comp-strip" title="Casa Verde · Poolside Stargazing Paradise"><span>72% occ</span><span>$322 ADR</span><span>$88.3K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.295257&amp;ne_lng=-116.427146&amp;sw_lat=34.288257&amp;sw_lng=-116.434146&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.295257%2C-116.434146%5D%2C%5B34.295257%2C-116.427146%5D%2C%5B34.288257%2C-116.427146%5D%2C%5B34.288257%2C-116.434146%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/2351-N-Cambria-Ave-Landers-CA-92285/463469847_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.295257%2C-116.434146%5D%2C%5B34.295257%2C-116.427146%5D%2C%5B34.288257%2C-116.427146%5D%2C%5B34.288257%2C-116.434146%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="69450 Amboy Rd, Twentynine Palms, CA 92277" data-lat="34.16416" data-lng="-116.148522" data-price="599000" data-orig-price="599000" data-annual-rev="103600" data-piti="3613.6100" data-pool="0" data-base-startup="234990.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2005,7 +2362,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$150,528</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/593459348639844586" target="_blank" class="comp-strip" title="Still nights under vast, dark heavens"><span>72% occ</span><span>$211 ADR</span><span>$67.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/31042148" target="_blank" class="comp-strip" title="Maison 29 Peaceful Views, EV Charger, Starlink!"><span>62% occ</span><span>$200 ADR</span><span>$51.5K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/31931556" target="_blank" class="comp-strip" title="Wonder Years Cabin"><span>78% occ</span><span>$122 ADR</span><span>$38.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/28837545" target="_blank" class="comp-strip" title="Valley Mountain Homestead Solitude & Star Gazing"><span>40% occ</span><span>$120 ADR</span><span>$20.2K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.16109&amp;ne_lng=-115.930033&amp;sw_lat=34.15409&amp;sw_lng=-115.937033&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.16109%2C-115.937033%5D%2C%5B34.16109%2C-115.930033%5D%2C%5B34.15409%2C-115.930033%5D%2C%5B34.15409%2C-115.937033%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/5188-Godwin-Rd-Twentynine-Palms-CA-92277/17506255_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.16109%2C-115.937033%5D%2C%5B34.16109%2C-115.930033%5D%2C%5B34.15409%2C-115.930033%5D%2C%5B34.15409%2C-115.937033%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="1111 E Palm Canyon Dr #104, Palm Springs, CA 92264" data-lat="33.801331" data-lng="-116.535952" data-price="300000" data-orig-price="315000" data-annual-rev="43850.0" data-piti="1909.9400" data-pool="0" data-base-startup="115650.0000" data-util="0" data-hoa="799" data-clean="0.23">
@@ -2058,7 +2415,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$115,650</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/1272484355610884097" target="_blank" class="comp-strip" title="Renovated, luxe mid-century Ocotillo gem w/patio"><span>44% occ</span><span>$316 ADR</span><span>$53.6K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/686840445812510441" target="_blank" class="comp-strip" title="Modern Bungalow in Historic Ocotillo Lodge!"><span>50% occ</span><span>$231 ADR</span><span>$48.5K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/29682828" target="_blank" class="comp-strip" title="Ocotillo Lodge Mid-Century Modern Condo"><span>54% occ</span><span>$160 ADR</span><span>$39.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1075421284820316121" target="_blank" class="comp-strip" title="Mid-Century 1BR Bungalow At Famed Ocotillo Lodge"><span>34% occ</span><span>$337 ADR</span><span>$34.3K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/1111-E-Palm-Canyon-Dr-104-Palm-Springs-CA-92264/89235759_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=33.804831&amp;ne_lng=-116.532452&amp;sw_lat=33.797831&amp;sw_lng=-116.539452&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B33.804831%2C-116.539452%5D%2C%5B33.804831%2C-116.532452%5D%2C%5B33.797831%2C-116.532452%5D%2C%5B33.797831%2C-116.539452%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/1111-E-Palm-Canyon-Dr-104-Palm-Springs-CA-92264/89235759_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B33.804831%2C-116.539452%5D%2C%5B33.804831%2C-116.532452%5D%2C%5B33.797831%2C-116.532452%5D%2C%5B33.797831%2C-116.539452%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="845 Moreno Ln, Sugarloaf, CA 92386" data-lat="34.2405" data-lng="-116.829" data-price="280000" data-orig-price="320000" data-annual-rev="33640.0" data-piti="1795.9600" data-pool="0" data-base-startup="120068.0000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2111,7 +2468,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$120,068</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (5)</div><div class="comp-strip comp-strip-nolink" title="Chic, Cozy, & Modern Cabin Retreat in Big Bear"><span>50% occ</span><span>$219 ADR</span><span>$52.3K/yr</span></div><div class="comp-strip comp-strip-nolink" title="Stairway to Heaven Cabin W/ Spa"><span>33% occ</span><span>$266 ADR</span><span>$33.4K/yr</span></div><div class="comp-strip comp-strip-nolink" title="Couples Retreat: Starlit Hot Tub Near Big Bear"><span>25% occ</span><span>$261 ADR</span><span>$32.5K/yr</span></div><div class="comp-strip comp-strip-nolink" title="Modern Cabin - Wifi - Large Deck - Near Skiing"><span>37% occ</span><span>$182 ADR</span><span>$26.4K/yr</span></div><div class="comp-strip comp-strip-nolink" title="Guest Favorite - Hot Tub - Fenced Yard - Sleeps 6"><span>24% occ</span><span>$212 ADR</span><span>$23.6K/yr</span></div></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/845-Moreno-Ln-Sugarloaf-CA-92386/17624371_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.244&amp;ne_lng=-116.8255&amp;sw_lat=34.237&amp;sw_lng=-116.8325&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.244%2C-116.8325%5D%2C%5B34.244%2C-116.8255%5D%2C%5B34.237%2C-116.8255%5D%2C%5B34.237%2C-116.8325%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/845-Moreno-Ln-Sugarloaf-CA-92386/17624371_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.244%2C-116.8325%5D%2C%5B34.244%2C-116.8255%5D%2C%5B34.237%2C-116.8255%5D%2C%5B34.237%2C-116.8325%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="4537 Anita Ave, Yucca Valley, CA 92284" data-lat="34.17058" data-lng="-116.367336" data-price="510000" data-orig-price="585000" data-annual-rev="53500" data-piti="3106.6800" data-pool="0" data-base-startup="229765.0000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2164,7 +2521,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$229,765</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/4537-Anita-Ave-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.17408&amp;ne_lng=-116.363836&amp;sw_lat=34.16708&amp;sw_lng=-116.370836&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.17408%2C-116.370836%5D%2C%5B34.17408%2C-116.363836%5D%2C%5B34.16708%2C-116.363836%5D%2C%5B34.16708%2C-116.370836%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/4537-Anita-Ave-Yucca-Valley-CA-92284_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.17408%2C-116.370836%5D%2C%5B34.17408%2C-116.363836%5D%2C%5B34.16708%2C-116.363836%5D%2C%5B34.16708%2C-116.370836%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="697 Villa Grove Ave, Big Bear City, CA 92314" data-lat="34.238971" data-lng="-116.855846" data-price="270000" data-orig-price="299900" data-annual-rev="30900.0" data-piti="1738.9700" data-pool="0" data-base-startup="108525.0000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2217,7 +2574,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$108,525</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/54398781" target="_blank" class="comp-strip" title="PANSIZE: Cozy Moonridge Chalet in the Wood"><span>55% occ</span><span>$230 ADR</span><span>$58.7K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1016592731524962770" target="_blank" class="comp-strip" title="The Cosmic Cabin: Pet Friendly! Modern Mid-Century!"><span>41% occ</span><span>$206 ADR</span><span>$38.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/27990510" target="_blank" class="comp-strip" title="Angel's Nest: Cozy Private Moonridge Cabin! WiFi"><span>14% occ</span><span>$236 ADR</span><span>$14.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/11649204" target="_blank" class="comp-strip" title="Moonridge Cabin w/ HOT TUB blks to ski/golf/zoo"><span>9% occ</span><span>$278 ADR</span><span>$11.3K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.242471&amp;ne_lng=-116.852346&amp;sw_lat=34.235471&amp;sw_lng=-116.859346&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.242471%2C-116.859346%5D%2C%5B34.242471%2C-116.852346%5D%2C%5B34.235471%2C-116.852346%5D%2C%5B34.235471%2C-116.859346%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/697-Villa-Grove-Ave-Big-Bear-City-CA-92314/17621284_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.242471%2C-116.859346%5D%2C%5B34.242471%2C-116.852346%5D%2C%5B34.235471%2C-116.852346%5D%2C%5B34.235471%2C-116.859346%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="4883 Avenida La Candela, Joshua Tree, CA 92252" data-lat="34.164303" data-lng="-116.314651" data-price="430000" data-orig-price="430000" data-annual-rev="42000" data-piti="2650.7800" data-pool="0" data-base-startup="153725.0000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2270,7 +2627,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$153,725</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/4883-Avenida-La-Candela-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.167803&amp;ne_lng=-116.311151&amp;sw_lat=34.160803&amp;sw_lng=-116.318151&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.167803%2C-116.318151%5D%2C%5B34.167803%2C-116.311151%5D%2C%5B34.160803%2C-116.311151%5D%2C%5B34.160803%2C-116.318151%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/4883-Avenida-La-Candela-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.167803%2C-116.318151%5D%2C%5B34.167803%2C-116.311151%5D%2C%5B34.160803%2C-116.311151%5D%2C%5B34.160803%2C-116.318151%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="909 E Big Bear Blvd, Big Bear City, CA 92314" data-lat="34.26143" data-lng="-116.8289" data-price="180000" data-orig-price="199888" data-annual-rev="21800.0" data-piti="1226.0800" data-pool="0" data-base-startup="72030.0000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2323,7 +2680,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$72,030</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (4)</div><a href="https://www.airbnb.com/rooms/21503287" target="_blank" class="comp-strip" title="Mid-Century A-Frame in the Pines"><span>20% occ</span><span>$314 ADR</span><span>$28.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1369554510720905694" target="_blank" class="comp-strip" title="2BR Beartime Story Cabin, BBQ & Fireplace"><span>30% occ</span><span>$179 ADR</span><span>$24.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/894949705871445120" target="_blank" class="comp-strip" title="Moto Cabin: PetsStayFree, FencedYard, Fireplace"><span>19% occ</span><span>$209 ADR</span><span>$18.0K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/502441421412592496" target="_blank" class="comp-strip" title="Cozy Cabin, Perfect for Families, Dog friendly"><span>20% occ</span><span>$159 ADR</span><span>$15.9K/yr</span><span class="cs-arrow">↗</span></a></div>
-        <div class="card-links"><a href="https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.26493&amp;ne_lng=-116.8254&amp;sw_lat=34.25793&amp;sw_lng=-116.8324&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.26493%2C-116.8324%5D%2C%5B34.26493%2C-116.8254%5D%2C%5B34.25793%2C-116.8254%5D%2C%5B34.25793%2C-116.8324%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/909-E-Big-Bear-Blvd-Big-Bear-City-CA-92314/17390266_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.26493%2C-116.8324%5D%2C%5B34.26493%2C-116.8254%5D%2C%5B34.25793%2C-116.8254%5D%2C%5B34.25793%2C-116.8324%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="4650 Sizer Canyon Rd, Johnson Valley, CA 92285" data-lat="34.334711" data-lng="-116.553058" data-price="440000" data-orig-price="440000" data-annual-rev="36800" data-piti="2707.1300" data-pool="0" data-base-startup="172452.0000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2376,7 +2733,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$172,452</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/4650-Sizer-Canyon-Rd-Johnson-Valley-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.338211&amp;ne_lng=-116.549558&amp;sw_lat=34.331211&amp;sw_lng=-116.556558&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.338211%2C-116.556558%5D%2C%5B34.338211%2C-116.549558%5D%2C%5B34.331211%2C-116.549558%5D%2C%5B34.331211%2C-116.556558%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/4650-Sizer-Canyon-Rd-Johnson-Valley-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.338211%2C-116.556558%5D%2C%5B34.338211%2C-116.549558%5D%2C%5B34.331211%2C-116.549558%5D%2C%5B34.331211%2C-116.556558%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="50740 Santa Rosa Plz APT 2, La Quinta, CA 92253" data-lat="33.679208" data-lng="-116.302189" data-price="315000" data-orig-price="315000" data-annual-rev="28400" data-piti="1994.9900" data-pool="0" data-base-startup="123524.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2535,7 +2892,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$95,652</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/376-Riverside-Ave-Sugarloaf-CA-92386_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.248952&amp;ne_lng=-116.830967&amp;sw_lat=34.241952&amp;sw_lng=-116.837967&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.248952%2C-116.837967%5D%2C%5B34.248952%2C-116.830967%5D%2C%5B34.241952%2C-116.830967%5D%2C%5B34.241952%2C-116.837967%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/376-Riverside-Ave-Sugarloaf-CA-92386_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.248952%2C-116.837967%5D%2C%5B34.248952%2C-116.830967%5D%2C%5B34.241952%2C-116.830967%5D%2C%5B34.241952%2C-116.837967%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="446 Riverside Ave, Sugarloaf, CA 92386" data-lat="34.244053" data-lng="-116.834633" data-price="309000" data-orig-price="309000" data-annual-rev="19700" data-piti="1961.0500" data-pool="0" data-base-startup="119635.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2588,7 +2945,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$119,636</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/446-Riverside-Ave-Sugarloaf-CA-92386_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.247553&amp;ne_lng=-116.831133&amp;sw_lat=34.240553&amp;sw_lng=-116.838133&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.247553%2C-116.838133%5D%2C%5B34.247553%2C-116.831133%5D%2C%5B34.240553%2C-116.831133%5D%2C%5B34.240553%2C-116.838133%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/446-Riverside-Ave-Sugarloaf-CA-92386_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.247553%2C-116.838133%5D%2C%5B34.247553%2C-116.831133%5D%2C%5B34.240553%2C-116.831133%5D%2C%5B34.240553%2C-116.838133%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="396 Kern Ave, Sugarloaf, CA 92386" data-lat="34.244957" data-lng="-116.835238" data-price="299999" data-orig-price="299999" data-annual-rev="19000" data-piti="1909.1300" data-pool="0" data-base-startup="118768.9425" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2694,7 +3051,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$86,356</span></div>
         </div>
         <div class="comp-strips"><div class="comp-strips-title">Comps (2)</div><div class="comp-strip comp-strip-nolink" title="Jaybird Cabin"><span>7% occ</span><span>$385 ADR</span><span>$10.7K/yr</span></div><div class="comp-strip comp-strip-nolink" title="Cozy Hideaway"><span>7% occ</span><span>$138 ADR</span><span>$3.9K/yr</span></div></div>
-        <div class="card-links"><a href="https://www.zillow.com/homes/872-Hill-Ln-Big-Bear-Lake-CA-92315_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.240548&amp;ne_lng=-116.928707&amp;sw_lat=34.233548&amp;sw_lng=-116.935707&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.240548%2C-116.935707%5D%2C%5B34.240548%2C-116.928707%5D%2C%5B34.233548%2C-116.928707%5D%2C%5B34.233548%2C-116.935707%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/872-Hill-Ln-Big-Bear-Lake-CA-92315_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.240548%2C-116.935707%5D%2C%5B34.240548%2C-116.928707%5D%2C%5B34.233548%2C-116.928707%5D%2C%5B34.233548%2C-116.935707%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="1335 Fortuna Ave, Landers, CA 92285" data-lat="34.274045" data-lng="-116.426363" data-price="345000" data-orig-price="375000" data-annual-rev="4863.63" data-piti="2166.3800" data-pool="0" data-base-startup="138569.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2747,7 +3104,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$138,570</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/1335-Fortuna-Ave-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.277545&amp;ne_lng=-116.422863&amp;sw_lat=34.270545&amp;sw_lng=-116.429863&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.277545%2C-116.429863%5D%2C%5B34.277545%2C-116.422863%5D%2C%5B34.270545%2C-116.422863%5D%2C%5B34.270545%2C-116.429863%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/1335-Fortuna-Ave-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.277545%2C-116.429863%5D%2C%5B34.277545%2C-116.422863%5D%2C%5B34.270545%2C-116.422863%5D%2C%5B34.270545%2C-116.429863%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="1388 Jemez Trl, Landers, CA 92285" data-lat="34.27339" data-lng="-116.454986" data-price="499999" data-orig-price="499999" data-annual-rev="0" data-piti="3049.5500" data-pool="0" data-base-startup="228668.9425" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2778,7 +3135,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$228,669</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/1388-Jemez-Trl-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.27689&amp;ne_lng=-116.451486&amp;sw_lat=34.26989&amp;sw_lng=-116.458486&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.27689%2C-116.458486%5D%2C%5B34.27689%2C-116.451486%5D%2C%5B34.26989%2C-116.451486%5D%2C%5B34.26989%2C-116.458486%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/1388-Jemez-Trl-Landers-CA-92285_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.27689%2C-116.458486%5D%2C%5B34.27689%2C-116.451486%5D%2C%5B34.26989%2C-116.451486%5D%2C%5B34.26989%2C-116.458486%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     <div class="property-card card-sold" data-addr="1224 Shangri La Rd, Joshua Tree, CA 92252" data-lat="34.23143" data-lng="-116.323253" data-price="215000" data-orig-price="325000" data-annual-rev="0" data-piti="1425.5400" data-pool="0" data-base-startup="107854.5000" data-util="391" data-hoa="0" data-clean="0.23">
@@ -2809,7 +3166,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$107,854</span></div>
         </div>
         
-        <div class="card-links"><a href="https://www.zillow.com/homes/1224-Shangri-La-Rd-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/s/homes?search_by_map=true&amp;ne_lat=34.23493&amp;ne_lng=-116.319753&amp;sw_lat=34.22793&amp;sw_lng=-116.326753&amp;zoom=15" target="_blank" class="listing-btn airbnb-search-btn" title="Search Airbnb around this house">🔍 Airbnb</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.23493%2C-116.326753%5D%2C%5B34.23493%2C-116.319753%5D%2C%5B34.22793%2C-116.319753%5D%2C%5B34.22793%2C-116.326753%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+        <div class="card-links"><a href="https://www.zillow.com/homes/1224-Shangri-La-Rd-Joshua-Tree-CA-92252_rb/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.23493%2C-116.326753%5D%2C%5B34.23493%2C-116.319753%5D%2C%5B34.22793%2C-116.319753%5D%2C%5B34.22793%2C-116.326753%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
     </div>
