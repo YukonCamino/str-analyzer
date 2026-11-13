@@ -15,6 +15,11 @@
   "lon": -116.448062189122,
   "matched": "3979 DUSTY MILE RD, LANDERS, CA, 92285"
  },
+ "49624 Oak Dr, Morongo Valley, CA 92256": {
+  "lat": 34.06415,
+  "lon": -116.58234,
+  "matched": "from STR Scout"
+ },
  "55125 Gleason Rd, Landers, CA 92285": {
   "lat": 34.297323961731,
   "lon": -116.462694593184,
@@ -29,6 +34,36 @@
   "lat": 34.310718603647,
   "lon": -116.442744276198,
   "matched": "55960 EINSTEIN, LANDERS, CA, 92285"
+ },
+ "5725 Sunfair Rd, Joshua Tree, CA 92252": {
+  "lat": 34.149147,
+  "lon": -116.24605,
+  "matched": "from STR Scout"
+ },
+ "60291 La Mirada Trl, Joshua Tree, CA 92252": {
+  "lat": 34.116997,
+  "lon": -116.34886,
+  "matched": "from STR Scout"
+ },
+ "60789 Pueblo Trl, Joshua Tree, CA 92252": {
+  "lat": 34.115734,
+  "lon": -116.33825,
+  "matched": "from STR Scout"
+ },
+ "6699 San Angelo Ave, Joshua Tree, CA 92252": {
+  "lat": 34.131348,
+  "lon": -116.335815,
+  "matched": "from STR Scout"
+ },
+ "6715 Juniper Rd, Joshua Tree, CA 92252": {
+  "lat": 34.13106,
+  "lon": -116.331985,
+  "matched": "from STR Scout"
+ },
+ "6920 Juniper Rd, Joshua Tree, CA 92252": {
+  "lat": 34.12703,
+  "lon": -116.33324,
+  "matched": "from STR Scout"
  },
  "GPS: 34.30113, -116.42657 (unlisted)": {
   "lat": 34.30113,
