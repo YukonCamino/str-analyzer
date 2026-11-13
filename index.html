@@ -482,6 +482,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-green" data-addr="5725 Sunfair Rd, Joshua Tree, CA 92252" data-lat="34.149147" data-lng="-116.24605" data-price="1199000" data-annual-rev="228200" data-piti="7033.8204" data-pool="0" data-base-startup="447362.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/fa26492f8d958535999e6e715f3fcfba-p_f.jpg" alt="5725 Sunfair Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$1,199,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">5725 Sunfair Rd</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">1,170 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 29d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $9,643)</span></span><span class="amount neutral mo-rev-val">+$19,017/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$7,034/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$4,374/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$7,218/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:59.4%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+19.4%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="228,200" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$115,711/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$359,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$18,720</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$29,975</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$23,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$14,988</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$447,363</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/5725-Sunfair-Rd-Joshua-Tree-CA-92252/17501234_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/737109226659262974" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.152647%2C-116.24955%5D%2C%5B34.152647%2C-116.24255%5D%2C%5B34.145647%2C-116.24255%5D%2C%5B34.145647%2C-116.24955%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-green" data-addr="6715 Juniper Rd, Joshua Tree, CA 92252" data-lat="34.13106" data-lng="-116.331985" data-price="1999999" data-annual-rev="255687" data-piti="11599.1943" data-pool="0" data-base-startup="750983.6425" data-util="391" data-hoa="0" data-clean="0.23">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/0ecf1607fe93e1c88722c9a37ea97cde-p_f.jpg" alt="6715 Juniper Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
