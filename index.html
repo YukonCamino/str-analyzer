@@ -1990,6 +1990,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-red" data-addr="475 Kickapoo Trl, Yucca Valley, CA 92284" data-lat="34.242462" data-lng="-116.45658" data-price="449000" data-annual-rev="0" data-piti="2759.1204" data-pool="0" data-base-startup="175877.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="1" data-sqft="960" data-as-of="2026-11-13">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/a9307d5da45628beae178e0cd79ffb84-p_f.jpg" alt="475 Kickapoo Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$449,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">475 Kickapoo Trl</div>
+        <div class="card-city">Yucca Valley, CA 92284</div>
+        <div class="card-chips"><span class="chip chip-bed">1 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">960 sqft</span><span class="chip chip-region">Yucca Valley</span><span class="chip chip-source">🏠 ADU</span><span class="chip chip-dom-yellow" title="Days on Market">📅 50d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $4,091)</span></span><span class="amount neutral mo-rev-val">+$0/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,759/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$0/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$3,150/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:65.9%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-21.5%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">No comps</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="0" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$49,093/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$134,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,360</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$11,225</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$8,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$5,613</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$175,878</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/475-Kickapoo-Trl-Yucca-Valley-CA-92284/17506919_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.245962%2C-116.46008%5D%2C%5B34.245962%2C-116.45308%5D%2C%5B34.238962%2C-116.45308%5D%2C%5B34.238962%2C-116.46008%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-red" data-addr="74610 Samarkand Dr, Twentynine Palms, CA 92277" data-lat="34.158165" data-lng="-116.03413" data-price="599000" data-annual-rev="45169" data-piti="3614.0604" data-pool="250" data-base-startup="243870.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="3" data-sqft="1858" data-as-of="2026-11-13">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/be6d4e24642c9150450ed740443c78be-p_f.jpg" alt="74610 Samarkand Dr" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
