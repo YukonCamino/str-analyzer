@@ -1574,6 +1574,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-red" data-addr="220 N Shore Dr, Fawnskin, CA 92333" data-lat="34.247234" data-lng="-116.97114" data-price="405000" data-annual-rev="0" data-piti="2508.3380" data-pool="0" data-base-startup="160419.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="2" data-sqft="977" data-as-of="2026-11-13">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/ef7118d3c1001f32437de37a22c3c982-p_f.jpg" alt="220 N Shore Dr" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$405,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">220 N Shore Dr</div>
+        <div class="card-city">Fawnskin, CA 92333</div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">977 sqft</span><span class="chip chip-region">Fawnskin</span><span class="chip chip-source">🏔️ Big Bear</span><span class="chip chip-dom-red" title="Days on Market">📅 88d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $3,765)</span></span><span class="amount neutral mo-rev-val">+$0/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$2,508/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$0/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$2,899/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:66.5%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-21.7%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">No comps</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="0" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$45,184/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$121,500</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$15,632</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$10,125</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$8,100</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$5,063</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$160,420</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/220-N-Shore-Dr-Fawnskin-CA-92333/2069082213_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.250734%2C-116.97464%5D%2C%5B34.250734%2C-116.96764%5D%2C%5B34.243734%2C-116.96764%5D%2C%5B34.243734%2C-116.97464%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-green" data-addr="43615 Bow Canyon Ln, Big Bear Lake, CA 92315" data-lat="34.22762" data-lng="-116.850334" data-price="360000" data-annual-rev="67653" data-piti="2251.8560" data-pool="0" data-base-startup="141532.0000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="1" data-sqft="802" data-as-of="2026-11-13">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/76e96054130826502e217237cda50906-p_f.jpg" alt="43615 Bow Canyon Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
