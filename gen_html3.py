@@ -1279,7 +1279,8 @@ document.addEventListener('click', function(e){
       +'<option value="price">Price</option><option value="cash">Total cash in</option></select>'
       +'<button type="button" class="sort-dir" onclick="flipSort(&quot;view&quot;,this)" title="Flip sort order">&darr;</button></label></div>'
       +'<p class="view-empty">Nothing here yet. Press To View on a house to add it here.</p>'
-      +'<div class="cards-grid"></div>';
+      +'<div class="cards-grid"></div>'
+      +'<div class="tab-map" id="map-view"></div>';
     favTab.parentNode.insertBefore(t, favTab.nextSibling);
   }
 })();
@@ -1318,6 +1319,7 @@ function applyToView(){
     var f=c.querySelector('.fav-btn'); if(f) f.classList.toggle('active', favs.indexOf(c.dataset.addr)>=0);
   });
   var empty=document.querySelector('#tab-view .view-empty'); if(empty) empty.style.display=grid.children.length?'none':'';
+  if(currentTab==='view') updateTabMap('view');
   document.querySelectorAll('.tab-content').forEach(function(t){
     var cnt=t.querySelector('.prop-count');
     if(!cnt||!t.querySelector('.cards-grid')) return;
