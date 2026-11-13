@@ -482,6 +482,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-green" data-addr="6920 Juniper Rd, Joshua Tree, CA 92252" data-lat="34.12703" data-lng="-116.33324" data-price="849000" data-annual-rev="114059" data-piti="5038.9604" data-pool="0" data-base-startup="327933.5000" data-util="391" data-hoa="0" data-clean="0.23">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/b80876da85245ee76de091fe77b4eb47-p_f.jpg" alt="6920 Juniper Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$849,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">6920 Juniper Rd</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">1,526 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-red" title="Days on Market">📅 70d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $7,052)</span></span><span class="amount neutral mo-rev-val">+$9,505/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$5,039/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,186/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$1,889/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:21.2%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+6.9%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="114,059" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$84,623/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$254,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$24,416</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$21,225</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$16,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$10,613</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$327,934</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/6920-Juniper-Rd-Joshua-Tree-CA-92252/137799914_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/54223480" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.13053%2C-116.33674%5D%2C%5B34.13053%2C-116.32974%5D%2C%5B34.12353%2C-116.32974%5D%2C%5B34.12353%2C-116.33674%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-green" data-addr="60291 La Mirada Trl, Joshua Tree, CA 92252" data-lat="34.116997" data-lng="-116.34886" data-price="739500" data-annual-rev="105913" data-piti="4414.8542" data-pool="0" data-base-startup="301795.2500" data-util="391" data-hoa="0" data-clean="0.23">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/506947af919eff18359d3b0ba560c8a6-cc_ft_1536.jpg" alt="60291 La Mirada Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
