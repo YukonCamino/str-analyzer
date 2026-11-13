@@ -35,6 +35,32 @@ def zillow_url(addr):
 # across. Same figure as Zero uses, deliberately: the two should agree.
 AIRROI_BOX = 0.0035
 
+# SEARCH AIRBNB WHERE THIS HOUSE IS.
+#
+# Added on 12 November 2026, for the cards that have no airbnb_link yet.
+# A linked card points at the actual listing; this points at whatever is
+# let within the same box the AirROI button draws, which is how you find
+# out whether the house is already a rental and what its neighbours ask.
+#
+# `search_by_map=true` with the four bounds is what makes Airbnb search
+# the RECTANGLE rather than guess a town from a text query. Checked
+# against a real box on 12 November 2026: it answered "Homes in map
+# area", two homes, with prices.
+def airbnb_search_url(lat, lon):
+    d = AIRROI_BOX
+    q = {
+        "search_by_map": "true",
+        "ne_lat": round(lat + d, 6), "ne_lng": round(lon + d, 6),
+        "sw_lat": round(lat - d, 6), "sw_lng": round(lon - d, 6),
+        "zoom": 15,
+    }
+    return "https://www.airbnb.com/s/homes?" + urllib.parse.urlencode(q)
+
+# No coordinates, so there is no box to draw: fall back to Airbnb's own
+# text search on the address. Less precise, but never nothing.
+def airbnb_text_url(addr):
+    return "https://www.airbnb.com/s/" + urllib.parse.quote(addr, safe="") + "/homes"
+
 def airroi_url(lat, lon):
     d = AIRROI_BOX
     pts = [[lat + d, lon - d], [lat + d, lon + d],
@@ -326,6 +352,17 @@ def card(p, show_source=None):
     # No button at all when the address could not be placed: a link to the
     # wrong part of the map is worse than no link.
     _ll_btn = LATLNG.get(p["address"])
+    # NO LISTING LINKED YET, so offer to go and look. Only ever one of the
+    # two: a card that already points at its Airbnb listing does not also
+    # need a search for it.
+    if not (airbnb_link and airbnb_link.startswith("http")):
+        _search = airbnb_search_url(_ll_btn[0], _ll_btn[1]) if _ll_btn \
+                  else airbnb_text_url(p["address"])
+        _why = "Search Airbnb around this house" if _ll_btn \
+               else "Search Airbnb for this address"
+        links_html += (f'<a href="{_search.replace("&", "&amp;")}" target="_blank" '
+                       f'class="listing-btn airbnb-search-btn" title="{_why}">'
+                       f'🔍 Airbnb</a>')
     if _ll_btn:
         links_html += (f'<a href="{airroi_url(_ll_btn[0], _ll_btn[1])}" target="_blank" '
                        f'class="listing-btn airroi-btn" '
@@ -857,6 +894,9 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 /* AirROI's own teal, so the three buttons are told apart by colour
    as well as by their words. */
 .airroi-btn { background:#0f6b63;color:#fff; }
+/* OUTLINED, not filled, so a card where he has found the real listing
+   still stands out from one where there is only a search to run. */
+.airbnb-search-btn { background:transparent;color:#7c1f3a;box-shadow:inset 0 0 0 1.5px #7c1f3a; }
 .comp-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:15px; }
 .comp-card { background:var(--surface);border-radius:10px;padding:14px;border:1px solid var(--border);transition:transform 0.15s; }
 .comp-card:hover { transform:translateY(-2px); }
@@ -882,44 +922,93 @@ function recalcCard(el) {
   var card = el.closest('.property-card');
   if (card) recalcCardEl(card);
 }
+function cardNum(v){ var x=parseFloat(String(v==null?'':v).replace(/[^0-9.]/g,'')); return isNaN(x)?null:x; }
+function chipNum(card, cls){ var el=card.querySelector('.'+cls); return el?cardNum(el.textContent):null; }
+// ALL THE SUMS COME FROM str-math.js (window.STRMath, loaded by
+// str-math-loader.js). This only gathers what the card knows and hands it
+// over; nothing below does arithmetic beyond dividing a yearly figure by 12.
+function cardDeal(card){
+  if(!card || !window.STRMath) return null;
+  var d=card.dataset;
+  var p0=parseFloat(d.price)||0;
+  var cur=parseFloat(d.curPrice); if(isNaN(cur)) cur=p0;
+  var poolCheck=card.querySelector('.pool-check');
+  var pool=poolCheck?poolCheck.checked:((parseFloat(d.pool)||0)>0);
+  var rev=parseFloat(d.annualRev)||0;
+  var revEl=card.querySelector('.rev-input');
+  if(revEl){ var v=cardNum(revEl.value); if(v) rev=v; }
+  var remodelEl=card.querySelector('.remodel-input');
+  var input={
+    price:cur,
+    beds:d.beds!==undefined?parseFloat(d.beds):chipNum(card,'chip-bed'),
+    sqft:d.sqft!==undefined?parseFloat(d.sqft):chipNum(card,'chip-sqft'),
+    pool:pool, hotTub:d.hotTub==='1',
+    annualRevenue:rev,
+    hoaAnnual:(parseFloat(d.hoa)||0)*12,
+    remodel:remodelEl?(cardNum(remodelEl.value)||0):0
+  };
+  if(d.occupancy) input.occupancy=parseFloat(d.occupancy);
+  if(d.avgStay) input.avgStay=parseFloat(d.avgStay);
+  if(d.cleanFee) input.cleaningFee=parseFloat(d.cleanFee);
+  if(d.tax) input.annualPropertyTax=parseFloat(d.tax);
+  if(d.asOf) input.asOf=d.asOf;
+  // A card may carry its own utilities and cleaning share (a house where
+  // the bills are already paid is written as 0). Those are settings, so
+  // they go in as settings.
+  var s={}; var base=window.STRMath.settings; for(var k in base) s[k]=base[k];
+  var util=parseFloat(d.util); if(!isNaN(util)) s.utilitiesInternetPerYear=util*12;
+  if(d.clean!==undefined && !isNaN(parseFloat(d.clean))) s.cleaningPctIfNoOccupancy=parseFloat(d.clean)*100;
+  return window.STRMath.analyze(input, s);
+}
+function lineAmt(r, keys){ var t=0; r.lines.forEach(function(l){ if(keys.indexOf(l.key)>=0) t+=(l.amount||0); }); return t; }
+var OTHER_KEYS=['supplies','hotTub','admin','repairs','hoa','platform','management'];
 function recalcCardEl(card) {
   if (!card) return;
-  var p0 = parseFloat(card.dataset.price) || 0;
-  var curPrice = parseFloat(card.dataset.curPrice); if (isNaN(curPrice)) curPrice = p0;
-  var piti0 = parseFloat(card.dataset.piti) || 0;
-  var baseStartup0 = parseFloat(card.dataset.baseStartup) || 0;
-  var poolCheck = card.querySelector('.pool-check');
-  var pool = poolCheck ? (poolCheck.checked ? 250 : 0) : (parseFloat(card.dataset.pool) || 0);
-  var util = parseFloat(card.dataset.util); if (isNaN(util)) util = 391;
-  var hoa = parseFloat(card.dataset.hoa) || 0;
-  // price drives PITI (marginal rate), down payment, agent, closing, supplemental tax
-  var piti = piti0 + 0.0056996 * (curPrice - p0);
-  var baseStartup = baseStartup0 + 0.3575 * (curPrice - p0);
-  var remodelEl = card.querySelector('.remodel-input');
-  var remodel = remodelEl ? (parseFloat((remodelEl.value||'0').replace(/[^0-9.]/g,''))||0) : 0;
-  var startup = baseStartup + remodel;
-  var pitiEl = card.querySelector('.piti-val'); if (pitiEl) pitiEl.textContent = '-' + fmtUSD(piti) + '/mo';
-  var poolValEl = card.querySelector('.pool-val'); if (poolValEl) { poolValEl.textContent = (pool?'-$250':'$0') + '/mo'; poolValEl.className = 'amount ' + (pool?'negative':'neutral') + ' pool-val'; }
-  var downEl = card.querySelector('.down-val'); if (downEl) downEl.textContent = fmtUSD(curPrice*0.30);
-  var agentEl = card.querySelector('.agent-val'); if (agentEl) agentEl.textContent = fmtUSD(curPrice*0.025);
-  var closeEl = card.querySelector('.closing-val'); if (closeEl) closeEl.textContent = fmtUSD(curPrice*0.02);
-  var suppEl = card.querySelector('.supp-val'); if (suppEl) suppEl.textContent = fmtUSD(curPrice*0.0125);
-  var stEl = card.querySelector('.startup-total-val'); if (stEl) stEl.textContent = fmtUSD(startup);
-  var cleanPct = card.dataset.clean !== undefined ? parseFloat(card.dataset.clean) : 0.23;
-  var beMo = (piti + pool + util + hoa) / (1 - cleanPct);
-  var beInline = card.querySelector('.be-inline'); if (beInline) beInline.textContent = '(breakeven ' + fmtUSD(beMo) + ')';
-  var beVal = card.querySelector('.be-val'); if (beVal) beVal.textContent = fmtUSD(beMo*12) + '/yr';
-  var beNote = card.querySelector('.be-note'); if (beNote) beNote.textContent = fmtUSD(beMo) + '/mo · ' + fmtUSD(beMo*12) + '/yr';
-  var revEl = card.querySelector('.rev-input');
-  if (revEl) {
-    var annualRev = parseFloat(card.dataset.annualRev) || 0;
-    var adjRev = parseFloat((revEl.value||String(annualRev)).replace(/[^0-9.]/g,'')) || annualRev;
-    var mo = adjRev / 12;
-    var cleaning = mo * cleanPct;
-    var cf = mo - piti - util - hoa - cleaning - pool;
-    var coc = startup > 0 ? (cf * 12 / startup * 100) : 0;
-    var moRevEl = card.querySelector('.mo-rev-val'); if (moRevEl) moRevEl.textContent = '+' + fmtUSD(mo) + '/mo';
-    var cleanEl = card.querySelector('.cleaning-val'); if (cleanEl) cleanEl.textContent = '-' + fmtUSD(cleaning) + '/mo';
+  var r = cardDeal(card);
+  if (!r) return;
+  var set = function(sel, text){ var el = card.querySelector(sel); if (el) el.textContent = text; return el; };
+  set('.piti-val', '-' + fmtUSD(r.pitiMonthly) + '/mo');
+  var pool = lineAmt(r, ['poolUtil','poolRepairs']) / 12;
+  var poolValEl = set('.pool-val', (pool ? '-' + fmtUSD(pool) : '$0') + '/mo');
+  if (poolValEl) poolValEl.className = 'amount ' + (pool ? 'negative' : 'neutral') + ' pool-val';
+  set('.down-val', fmtUSD(r.down));
+  set('.agent-val', fmtUSD(r.buyerAgent));
+  set('.closing-val', fmtUSD(r.closing));
+  set('.supp-val', fmtUSD(r.supplementalTax));
+  set('.startup-total-val', fmtUSD(r.cashInvested));
+  var be = r.breakevenRevenue;
+  set('.be-inline', be == null ? '' : '(breakeven ' + fmtUSD(be/12) + ')');
+  set('.be-val', be == null ? 'n/a' : fmtUSD(be) + '/yr');
+  set('.be-note', be == null ? 'n/a' : fmtUSD(be/12) + '/mo · ' + fmtUSD(be) + '/yr');
+  // Rows the older cards were not printed with: label the utilities and
+  // cleaning rows from the module, and add one row for everything else.
+  var rows = card.querySelectorAll('.cost-breakdown .cost-row');
+  for (var i = 0; i < rows.length; i++) {
+    var lab = rows[i].querySelector('.label'); var amt = rows[i].querySelector('.amount');
+    if (lab && amt && lab.textContent.indexOf('Utilities') === 0) amt.textContent = '-' + fmtUSD(lineAmt(r, ['utilities'])/12) + '/mo';
+    if (lab && amt && amt.classList.contains('cleaning-val')) {
+      var cl = null; r.lines.forEach(function(l){ if (l.key === 'cleaning') cl = l; });
+      lab.textContent = 'Cleaning' + (r.stays == null ? ' (' + Math.round((cl && r.revenue ? cl.amount / r.revenue : 0) * 100) + '%)' : ' (' + Math.round(r.stays) + ' stays)');
+    }
+  }
+  var total = card.querySelector('.cost-breakdown .total-row');
+  var otherEl = card.querySelector('.other-val');
+  if (!otherEl && total && r.ok) {
+    var row = document.createElement('div'); row.className = 'cost-row other-row';
+    row.innerHTML = '<span class="label">Airbnb fee, repairs, admin</span><span class="amount negative other-val"></span>';
+    total.parentNode.insertBefore(row, total);
+    otherEl = row.querySelector('.other-val');
+  }
+  if (otherEl) {
+    otherEl.textContent = '-' + fmtUSD(lineAmt(r, OTHER_KEYS)/12) + '/mo';
+    otherEl.parentNode.title = r.lines.filter(function(l){ return OTHER_KEYS.indexOf(l.key) >= 0; })
+      .map(function(l){ return l.label + ' ' + fmtUSD(l.amount) + '/yr' + (l.note ? ' (' + l.note + ')' : ''); }).join(' | ');
+  }
+  if (card.querySelector('.rev-input')) {
+    var cf = r.cashFlowMonthly;
+    var coc = r.coc == null ? 0 : r.coc * 100;
+    set('.mo-rev-val', '+' + fmtUSD(r.revenue/12) + '/mo');
+    set('.cleaning-val', '-' + fmtUSD(lineAmt(r, ['cleaning'])/12) + '/mo');
     var cfEl = card.querySelector('.net-cf-val'); if (cfEl) { cfEl.textContent=(cf>=0?'+':'-')+fmtUSD(cf)+'/mo'; cfEl.className='amount net-cf-val '+(cf>=0?'positive':'negative'); }
     var cocValEl = card.querySelector('.coc-value'); if (cocValEl) { cocValEl.textContent=(coc>=0?'+':'')+coc.toFixed(1)+'%'; cocValEl.className='coc-value '+(coc>=0?'coc-positive':'coc-negative'); }
     var cocBar = card.querySelector('.coc-bar'); if (cocBar) { var c=Math.min(Math.max(coc,-20),50); var w=Math.max(0,Math.min(100,(c+20)/70*100)); cocBar.style.width=w.toFixed(1)+'%'; cocBar.style.background=coc>=0?'#22c55e':'#ef4444'; }
@@ -1070,22 +1159,12 @@ function refreshFavs(){
 var sortState={};
 var SORT_DEFAULT_DIR={coc:-1,cf:-1,rev:-1,price:1,cash:1};
 function sortVals(card){
+  var r=cardDeal(card);
   var p0=parseFloat(card.dataset.price)||0;
   var cur=parseFloat(card.dataset.curPrice); if(isNaN(cur)) cur=p0;
-  var piti=(parseFloat(card.dataset.piti)||0)+0.0056996*(cur-p0);
-  var startup=(parseFloat(card.dataset.baseStartup)||0)+0.3575*(cur-p0);
-  var remodelEl=card.querySelector('.remodel-input');
-  startup+=remodelEl?(parseFloat((remodelEl.value||'0').replace(/[^0-9.]/g,''))||0):0;
-  var poolCheck=card.querySelector('.pool-check');
-  var pool=poolCheck?(poolCheck.checked?250:0):(parseFloat(card.dataset.pool)||0);
-  var util=parseFloat(card.dataset.util); if(isNaN(util)) util=391;
-  var hoa=parseFloat(card.dataset.hoa)||0;
-  var cleanPct=card.dataset.clean!==undefined?parseFloat(card.dataset.clean):0.23;
-  var rev=parseFloat(card.dataset.annualRev)||0;
-  var revEl=card.querySelector('.rev-input');
-  if(revEl){ var v=parseFloat((revEl.value||'').replace(/[^0-9.]/g,'')); if(v) rev=v; }
-  var out={price:cur,cash:startup,rev:rev||null,cf:null,coc:null};
-  if(rev>0){ var mo=rev/12; var cf=mo-piti-util-hoa-mo*cleanPct-pool; out.cf=cf; out.coc=startup>0?cf*12/startup*100:0; }
+  if(!r) return {price:cur,cash:null,rev:null,cf:null,coc:null};
+  var out={price:cur,cash:r.cashInvested,rev:r.revenue||null,cf:null,coc:null};
+  if(r.revenue>0){ out.cf=r.cashFlowMonthly; out.coc=r.coc==null?0:r.coc*100; }
   return out;
 }
 function applySort(tid){
@@ -1116,6 +1195,14 @@ loadPriceCuts();
 refreshFavs();
 showTab('top5');
 window.addEventListener('load', equalizeRows);
+// The maths arrives a moment after the page (it is a module). When it does,
+// redo every card and put the sorted tabs back in order.
+function strMathReady(){
+  document.querySelectorAll('.property-card').forEach(recalcCardEl);
+  Object.keys(sortState).forEach(function(t){ applySort(t); });
+  scheduleEqualize();
+}
+if(window.STRMath) strMathReady(); else window.addEventListener('strmath-ready', strMathReady);
 setTimeout(equalizeRows, 400);
 '''
 
@@ -1214,6 +1301,7 @@ html = f'''<!DOCTYPE html>
     {btns_html}
 </div>
 {tabs_html}
+<script type="module" src="str-math-loader.js"></script>
 <script>{js}</script>
 </body>
 </html>'''
