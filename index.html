@@ -163,6 +163,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
     <button class="tab-btn" onclick="showTab('money')" id="btn-money">🌵 Desert</button>
     <button class="tab-btn" onclick="showTab('bigbear')" id="btn-bigbear">🏔️ Big Bear</button>
     <button class="tab-btn" onclick="showTab('frazier')" id="btn-frazier">🌲 Frazier Park</button>
+    <button class="tab-btn" onclick="showTab('idyllwild')" id="btn-idyllwild">⛰️ Idyllwild</button>
     <button class="tab-btn" onclick="showTab('adu')" id="btn-adu">🏠 ADU</button>
     <button class="tab-btn" onclick="showTab('laquinta')" id="btn-laquinta">🌴 Low Desert</button>
     <button class="tab-btn  sold-btn" onclick="showTab('sold')" id="btn-sold">🔴 Sold</button>
@@ -2077,6 +2078,26 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
     </div>
     </div>
     <div class="tab-map" id="map-frazier"></div>
+  </div>
+  <div id="tab-idyllwild" class="tab-content" style="display:none">
+    <div class="tab-header">
+      <h2>⛰️ Idyllwild</h2>
+      <span class="prop-count">0 properties</span>
+      <label class="sort-wrap">Sort
+        <select class="sort-select" onchange="setSort('idyllwild',this.value)">
+          <option value="coc">Cash on cash</option>
+          <option value="cf">Cash flow</option>
+          <option value="rev">Revenue</option>
+          <option value="price">Price</option>
+          <option value="cash">Total cash in</option>
+        </select>
+        <button type="button" class="sort-dir" onclick="flipSort('idyllwild',this)" title="Flip sort order">&darr;</button>
+      </label>
+    </div>
+    <div class="cards-grid">
+    
+    </div>
+    <div class="tab-map" id="map-idyllwild"></div>
   </div>
   <div id="tab-adu" class="tab-content" style="display:none">
     <div class="tab-header">

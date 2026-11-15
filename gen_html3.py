@@ -464,6 +464,8 @@ laquinta_tab = [
     {"address":"1111 E Palm Canyon Dr #104, Palm Springs, CA 92264","region":"Palm Springs","price":300000,"original_price":315000,"beds":1,"baths":1,"sqft":525,"img_src":zillow_img("9bbdffe576f0deccf9d13cc5b425c219"),"zillow_link":"https://www.zillow.com/homedetails/1111-E-Palm-Canyon-Dr-104-Palm-Springs-CA-92264/89235759_zpid/","fin":compute(300000,0,1909.94,90000.0,525,hoa=799,util=0)},
 ]
 
+idyllwild_tab = []
+
 frazier_tab = [
     {"address":"940 Hemming Way, Frazier Park, CA 93225","region":"Frazier Park","price":265000,"beds":3,"baths":2,"sqft":1066,"dom":129,"img_src":"https://images-listings.coldwellbanker.com/SANDICOR/SR/26/13/92/72/_P/SR26139272_P00.webp","zillow_link":"https://www.coldwellbanker.com/ca/frazier-park/940-hemming-way/lid-P00800000HD7f7PuWcighW76VrVJrE9C31QtUKgY","fin":compute(265000,0,1710.48,79500.0,1066)},
     {"address":"1716 Zion Way, Pine Mountain Club, CA 93222","region":"Pine Mountain Club","price":246000,"original_price":258000,"beds":3,"baths":2,"sqft":1100,"dom":124,"img_src":zillow_img("78a370ecdbcb8649ebf375e420754993"),"zillow_link":"https://www.zillow.com/homedetails/1716-Zion-Way-Pine-Mountain-Club-CA-93222/18979032_zpid/","fin":compute(246000,0,1602.2,73800.0,1100,hoa=150)},
@@ -639,7 +641,7 @@ if _os.path.exists(_added_file):
     # A house already on any tab is not added again, whichever tab it is
     # on, so pressing the button twice is harmless.
     _known = {p["address"].strip().lower()
-              for _t in (only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab,
+              for _t in (only_tab, laquinta_tab, frazier_tab, idyllwild_tab, duplex_tab, bigbear_tab,
                          sold_tab, adu_tab, competition_tab, money_tab)
               for p in _t}
     _new = 0
@@ -669,7 +671,7 @@ if _os.path.exists(_added_file):
     only_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
     print(f"added.json: {len(_rows)} listed, {_new} new, only_tab now {len(only_tab)}")
 
-apply_comps([only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
+apply_comps([only_tab, laquinta_tab, frazier_tab, idyllwild_tab, duplex_tab, bigbear_tab, sold_tab, adu_tab, money_tab])
 
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 adu_tab.extend(duplex_tab)
@@ -738,14 +740,14 @@ def retire_sold(tabs):
                 sold_tab.append(dict(p, sold=True))
 
 SOLD_ADDRS |= OFFMARKET_ADDRS | PENDING_ADDRS
-retire_sold([only_tab, laquinta_tab, frazier_tab, duplex_tab, bigbear_tab, adu_tab, money_tab, competition_tab])
+retire_sold([only_tab, laquinta_tab, frazier_tab, idyllwild_tab, duplex_tab, bigbear_tab, adu_tab, money_tab, competition_tab])
 # Godwin house-hack is a second view of the same sold home; keep one card in Sold.
 sold_tab[:] = [p for p in sold_tab if p["address"] != "5188 Godwin Rd (house hack), Twentynine Palms, CA 92277"]
 
 FAV_DEFAULT_ADDRS = [p["address"] for p in only_tab]
 money_tab.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 
-for _t in (laquinta_tab, frazier_tab, bigbear_tab, adu_tab, sold_tab):
+for _t in (laquinta_tab, frazier_tab, idyllwild_tab, bigbear_tab, adu_tab, sold_tab):
     _t.sort(key=lambda p: p["fin"]["coc"] if p["fin"].get("coc") is not None else -999, reverse=True)
 
 comp_tracker = [
@@ -774,6 +776,7 @@ def collect(props, source_label):
 collect(laquinta_tab, "🌴 Low Desert")
 collect(bigbear_tab, "🏔️ Big Bear")
 collect(frazier_tab, "🌲 Frazier Park")
+collect(idyllwild_tab, "⛰️ Idyllwild")
 collect(adu_tab, "🏠 ADU")
 collect(money_tab, "🌵 Desert")
 # sold_tab intentionally excluded from Top 5
@@ -1447,6 +1450,7 @@ tabs_def = [
     ("money",   "🌵 Desert",      money_tab,      False, False),
     ("bigbear", "🏔️ Big Bear",   bigbear_tab,    False, False),
     ("frazier", "🌲 Frazier Park", frazier_tab,   False, False),
+    ("idyllwild","⛰️ Idyllwild",   idyllwild_tab,  False, False),
     ("adu",     "🏠 ADU",         adu_tab,        False, False),
     ("laquinta","🌴 Low Desert",   laquinta_tab,   False, False),
     ("sold",    "🔴 Sold",        sold_tab,       False, False),
