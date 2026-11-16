@@ -959,6 +959,9 @@ function cardDeal(card){
   if(d.cleanFee) input.cleaningFee=parseFloat(d.cleanFee);
   if(d.tax) input.annualPropertyTax=parseFloat(d.tax);
   if(d.asOf) input.asOf=d.asOf;
+  // Airbnb's host fee comes off Airbnb and AirROI revenue, not a long-term rent.
+  var tag=card.querySelector('.rev-tag');
+  if(tag && /long-term/i.test(tag.textContent)) input.airbnbFee=false;
   // A card may carry its own utilities and cleaning share (a house where
   // the bills are already paid is written as 0). Those are settings, so
   // they go in as settings.

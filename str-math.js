@@ -40,10 +40,7 @@ export const DEFAULT_SETTINGS = {
   taxPctIfUnknown: 1.25,
   insurancePctOfPrice: 0.56,
 
-  airbnbOldFeePct: 3,
-  airbnbNewFeePct: 15.5,
-  airbnbFeeOverridePct: 0,
-  airbnbFeeSwitchDate: '2026-09-15',
+  airbnbFeePct: 15.5,
   managementPct: 0,
 
   downPct: 30,
@@ -73,32 +70,6 @@ export function monthlyPayment(principal, annualRatePct, termYears) {
   return principal * r / (1 - Math.pow(1 + r, -months));
 }
 
-/* Effective Airbnb fee on a trailing-twelve-month revenue figure read on a
-   given day.
-
-   Revenue figures are the top line, before Airbnb's cut. Until hosts were
-   moved to the single host-paid fee they kept 97% of it; after, 84.5%. A
-   trailing year read shortly after the switch is mostly old-fee revenue, so
-   charging the new rate on all of it invents cost that never happened, and
-   charging the old rate ignores the months that have. This weights each by
-   the days it covers.
-
-   It assumes hosts raised prices to keep their payout (which leaves the
-   guest's total unchanged), so post-switch days carry more revenue per day,
-   by (1 - old) / (1 - new); and that revenue is spread evenly over the year. */
-export function blendedAirbnbFee(asOf, { oldPct = 3, newPct = 15.5, switchDate = DEFAULT_SETTINGS.airbnbFeeSwitchDate } = {}) {
-  const today = asOf instanceof Date ? asOf : new Date(asOf);
-  const sw = new Date(switchDate + 'T00:00:00Z');
-  const DAY = 86400000;
-  const postDays = Math.max(0, Math.min(365, Math.floor((today - sw) / DAY)));
-  const preDays = 365 - postDays;
-  const o = oldPct / 100, w = newPct / 100;
-  const uplift = w < 1 ? (1 - o) / (1 - w) : 1;
-  const revPre = preDays, revPost = postDays * uplift;
-  const total = revPre + revPost;
-  const rate = total > 0 ? (revPre * o + revPost * w) / total : w;
-  return { pct: rate * 100, preDays, postDays };
-}
 
 /* The deal.
 
@@ -115,8 +86,7 @@ export function blendedAirbnbFee(asOf, { oldPct = 3, newPct = 15.5, switchDate =
                        the cleaning line (default "given")
      annualPropertyTax the listing's own tax figure; replaces the percentage
      hoaAnnual         homeowners' association dues per year
-     asOf              the date the revenue figure was read (default: now);
-                       drives the blended Airbnb fee
+     airbnbFee         false when the revenue is not from Airbnb (no host fee)
      remodel           what you expect to spend on works; added to the cash in
 
    Cleaning: with an occupancy (or a nightly rate) it is priced per stay. With
@@ -139,20 +109,14 @@ export function analyze(input = {}, settings = {}) {
   const occupancy = typeof input.occupancy === 'number' && isFinite(input.occupancy) ? input.occupancy : null;
   const adr = n(input.adr, null);
   const avgStay = Math.max(0.5, n(input.avgStay, n(s.avgStayNights, 3)));
-  const asOf = input.asOf != null ? input.asOf : new Date();
 
-  /* --- Airbnb's fee --------------------------------------------------- */
-  const override = n(s.airbnbFeeOverridePct);
-  const blend = blendedAirbnbFee(asOf, {
-    oldPct: n(s.airbnbOldFeePct, 3), newPct: n(s.airbnbNewFeePct, 15.5),
-    switchDate: s.airbnbFeeSwitchDate || DEFAULT_SETTINGS.airbnbFeeSwitchDate
-  });
-  const feePct = override > 0 ? override : blend.pct;
-  const feeNote = override > 0
-    ? `${override}% of revenue (your flat rate)`
-    : (blend.postDays >= 365 ? `${n(s.airbnbNewFeePct)}% of revenue`
-      : blend.postDays <= 0 ? `${n(s.airbnbOldFeePct)}% of revenue`
-      : `${feePct.toFixed(1)}% blended: ${blend.preDays}d at ${n(s.airbnbOldFeePct)}%, ${blend.postDays}d at ${n(s.airbnbNewFeePct)}%`);
+  /* --- Airbnb's fee ---------------------------------------------------
+     Airbnb moved every host to the single host-only fee in 2026, so one flat
+     rate comes off all revenue that comes from Airbnb (which is what AirROI
+     measures too). Revenue that is not from Airbnb, such as a long-term
+     rent, is passed in with airbnbFee: false and pays none. */
+  const feePct = input.airbnbFee === false ? 0 : n(s.airbnbFeePct, 15.5);
+  const feeNote = feePct > 0 ? `${feePct}% host fee` : 'none (revenue is not from Airbnb)';
   const revenueRate = feePct / 100 + pct(s.managementPct);    // share of revenue that leaves with it
 
   /* --- stays, which drive the turnover costs --------------------------- */
