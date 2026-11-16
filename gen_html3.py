@@ -1338,6 +1338,104 @@ function applyToView(){
 var _refreshFavs1=refreshFavs;
 refreshFavs=function(){ _refreshFavs1(); applyToView(); };
 refreshFavs();
+// ---- REMOVED ---------------------------------------------------------------
+// A Remove button on every card takes the house off every tab and puts it on
+// the Removed tab. There the same button reads Restore and brings it back.
+// Shared through picks.json like Favorites and To View.
+var REMOVED_KEY='strRemoved';
+var removed;
+try { removed=JSON.parse(localStorage.getItem(REMOVED_KEY)); } catch(e) { removed=null; }
+if(!Array.isArray(removed)) removed=[];
+function saveRemoved(){ try{ localStorage.setItem(REMOVED_KEY, JSON.stringify(removed)); }catch(e){} }
+function toggleRemoved(btn){
+  var card=btn.closest('.property-card'); if(!card) return;
+  var addr=card.dataset.addr; if(!addr) return;
+  var i=removed.indexOf(addr);
+  if(i>=0) removed.splice(i,1); else removed.push(addr);
+  saveRemoved(); refreshFavs();
+}
+(function buildRemovedTab(){
+  var st=document.createElement('style');
+  st.textContent='.rm-btn{position:absolute;top:10px;right:52px;height:34px;padding:0 11px;border-radius:999px;border:none;background:rgba(0,0,0,0.55);color:#fff;font:600 0.78rem Inter,sans-serif;cursor:pointer;backdrop-filter:blur(6px);z-index:2}'
+    +'.rm-btn:hover{background:#b91c1c}.rm-btn.active{background:#16a34a}.rm-btn.active:hover{background:#15803d}';
+  document.head.appendChild(st);
+  var anyBtn=document.querySelector('.tab-btn');
+  if(anyBtn && !document.getElementById('btn-removed')){
+    var b=document.createElement('button');
+    b.className='tab-btn'; b.id='btn-removed'; b.textContent='🗑️ Removed';
+    b.onclick=function(){ showTab('removed'); };
+    anyBtn.parentNode.appendChild(b);
+  }
+  var favTab=document.getElementById('tab-only');
+  if(favTab && !document.getElementById('tab-removed')){
+    var t=document.createElement('div');
+    t.id='tab-removed'; t.className='tab-content'; t.style.display='none';
+    t.innerHTML='<div class="tab-header"><h2>🗑️ Removed</h2><span class="prop-count">0 properties</span>'
+      +'<label class="sort-wrap">Sort <select class="sort-select" onchange="setSort(&quot;removed&quot;,this.value)">'
+      +'<option value="coc">Cash on cash</option><option value="cf">Cash flow</option><option value="rev">Revenue</option>'
+      +'<option value="price">Price</option><option value="cash">Total cash in</option></select>'
+      +'<button type="button" class="sort-dir" onclick="flipSort(&quot;removed&quot;,this)" title="Flip sort order">&darr;</button></label></div>'
+      +'<p class="view-empty">Nothing removed. Press Remove on a house to move it here.</p>'
+      +'<div class="cards-grid"></div>'
+      +'<div class="tab-map" id="map-removed"></div>';
+    var parent=favTab.parentNode, last=null;
+    parent.querySelectorAll(':scope > .tab-content').forEach(function(el){ last=el; });
+    parent.insertBefore(t, last ? last.nextSibling : null);
+  }
+})();
+function applyRemoved(){
+  var grid=document.querySelector('#tab-removed .cards-grid'); if(!grid) return;
+  grid.querySelectorAll('.rm-clone').forEach(function(el){ el.remove(); });
+  document.querySelectorAll('.property-card').forEach(function(c){
+    var img=c.querySelector('.card-image');
+    if(img && !c.querySelector('.rm-btn')){
+      var b=document.createElement('button');
+      b.type='button'; b.className='rm-btn'; b.setAttribute('onclick','toggleRemoved(this)');
+      img.appendChild(b);
+    }
+  });
+  var cloned={};
+  // the home tabs first, so the copy is taken from a card's own tab
+  var cards=Array.prototype.slice.call(document.querySelectorAll('.tab-content:not(#tab-removed):not(#tab-view):not(#tab-top5):not(#tab-only) .property-card'))
+    .concat(Array.prototype.slice.call(document.querySelectorAll('#tab-top5 .property-card, #tab-only .property-card, #tab-view .property-card')));
+  cards.forEach(function(c){
+    var addr=c.dataset.addr;
+    var off=removed.indexOf(addr)>=0;
+    if(off && !cloned[addr]){
+      var clone=c.cloneNode(true);
+      clone.classList.remove('fav-clone'); clone.classList.remove('view-clone'); clone.classList.add('rm-clone');
+      clone.removeAttribute('data-rm-hidden');
+      clone.style.display='';
+      grid.appendChild(clone);
+      cloned[addr]=true;
+    }
+    // MOVED: hidden everywhere else while it is on the Removed tab.
+    if(off){ c.style.display='none'; c.setAttribute('data-rm-hidden','1'); }
+    else if(c.getAttribute('data-rm-hidden')){ c.style.display=''; c.removeAttribute('data-rm-hidden'); }
+  });
+  document.querySelectorAll('.property-card').forEach(function(c){
+    var off=removed.indexOf(c.dataset.addr)>=0;
+    var b=c.querySelector('.rm-btn');
+    if(b){ b.classList.toggle('active', off); b.textContent=off?'↩ Restore':'✕ Remove'; b.title=off?'Put this house back on its tabs':'Take this house off every tab and move it to Removed'; }
+  });
+  var empty=document.querySelector('#tab-removed .view-empty'); if(empty) empty.style.display=grid.children.length?'none':'';
+  document.querySelectorAll('.tab-content').forEach(function(t){
+    var cnt=t.querySelector('.prop-count');
+    if(!cnt||!t.querySelector('.cards-grid')) return;
+    var n=0; t.querySelectorAll('.cards-grid .property-card').forEach(function(c){ if(c.style.display!=='none') n++; });
+    cnt.textContent=n+' properties';
+  });
+  var vb=document.getElementById('btn-view'), vg=document.querySelector('#tab-view .cards-grid');
+  if(vb && vg){ var vn=0; vg.querySelectorAll('.property-card').forEach(function(c){ if(c.style.display!=='none') vn++; }); vb.textContent='👀 To View'+(vn?' ('+vn+')':''); }
+  var rb=document.getElementById('btn-removed'); if(rb) rb.textContent='🗑️ Removed'+(grid.children.length?' ('+grid.children.length+')':'');
+  grid.querySelectorAll('.property-card').forEach(recalcCardEl);
+  if(sortState.removed) applySort('removed');
+  if(currentTab) updateTabMap(currentTab);
+  scheduleEqualize();
+}
+var _refreshFavs2=refreshFavs;
+refreshFavs=function(){ _refreshFavs2(); applyRemoved(); };
+refreshFavs();
 // ---- FAVORITES AND TO VIEW, SHARED --------------------------------------
 // Both lists are published in picks.json beside this page, so anyone who
 // opens the site sees the same houses marked. Reading it needs nothing.
@@ -1365,14 +1463,14 @@ function readPending(){
   try { var p=JSON.parse(localStorage.getItem(PENDING_KEY)); return (p && Array.isArray(p.favs) && Array.isArray(p.toView)) ? p : null; } catch(e) { return null; }
 }
 function usePicks(p){
-  favs=(p.favs||[]).slice(); toView=(p.toView||[]).slice();
-  saveFavs(); saveToView(); refreshFavs();
+  favs=(p.favs||[]).slice(); toView=(p.toView||[]).slice(); removed=(p.removed||[]).slice();
+  saveFavs(); saveToView(); saveRemoved(); refreshFavs();
 }
 function sendPicks(p){
   document.dispatchEvent(new CustomEvent('str-picks-save', { detail: JSON.stringify(p) }));
 }
 function queuePicksSave(){
-  var p={ favs:favs.slice(), toView:toView.slice(), updatedAt:new Date().toISOString() };
+  var p={ favs:favs.slice(), toView:toView.slice(), removed:removed.slice(), updatedAt:new Date().toISOString() };
   // kept here too, so a reload before the site has rebuilt still shows it
   try { localStorage.setItem(PENDING_KEY, JSON.stringify(p)); } catch(e) {}
   clearTimeout(picksTimer);
@@ -1391,6 +1489,8 @@ var _toggleFav0=toggleFav;
 toggleFav=function(btn){ if(!canChangePicks()) return; _toggleFav0(btn); if(scoutState()==='ready') queuePicksSave(); };
 var _toggleToView0=toggleToView;
 toggleToView=function(btn){ if(!canChangePicks()) return; _toggleToView0(btn); if(scoutState()==='ready') queuePicksSave(); };
+var _toggleRemoved0=toggleRemoved;
+toggleRemoved=function(btn){ if(!canChangePicks()) return; _toggleRemoved0(btn); if(scoutState()==='ready') queuePicksSave(); };
 document.addEventListener('str-picks-saved', function(e){
   var r; try { r=JSON.parse(e.detail); } catch(err) { r=null; }
   if(r && r.ok){ picksShared=true; picksMissing=false; picksToast(r.skipped ? 'Already saved.' : 'Saved. Everyone sees it in about a minute.'); }
@@ -1404,7 +1504,7 @@ function picksEditorReady(){
   if(scoutState()!=='ready') return;
   var pend=readPending();
   if(picksMissing){
-    if(favs.length || toView.length) sendPicks({ favs:favs.slice(), toView:toView.slice(), updatedAt:new Date().toISOString() });
+    if(favs.length || toView.length || removed.length) sendPicks({ favs:favs.slice(), toView:toView.slice(), removed:removed.slice(), updatedAt:new Date().toISOString() });
   } else if(picksShared && pend && pend._newer){ sendPicks(pend); }
 }
 document.addEventListener('str-scout-ready', picksEditorReady);
@@ -1421,7 +1521,7 @@ document.addEventListener('str-scout-ready', picksEditorReady);
     // A change made here after the published file was written wins until
     // the site catches up; otherwise the published file is the truth.
     if(pend && scoutState() && Date.parse(pend.updatedAt) > Date.parse(file.updatedAt||0)
-       && JSON.stringify([pend.favs,pend.toView]) !== JSON.stringify([file.favs,file.toView])){
+       && JSON.stringify([pend.favs,pend.toView,pend.removed||[]]) !== JSON.stringify([file.favs,file.toView,file.removed||[]])){
       pend._newer=true;
       try { localStorage.setItem(PENDING_KEY, JSON.stringify(pend)); } catch(e) {}
       usePicks(pend);
