@@ -184,7 +184,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <button type="button" class="sort-dir" onclick="flipSort('top5',this)" title="Flip sort order">&darr;</button>
       </label>
     </div>
-    <div class="top5-banner">⚡ Best CoC across all tabs — deduplicated, highest-revenue version of each property shown. Adjust revenue or remodel budget on any card to see live CoC updates.</div>
+    <div class="top5-banner">⚡ The five best cash-on-cash returns across all tabs, worked out live. Removed and sold houses are left out, and a house that loses money never appears. Change a revenue or remodel figure on any card and this list follows.</div>
     <div class="cards-grid">
     <div class="property-card card-green" data-addr="5725 Sunfair Rd, Joshua Tree, CA 92252" data-lat="34.149147" data-lng="-116.24605" data-price="1199000" data-orig-price="1199000" data-annual-rev="228200" data-piti="7033.8204" data-pool="0" data-base-startup="447362.5000" data-util="391" data-hoa="0" data-clean="0.23">
       <div class="card-image">
@@ -4596,11 +4596,58 @@ document.addEventListener('str-scout-ready', picksEditorReady);
     picksEditorReady();
   }).catch(function(){ /* unreadable: the lists stay private to this browser */ });
 })();
+// ---- TOP 5, LIVE -----------------------------------------------------------
+// Top 5 is worked out in the page, not fixed when the page is built: the five
+// houses with the best cash-on-cash return across the area tabs, using the
+// same live maths as the cards. Removed and sold houses are left out, and a
+// house that loses money never makes the list. It is redone when the maths
+// loads, when a house is removed or restored, and when a revenue, remodel or
+// pool figure on a card is changed.
+var TOP5_SKIP=['top5','only','view','removed','sold','comps'];
+function buildTop5(){
+  if(!window.STRMath) return;
+  var grid=document.querySelector('#tab-top5 .cards-grid'); if(!grid) return;
+  var best={};
+  document.querySelectorAll('.tab-content').forEach(function(t){
+    if(TOP5_SKIP.indexOf(t.id.replace(/^tab-/,''))>=0) return;
+    t.querySelectorAll('.cards-grid .property-card').forEach(function(c){
+      var addr=c.dataset.addr; if(!addr) return;
+      if(typeof removed!=='undefined' && removed.indexOf(addr)>=0) return;
+      var v=sortVals(c).coc;
+      if(v==null || isNaN(v) || v<=0) return;
+      if(!best[addr] || best[addr].v<v) best[addr]={c:c,v:v};
+    });
+  });
+  var picks=Object.keys(best).map(function(a){ return best[a]; })
+    .sort(function(a,b){ return b.v-a.v; }).slice(0,5);
+  while(grid.firstChild) grid.removeChild(grid.firstChild);
+  picks.forEach(function(p){
+    var clone=p.c.cloneNode(true);
+    clone.classList.remove('fav-clone'); clone.classList.remove('view-clone'); clone.classList.remove('rm-clone');
+    clone.removeAttribute('data-rm-hidden');
+    clone.style.display='';
+    grid.appendChild(clone);
+    recalcCardEl(clone);
+  });
+  var cnt=document.querySelector('#tab-top5 .prop-count'); if(cnt) cnt.textContent=picks.length+' properties';
+  if(currentTab==='top5') updateTabMap('top5');
+  scheduleEqualize();
+}
+var _refreshFavs3=refreshFavs;
+refreshFavs=function(){ _refreshFavs3(); buildTop5(); };
+var _top5Timer;
+document.addEventListener('change', function(e){
+  var el=e.target;
+  if(!el || !el.closest || el.closest('#tab-top5')) return;
+  if(!el.matches('.rev-input, .remodel-input, .pool-check')) return;
+  clearTimeout(_top5Timer); _top5Timer=setTimeout(buildTop5, 300);
+});
 window.addEventListener('load', equalizeRows);
 // The maths arrives a moment after the page (it is a module). When it does,
 // redo every card and put the sorted tabs back in order.
 function strMathReady(){
   document.querySelectorAll('.property-card').forEach(recalcCardEl);
+  buildTop5();
   Object.keys(sortState).forEach(function(t){ applySort(t); });
   scheduleEqualize();
 }
