@@ -490,6 +490,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-green" data-addr="52975 Cielito Trl, Pioneertown, CA 92268" data-lat="34.196335" data-lng="-116.508835" data-price="599000" data-annual-rev="119647" data-piti="3614.0604" data-pool="0" data-base-startup="238718.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="4" data-sqft="1536" data-as-of="2026-11-16">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/c1259893bd462904375dc80afa4ad358-p_f.jpg" alt="52975 Cielito Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$599,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">52975 Cielito Trl</div>
+        <div class="card-city">Pioneertown, CA 92268</div>
+        <div class="card-chips"><span class="chip chip-bed">4 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">1,536 sqft</span><span class="chip chip-region">Pioneertown</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-red" title="Days on Market">📅 227d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $5,201)</span></span><span class="amount neutral mo-rev-val">+$9,971/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$3,614/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$2,293/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount positive net-cf-val">+$3,672/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:56.6%;background:#22c55e"></div></div>
+          <div class="coc-value coc-positive">+18.5%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">AirROI est.</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="119,647" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$62,417/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$179,700</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$24,576</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$14,975</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$11,980</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$7,488</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$238,719</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/52975-Cielito-Trl-Pioneertown-CA-92268/17495861_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.199835%2C-116.512335%5D%2C%5B34.199835%2C-116.505335%5D%2C%5B34.192835%2C-116.505335%5D%2C%5B34.192835%2C-116.512335%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-red" data-addr="66560 Sandy Ridge Dr, Joshua Tree, CA 92252" data-lat="34.14275" data-lng="-116.210396" data-price="299000" data-annual-rev="0" data-piti="1904.1804" data-pool="0" data-base-startup="120108.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="1" data-sqft="826" data-as-of="2026-11-16">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/5be59892ea17ced0acd3ced4445db89a-p_f.jpg" alt="66560 Sandy Ridge Dr" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
