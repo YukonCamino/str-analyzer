@@ -13,5 +13,9 @@
     "1564 Luna Mesa Rd, Yucca Valley, CA 92284",
     "66560 Sandy Ridge Dr, Joshua Tree, CA 92252"
   ],
-  "updatedAt": "2026-11-16T04:51:39.075Z"
+  "removed": [
+    "220 N Shore Dr, Fawnskin, CA 92333",
+    "52975 Cielito Trl, Pioneertown, CA 92268"
+  ],
+  "updatedAt": "2026-11-16T07:10:14.913Z"
 }
