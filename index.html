@@ -490,6 +490,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-red" data-addr="230 Sunset Ln, Sugarloaf, CA 92386" data-lat="34.248116" data-lng="-116.8308" data-price="238000" data-annual-rev="30027" data-piti="1556.5048" data-pool="0" data-base-startup="94493.0000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="2" data-sqft="588" data-occupancy="0.37" data-clean-fee="145" data-as-of="2026-11-20">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/20f3c9dc662fd3b16eef8e6530a97656-p_f.jpg" alt="230 Sunset Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$238,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">230 Sunset Ln</div>
+        <div class="card-city">Sugarloaf, CA 92386</div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">588 sqft</span><span class="chip chip-region">Sugarloaf</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 0d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,529)</span></span><span class="amount neutral mo-rev-val">+$2,502/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,557/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$576/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$21/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:0.8%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-0.3%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Sugarloaf 2/1 market</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="30,027" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$30,351/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$71,400</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$9,408</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$5,950</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$4,760</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$2,975</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$94,493</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/230-Sunset-Ln-Sugarloaf-CA-92386/17622774_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.251616%2C-116.8343%5D%2C%5B34.251616%2C-116.8273%5D%2C%5B34.244616%2C-116.8273%5D%2C%5B34.244616%2C-116.8343%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-green" data-addr="52975 Cielito Trl, Pioneertown, CA 92268" data-lat="34.196335" data-lng="-116.508835" data-price="599000" data-annual-rev="119647" data-piti="3614.0604" data-pool="0" data-base-startup="238718.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="4" data-sqft="1536" data-as-of="2026-11-16">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/c1259893bd462904375dc80afa4ad358-p_f.jpg" alt="52975 Cielito Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
