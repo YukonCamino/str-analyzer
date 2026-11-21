@@ -35,7 +35,7 @@ export const DEFAULT_SETTINGS = {
   hotTubRunningPerMonth: 180,
   adminPerYear: 600,
   repairsPerYear: 2000,
-  poolRepairsPerYear: 1000,
+  poolRepairsPerYear: 0,
 
   taxPctIfUnknown: 1.25,
   insurancePctOfPrice: 0.56,

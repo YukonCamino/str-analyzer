@@ -827,7 +827,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
 .price-badge { position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.75);color:#fff;padding:4px 11px;border-radius:6px;font-size:0.88rem;font-weight:700;backdrop-filter:blur(6px);letter-spacing:-0.3px;cursor:pointer; }
 .price-badge:hover { outline:1.5px solid rgba(255,255,255,0.55);outline-offset:-1px; }
 .pool-label { display:inline-flex;align-items:center;gap:5px;cursor:pointer; }
-.pool-check { cursor:pointer;margin:0;accent-color:var(--accent,#b45309); }
+.pool-check, .tub-check, .furn-check { cursor:pointer;margin:0;accent-color:var(--accent,#b45309); }
 .card-body { padding:13px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1; }
 .card-address { font-size:0.88rem;font-weight:600;line-height:1.3; }
 .card-city { font-size:0.75rem;color:var(--text2);margin-top:-6px; }
@@ -934,8 +934,66 @@ function chipNum(card, cls){ var el=card.querySelector('.'+cls); return el?cardN
 // ALL THE SUMS COME FROM str-math.js (window.STRMath, loaded by
 // str-math-loader.js). This only gathers what the card knows and hands it
 // over; nothing below does arithmetic beyond dividing a yearly figure by 12.
+// ---- CARD CHECK BOXES ----------------------------------------------------
+// Pool service, hot tub service and furnishing can be ticked on or off per
+// house. The choice is kept in this browser and applies to every copy of
+// the house (its own tab, Top 5, To View...).
+var TOG_KEY='strCardToggles';
+var cardToggles;
+try { cardToggles=JSON.parse(localStorage.getItem(TOG_KEY)); } catch(e) { cardToggles=null; }
+if (!cardToggles || typeof cardToggles!=='object') cardToggles={};
+function saveToggles(){ try{ localStorage.setItem(TOG_KEY, JSON.stringify(cardToggles)); }catch(e){} }
+function setChk(el, v){ if(!el) return; el.checked=!!v; el.defaultChecked=!!v; }
+function ensureCardControls(card){
+  if(!card || card.dataset.ctl) return;
+  card.dataset.ctl='1';
+  var saved=cardToggles[card.dataset.addr]||{};
+  var pc=card.querySelector('.pool-check');
+  if(pc){
+    pc.setAttribute('onchange','toggleCard(this)');
+    if(saved.pool!=null) setChk(pc, saved.pool);
+    var poolRow=pc.closest('.cost-row');
+    if(poolRow && !card.querySelector('.tub-check')){
+      var row=document.createElement('div'); row.className='cost-row tub-row';
+      row.innerHTML='<label class="label pool-label"><input type="checkbox" class="tub-check" onchange="toggleCard(this)">Hot tub service</label><span class="amount neutral tub-val">$0/mo</span>';
+      poolRow.parentNode.insertBefore(row, poolRow.nextSibling);
+      setChk(row.querySelector('.tub-check'), saved.tub!=null ? saved.tub : card.dataset.hotTub==='1');
+    }
+  }
+  if(!card.querySelector('.furn-check')){
+    var srows=card.querySelectorAll('.startup-row');
+    for(var i=0;i<srows.length;i++){
+      var spans=srows[i].querySelectorAll(':scope > span');
+      if(spans.length<2 || spans[0].textContent.indexOf('Furnishing')!==0) continue;
+      var included=srows[i].textContent.indexOf('Included')>=0;
+      var lab=document.createElement('label'); lab.className='pool-label';
+      lab.innerHTML='<input type="checkbox" class="furn-check" onchange="toggleCard(this)">';
+      lab.appendChild(document.createTextNode(spans[0].textContent));
+      srows[i].replaceChild(lab, spans[0]);
+      spans[1].className='furn-val';
+      setChk(lab.querySelector('.furn-check'), saved.furn!=null ? saved.furn : !included);
+      break;
+    }
+  }
+}
+function toggleCard(el){
+  var card=el.closest('.property-card'); if(!card) return;
+  var get=function(sel){ var x=card.querySelector(sel); return x ? x.checked : null; };
+  var t={ pool:get('.pool-check'), tub:get('.tub-check'), furn:get('.furn-check') };
+  var addr=card.dataset.addr;
+  cardToggles[addr]=t; saveToggles();
+  document.querySelectorAll('.property-card').forEach(function(c){
+    if(c.dataset.addr!==addr) return;
+    ensureCardControls(c);
+    if(t.pool!=null) setChk(c.querySelector('.pool-check'), t.pool);
+    if(t.tub!=null) setChk(c.querySelector('.tub-check'), t.tub);
+    if(t.furn!=null) setChk(c.querySelector('.furn-check'), t.furn);
+    recalcCardEl(c);
+  });
+}
 function cardDeal(card){
   if(!card || !window.STRMath) return null;
+  ensureCardControls(card);
   var d=card.dataset;
   var p0=parseFloat(d.price)||0;
   var cur=parseFloat(d.curPrice); if(isNaN(cur)) cur=p0;
@@ -949,7 +1007,7 @@ function cardDeal(card){
     price:cur,
     beds:d.beds!==undefined?parseFloat(d.beds):chipNum(card,'chip-bed'),
     sqft:d.sqft!==undefined?parseFloat(d.sqft):chipNum(card,'chip-sqft'),
-    pool:pool, hotTub:d.hotTub==='1',
+    pool:pool, hotTub:(card.querySelector('.tub-check')?card.querySelector('.tub-check').checked:d.hotTub==='1'),
     annualRevenue:rev,
     hoaAnnual:(parseFloat(d.hoa)||0)*12,
     remodel:remodelEl?(cardNum(remodelEl.value)||0):0
@@ -970,7 +1028,9 @@ function cardDeal(card){
   if(d.clean!==undefined && !isNaN(parseFloat(d.clean))) s.cleaningPctIfNoOccupancy=parseFloat(d.clean)*100;
   // A house sold fully furnished says so on its Furnishing row; it must not
   // also be charged for furniture in the cash to start.
-  var srows=card.querySelectorAll('.startup-row');
+  var furnCheck=card.querySelector('.furn-check');
+  if(furnCheck && !furnCheck.checked){ s.furnishingPerSqft=0; s.furnishing=0; }
+  var srows=furnCheck?[]:card.querySelectorAll('.startup-row');
   for(var i=0;i<srows.length;i++){
     var tx=srows[i].textContent;
     if(tx.indexOf('Furnishing')>=0 && tx.indexOf('Included')>=0){ s.furnishingPerSqft=0; s.furnishing=0; }
@@ -978,7 +1038,7 @@ function cardDeal(card){
   return window.STRMath.analyze(input, s);
 }
 function lineAmt(r, keys){ var t=0; r.lines.forEach(function(l){ if(keys.indexOf(l.key)>=0) t+=(l.amount||0); }); return t; }
-var OTHER_KEYS=['supplies','hotTub','admin','repairs','hoa','platform','management'];
+var OTHER_KEYS=['supplies','admin','repairs','hoa','platform','management'];
 function recalcCardEl(card) {
   if (!card) return;
   var r = cardDeal(card);
@@ -988,6 +1048,11 @@ function recalcCardEl(card) {
   var pool = lineAmt(r, ['poolUtil','poolRepairs']) / 12;
   var poolValEl = set('.pool-val', (pool ? '-' + fmtUSD(pool) : '$0') + '/mo');
   if (poolValEl) poolValEl.className = 'amount ' + (pool ? 'negative' : 'neutral') + ' pool-val';
+  var tub = lineAmt(r, ['hotTub']) / 12;
+  var tubValEl = set('.tub-val', (tub ? '-' + fmtUSD(tub) : '$0') + '/mo');
+  if (tubValEl) tubValEl.className = 'amount ' + (tub ? 'negative' : 'neutral') + ' tub-val';
+  var fc = card.querySelector('.furn-check');
+  set('.furn-val', fc && !fc.checked ? 'Not needed' : fmtUSD(r.furnishing));
   set('.down-val', fmtUSD(r.down));
   set('.agent-val', fmtUSD(r.buyerAgent));
   set('.closing-val', fmtUSD(r.closing));
@@ -1587,7 +1652,7 @@ var _top5Timer;
 document.addEventListener('change', function(e){
   var el=e.target;
   if(!el || !el.closest || el.closest('#tab-top5')) return;
-  if(!el.matches('.rev-input, .remodel-input, .pool-check')) return;
+  if(!el.matches('.rev-input, .remodel-input, .pool-check, .tub-check, .furn-check')) return;
   clearTimeout(_top5Timer); _top5Timer=setTimeout(buildTop5, 300);
 });
 window.addEventListener('load', equalizeRows);
