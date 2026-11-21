@@ -594,7 +594,7 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
         <div class="card-links"><a href="https://www.zillow.com/homedetails/64918-1st-St-S-Joshua-Tree-CA-92252/337970773_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/755370030879554344" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.166628%2C-116.25025%5D%2C%5B34.166628%2C-116.24325%5D%2C%5B34.159628%2C-116.24325%5D%2C%5B34.159628%2C-116.25025%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
-      <div class="property-card card-red" data-addr="230 Sunset Ln, Sugarloaf, CA 92386" data-lat="34.248116" data-lng="-116.8308" data-price="238000" data-annual-rev="30027" data-piti="1556.5048" data-pool="0" data-base-startup="94493.0000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="2" data-sqft="588" data-occupancy="0.37" data-clean-fee="145" data-as-of="2026-11-20">
+      <div class="property-card card-red" data-addr="230 Sunset Ln, Sugarloaf, CA 92386" data-lat="34.248116" data-lng="-116.8308" data-price="238000" data-annual-rev="22823" data-piti="1556.5048" data-pool="0" data-base-startup="94493.0000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="2" data-sqft="588" data-as-of="2026-11-21">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/20f3c9dc662fd3b16eef8e6530a97656-p_f.jpg" alt="230 Sunset Ln" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
         <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$238,000</span></div>
@@ -603,31 +603,31 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       <div class="card-body">
         <div class="card-address">230 Sunset Ln</div>
         <div class="card-city">Sugarloaf, CA 92386</div>
-        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">588 sqft</span><span class="chip chip-region">Sugarloaf</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-green" title="Days on Market">📅 0d</span></div>
+        <div class="card-chips"><span class="chip chip-bed">2 bd</span><span class="chip chip-bath">1 ba</span><span class="chip chip-sqft">588 sqft</span><span class="chip chip-region">Sugarloaf</span><span class="chip chip-source">🏔️ Big Bear</span><span class="chip chip-dom-green" title="Days on Market">📅 1d</span></div>
         <div class="cost-breakdown">
-          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,529)</span></span><span class="amount neutral mo-rev-val">+$2,502/mo</span></div>
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $2,529)</span></span><span class="amount neutral mo-rev-val">+$1,902/mo</span></div>
           <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$1,557/mo</span></div>
           <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
-          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$576/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$437/mo</span></div>
           <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
-          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$21/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$483/mo</span></div>
         </div>
         <div class="coc-section">
           <div class="coc-label">Cash-on-Cash Return</div>
-          <div class="coc-bar-wrap"><div class="coc-bar" style="width:0.8%;background:#ef4444"></div></div>
-          <div class="coc-value coc-negative">-0.3%</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:18.8%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-6.1%</div>
         </div>
         <div class="rev-adjust">
           <div class="rev-adjust-header">
             <span class="rev-adjust-title">📊 Revenue Assumption</span>
-            <span class="rev-tag">Sugarloaf 2/1 market</span>
+            <span class="rev-tag">Avg of 6 comps</span>
           </div>
           <div class="rev-adjust-row">
             <span>Annual Revenue</span>
-            <input type="text" class="rev-input" value="30,027" oninput="recalcCard(this)" onclick="this.select()">
+            <input type="text" class="rev-input" value="22,823" oninput="recalcCard(this)" onclick="this.select()">
           </div>
           <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$30,351/yr</span></div>
-          
+          <div class="rev-adjust-row comp-avg-row"><span>Comp median</span><span>~37% occ · $192 ADR</span></div>
         </div>
         <div class="startup-section">
           <div class="startup-title">Startup Costs</div>
@@ -642,7 +642,8 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
           </div>
           <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$94,493</span></div>
         </div>
-        
+        <div class="comp-strips"><div class="comp-strips-title">Comps (20)</div><a href="https://www.airbnb.com/rooms/14342504" target="_blank" class="comp-strip" title="Hot Tub • Fire Pit • Fenced Yard• Sunset Treehouse (occupancy assumed)"><span>~37% occ</span><span>$294 ADR</span><span>$39.7K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1670503904577887181" target="_blank" class="comp-strip" title="Sunset Chalet (occupancy assumed)"><span>~37% occ</span><span>$235 ADR</span><span>$31.7K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/49831965" target="_blank" class="comp-strip" title="Cozy Bear Cabin, 15% off 7days or more (occupancy assumed)"><span>~37% occ</span><span>$202 ADR</span><span>$27.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/968888617454097429" target="_blank" class="comp-strip" title="Pet-friendly Woodland Escape - Sugar Pine Hollow (occupancy assumed)"><span>~37% occ</span><span>$119 ADR</span><span>$16.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1010856354548263249" target="_blank" class="comp-strip" title="Apres Chalet at Big Bear- Log Cabin Retreat w/ Spa (occupancy assumed)"><span>~37% occ</span><span>$171 ADR</span><span>$23.1K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/987776484799791581" target="_blank" class="comp-strip" title="Steps to National Forest + Fireplace (occupancy assumed)"><span>~37% occ</span><span>$202 ADR</span><span>$27.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/38939634" target="_blank" class="comp-strip" title="Log Cab-Inn | Authentic w/ Modern Luxuries &amp; Spa! (occupancy assumed)"><span>~37% occ</span><span>$302 ADR</span><span>$40.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/783968359601204830" target="_blank" class="comp-strip" title="Romantic cozy cabin with hot tub, pet friendly! (occupancy assumed)"><span>~37% occ</span><span>$338 ADR</span><span>$45.6K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/46681089" target="_blank" class="comp-strip" title="Midcentury Modern A-Frame near the slopes (occupancy assumed)"><span>~37% occ</span><span>$132 ADR</span><span>$17.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/817991626773524292" target="_blank" class="comp-strip" title="Designer Cottage near Village, Snow Tubing, Skiing (occupancy assumed)"><span>~37% occ</span><span>$195 ADR</span><span>$26.3K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/601348223443229655" target="_blank" class="comp-strip" title="Petite Retreat - cozy 2 bedroom cabin with hot tub (occupancy assumed)"><span>~37% occ</span><span>$272 ADR</span><span>$36.7K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1678440761033310970" target="_blank" class="comp-strip" title="Sugarloaf Cabin Near Big Bear Adventures (occupancy assumed)"><span>~37% occ</span><span>$184 ADR</span><span>$24.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1253604786339532628" target="_blank" class="comp-strip" title="Starry Pines Cabin - Deck, Firepit &amp; Jacuzzi (occupancy assumed)"><span>~37% occ</span><span>$216 ADR</span><span>$29.2K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/52149580" target="_blank" class="comp-strip" title="Mountain Tree House 
+*W/Fireplace, BBQ, Fire-pit* (occupancy assumed)"><span>~37% occ</span><span>$167 ADR</span><span>$22.6K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1043034931142298045" target="_blank" class="comp-strip" title="Romantic Retreat, Hot Tub Gazebo, Unique Decor (occupancy assumed)"><span>~37% occ</span><span>$219 ADR</span><span>$29.6K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/50812883" target="_blank" class="comp-strip" title="Corner-Lot Treehaus w/ High Deck, Trails &amp; EV (occupancy assumed)"><span>~37% occ</span><span>$188 ADR</span><span>$25.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/33101333" target="_blank" class="comp-strip" title="Romantic and Peaceful Escape with Hot Tub (occupancy assumed)"><span>~37% occ</span><span>$136 ADR</span><span>$18.4K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1487310795731122217" target="_blank" class="comp-strip" title="Riverside Retreat | Cozy Big Bear Cabin (occupancy assumed)"><span>~37% occ</span><span>$147 ADR</span><span>$19.9K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1244421449158355723" target="_blank" class="comp-strip" title="Cozy Big Bear Cabin · Hot Tub · Quiet Pines Escape (occupancy assumed)"><span>~37% occ</span><span>$176 ADR</span><span>$23.8K/yr</span><span class="cs-arrow">↗</span></a><a href="https://www.airbnb.com/rooms/1016855897395744939" target="_blank" class="comp-strip" title="Big Dogs Den | Hot Tub+Pet Friendly+Fenced Yard (occupancy assumed)"><span>~37% occ</span><span>$186 ADR</span><span>$25.1K/yr</span><span class="cs-arrow">↗</span></a></div>
         <div class="card-links"><a href="https://www.zillow.com/homedetails/230-Sunset-Ln-Sugarloaf-CA-92386/17622774_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.251616%2C-116.8343%5D%2C%5B34.251616%2C-116.8273%5D%2C%5B34.244616%2C-116.8273%5D%2C%5B34.244616%2C-116.8343%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
       </div>
     </div>
