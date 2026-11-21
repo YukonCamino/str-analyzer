@@ -1200,6 +1200,15 @@ function applySort(tid){
   if(tid===currentTab){ updateTabMap(tid); scheduleEqualize(); }
 }
 function setSort(tid,key){ sortState[tid]={key:key,dir:SORT_DEFAULT_DIR[key]||-1}; applySort(tid); }
+// Default sort: highest cash on cash first, on every tab, until you pick another.
+function sortTab(tid){ if(!sortState[tid]) sortState[tid]={key:'coc',dir:-1}; applySort(tid); }
+function sortAllTabs(){
+  document.querySelectorAll('.sort-select').forEach(function(sel){
+    var tab=sel.closest('[id^="tab-"]'); if(!tab) return;
+    var tid=tab.id.slice(4); if(tid==='top5') return;
+    sortTab(tid);
+  });
+}
 function flipSort(tid,btn){
   var tab=document.getElementById('tab-'+tid);
   var sel=tab&&tab.querySelector('.sort-select');
@@ -1207,7 +1216,7 @@ function flipSort(tid,btn){
   st.dir=-st.dir; sortState[tid]=st; applySort(tid);
 }
 var _refreshFavs0=refreshFavs;
-refreshFavs=function(){ _refreshFavs0(); if(sortState.only) applySort('only'); };
+refreshFavs=function(){ _refreshFavs0(); sortTab('only'); };
 loadPriceCuts();
 refreshFavs();
 showTab('top5');
@@ -1334,7 +1343,7 @@ function applyToView(){
   });
   var tb=document.getElementById('btn-view'); if(tb) tb.textContent='👀 To View'+(toView.length?' ('+grid.children.length+')':'');
   grid.querySelectorAll('.property-card').forEach(recalcCardEl);
-  if(sortState.view) applySort('view');
+  sortTab('view');
   if(currentTab) updateTabMap(currentTab);
   scheduleEqualize();
 }
@@ -1432,7 +1441,7 @@ function applyRemoved(){
   if(vb && vg){ var vn=0; vg.querySelectorAll('.property-card').forEach(function(c){ if(c.style.display!=='none') vn++; }); vb.textContent='👀 To View'+(vn?' ('+vn+')':''); }
   var rb=document.getElementById('btn-removed'); if(rb) rb.textContent='🗑️ Removed'+(grid.children.length?' ('+grid.children.length+')':'');
   grid.querySelectorAll('.property-card').forEach(recalcCardEl);
-  if(sortState.removed) applySort('removed');
+  sortTab('removed');
   if(currentTab) updateTabMap(currentTab);
   scheduleEqualize();
 }
@@ -1587,7 +1596,7 @@ window.addEventListener('load', equalizeRows);
 function strMathReady(){
   document.querySelectorAll('.property-card').forEach(recalcCardEl);
   buildTop5();
-  Object.keys(sortState).forEach(function(t){ applySort(t); });
+  sortAllTabs();
   scheduleEqualize();
 }
 if(window.STRMath) strMathReady(); else window.addEventListener('strmath-ready', strMathReady);
