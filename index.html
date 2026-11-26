@@ -490,6 +490,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-red" data-addr="6976 Sherman Rd, Twentynine Palms, CA 92277" data-lat="34.126408" data-lng="-116.13054" data-price="799900" data-annual-rev="73675" data-piti="4759.1100" data-pool="0" data-base-startup="318380.2500" data-util="391" data-hoa="0" data-clean="0.23" data-beds="3" data-sqft="2026" data-as-of="2026-11-26">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/540e85864e87aca02ee17517199e1b2f-p_f.jpg" alt="6976 Sherman Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$799,900</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">6976 Sherman Rd</div>
+        <div class="card-city">Twentynine Palms, CA 92277</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">2 ba</span><span class="chip chip-sqft">2,026 sqft</span><span class="chip chip-region">Twentynine Palms</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-yellow" title="Days on Market">📅 45d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $6,688)</span></span><span class="amount neutral mo-rev-val">+$6,140/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$4,759/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,412/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$423/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:4.9%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-1.6%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">AirROI est.</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="73,675" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$80,261/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$239,970</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$32,416</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$19,998</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$15,998</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$9,999</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$318,380</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/6976-Sherman-Rd-Twentynine-Palms-CA-92277/17502549_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.129908%2C-116.13404%5D%2C%5B34.129908%2C-116.12704%5D%2C%5B34.122908%2C-116.12704%5D%2C%5B34.122908%2C-116.13404%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-green" data-addr="4991 1st St E, Joshua Tree, CA 92252" data-lat="34.16249" data-lng="-116.24576" data-price="325000" data-annual-rev="81858" data-piti="2052.3700" data-pool="0" data-base-startup="122443.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="1" data-sqft="391" data-occupancy="0.756" data-clean-fee="115" data-hot-tub="1" data-as-of="2026-11-21">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/ea6b506d0b8f76d27f118017da93337c-p_f.jpg" alt="4991 1st St E" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
