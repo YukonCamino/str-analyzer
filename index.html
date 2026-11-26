@@ -490,6 +490,58 @@ body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,
       </label>
     </div>
     <div class="cards-grid">
+      <div class="property-card card-red" data-addr="60220 Drexel Rd, Joshua Tree, CA 92252" data-lat="34.19005" data-lng="-116.349075" data-price="915000" data-annual-rev="66850" data-piti="5415.1340" data-pool="0" data-base-startup="353768.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="3" data-sqft="1666" data-as-of="2026-11-26">
+      <div class="card-image">
+        <img src="https://photos.zillowstatic.com/fp/04cfe3aca18d78f0df98c546ee843497-p_f.jpg" alt="60220 Drexel Rd" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
+        <div class="price-badge" onclick="editPrice(this)" title="Click to enter a price cut"><span class="price-cur">$915,000</span></div>
+        <button class="fav-btn" onclick="toggleFav(this)" title="Favorite">&hearts;</button>
+      </div>
+      <div class="card-body">
+        <div class="card-address">60220 Drexel Rd</div>
+        <div class="card-city">Joshua Tree, CA 92252</div>
+        <div class="card-chips"><span class="chip chip-bed">3 bd</span><span class="chip chip-bath">3 ba</span><span class="chip chip-sqft">1,666 sqft</span><span class="chip chip-region">Joshua Tree</span><span class="chip chip-source">🌵 Desert</span><span class="chip chip-dom-red" title="Days on Market">📅 207d</span></div>
+        <div class="cost-breakdown">
+          <div class="cost-row"><span class="label">Mo. Revenue<span class="be-inline">(breakeven $7,540)</span></span><span class="amount neutral mo-rev-val">+$5,571/mo</span></div>
+          <div class="cost-row"><span class="label">PITI (mtg+tax+ins)</span><span class="amount negative piti-val">-$5,415/mo</span></div>
+          <div class="cost-row"><span class="label">Utilities</span><span class="amount negative">-$391/mo</span></div>
+          <div class="cost-row"><span class="label">Cleaning (23%)</span><span class="amount negative cleaning-val">-$1,281/mo</span></div>
+          <div class="cost-row"><label class="label pool-label"><input type="checkbox" class="pool-check" onchange="recalcCard(this)" >Pool service</label><span class="amount neutral pool-val">$0/mo</span></div>
+          <div class="cost-row total-row"><span class="label">Net Cash Flow</span><span class="amount negative net-cf-val">-$1,517/mo</span></div>
+        </div>
+        <div class="coc-section">
+          <div class="coc-label">Cash-on-Cash Return</div>
+          <div class="coc-bar-wrap"><div class="coc-bar" style="width:15.8%;background:#ef4444"></div></div>
+          <div class="coc-value coc-negative">-5.1%</div>
+        </div>
+        <div class="rev-adjust">
+          <div class="rev-adjust-header">
+            <span class="rev-adjust-title">📊 Revenue Assumption</span>
+            <span class="rev-tag">Airbnb verified</span>
+          </div>
+          <div class="rev-adjust-row">
+            <span>Annual Revenue</span>
+            <input type="text" class="rev-input" value="66,850" oninput="recalcCard(this)" onclick="this.select()">
+          </div>
+          <div class="rev-adjust-row"><span>Breakeven Revenue</span><span class="be-val">$90,485/yr</span></div>
+          
+        </div>
+        <div class="startup-section">
+          <div class="startup-title">Startup Costs</div>
+          <div class="startup-row"><span>Down Payment (30%)</span><span class="down-val">$274,500</span></div>
+          <div class="startup-row"><span>Furnishing ($16/sqft)</span><span>$26,656</span></div>
+          <div class="startup-row"><span>Buyer's Agent (2.5%)</span><span class="agent-val">$22,875</span></div>
+          <div class="startup-row"><span>Closing Costs (est. 2%)</span><span class="closing-val">$18,300</span></div>
+          <div class="startup-row"><span>Supplemental Tax (1.25%)</span><span class="supp-val">$11,438</span></div>
+          <div class="startup-row remodel-row">
+            <span>Remodel Budget</span>
+            <input type="text" class="remodel-input" placeholder="$0" oninput="recalcCard(this)">
+          </div>
+          <div class="startup-row startup-total"><span>Total Cash In</span><span class="startup-total-val">$353,769</span></div>
+        </div>
+        
+        <div class="card-links"><a href="https://www.zillow.com/homedetails/60220-Drexel-Rd-Joshua-Tree-CA-92252/137796889_zpid/" target="_blank" class="listing-btn zillow-btn">🏠 Zillow</a><a href="https://www.airbnb.com/rooms/1735668019745449174" target="_blank" class="listing-btn airbnb-btn">📍 AirBnB</a><a href="https://www.airroi.com/atlas/str-properties?geo=polygon&amp;points=%5B%5B34.19355%2C-116.352575%5D%2C%5B34.19355%2C-116.345575%5D%2C%5B34.18655%2C-116.345575%5D%2C%5B34.18655%2C-116.352575%5D%5D" target="_blank" class="listing-btn airroi-btn" title="Open AirROI Atlas on this street">🔭 AirROI</a></div>
+      </div>
+    </div>
       <div class="property-card card-green" data-addr="828 Cherokee Trl, Yucca Valley, CA 92284" data-lat="34.238064" data-lng="-116.444275" data-price="485000" data-annual-rev="87876" data-piti="2964.3060" data-pool="0" data-base-startup="190763.5000" data-util="391" data-hoa="0" data-clean="0.23" data-beds="2" data-sqft="1086" data-occupancy="0.816" data-as-of="2026-11-26">
       <div class="card-image">
         <img src="https://photos.zillowstatic.com/fp/79e6799461dca7fdb2f3f47163eafee4-p_f.jpg" alt="828 Cherokee Trl" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback')">
